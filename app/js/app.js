@@ -42,6 +42,7 @@ musiksalenApp.config(['$routeProvider',
       }).
       when('/works', {
         templateUrl: 'partials/works.html',
+        controller: 'WorksCtrl'
       }).
       // TODO in Lab 5: add more conditions for the last two screens (overview and preparation)
       otherwise({
