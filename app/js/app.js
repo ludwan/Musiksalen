@@ -40,7 +40,7 @@ musiksalenApp.config(['$routeProvider',
       when('/home', {
         templateUrl: 'partials/home.html'
       }).
-      when('/work', {
+      when('/works', {
         templateUrl: 'partials/works.html',
       }).
       // TODO in Lab 5: add more conditions for the last two screens (overview and preparation)

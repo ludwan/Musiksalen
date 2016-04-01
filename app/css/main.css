@@ -16,6 +16,10 @@ body {
     background-color: #e6cf8b;
     position: fixed;
     width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
 }
 
 .header #logo{
@@ -39,4 +43,9 @@ body {
 
 #myCarousel {
     margin-top: 50px;
+}
+
+#works {
+    position: relative;
+    top: 200px;
 }
