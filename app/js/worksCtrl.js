@@ -1,29 +1,23 @@
 'use strict';
+var tag = document.createElement('script');
+var firstScriptTag = document.getElementsByTagName('script')[0];
 
-function init() {
-    window.initGapi(); // Calls the init function defined on the window
-}
+tag.src = "https://www.youtube.com/iframe_api";
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-musiksalenApp.controller('WorksCtrl', function ($scope, $window,youtubeService){
-	var tag = document.createElement('script');
-	var firstScriptTag = document.getElementsByTagName('script')[0];
-	var keyWord = "Moonlight Sonata"
-
-	tag.src = "https://www.youtube.com/iframe_api";
-	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+musiksalenApp.controller('WorksCtrl', function ($scope, $window, youtubeService, $rootScope){
+	console.log("In WorksCtrl");
+    var keyWord = "Moonlight Sonata"
 	
 	$window.initGapi = function() {
 		console.log("In initGapi");
-
         $scope.$apply($scope.getVideos);
     };
 
     $scope.getVideos = function () {
     	console.log("In getVideos");
-
         youtubeService.googleApiClientReady(keyWord).then(function (data) {
             $scope.channel = data.items;
-            $scope.channel[0].test = "hej";
             console.log($scope.channel);
             $scope.createPlayer($scope.channel[0].id.videoId, $scope.channel[0].snippet.description);
         }, function (error) {
@@ -33,7 +27,6 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window,youtubeService){
 
     $scope.createPlayer = function (videoId, description) {
     	console.log("In createPlayer");
-    	console.log(videoId);
     	$scope.videoDescription = description;
     	$scope[videoId] = true;
     	$scope.player = new YT.Player('player', {
@@ -61,5 +54,12 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window,youtubeService){
     		return true;
     	}
     }
+
+    $scope.$on('$viewContentLoaded', function() {
+        console.log("In viewContentLoaded");
+        if(gapi.client != undefined){
+            $scope.getVideos();
+        }
+    });
 
 });

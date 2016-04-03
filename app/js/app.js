@@ -10,6 +10,13 @@
 // into developing Angular applications. For this lab, these two will suffice.
 var musiksalenApp = angular.module('musiksalen', ['ngRoute','ngResource','ngCookies']);
 
+var init = function() {
+  console.log("We are in init");
+
+  if(typeof(window.initGapi) === typeof(Function)){
+    window.initGapi();
+  }
+}
 
 // Here we configure our application module and more specifically our $routeProvider. 
 // Route provider is used to tell angular to load a specific partial (view) for an individual
