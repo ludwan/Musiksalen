@@ -6,12 +6,12 @@
 <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
 <div id="player"></div>
 
-<p>{{videoDescription}}</p>
+<p id="videoDescription">{{videoDescription}}</p>
 
 <h2>Additional Videos</h2>
 <div id="additional">
   <div ng-repeat="video in channel" class="video_thumbnail" ng-hide="isTrue('{{video.id.videoId}}')" >
-    <img ng-src="{{video.snippet.thumbnails.default.url}}" ng-click="changeVideo(video.id.videoId, video.snippet.description)">
+    <img ng-src="{{video.snippet.thumbnails.default.url}}" ng-click="changeVideo(video.id.videoId)">
     <p>{{video.snippet.title}}</p>
   </div>
 </div>
