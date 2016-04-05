@@ -16,7 +16,7 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, youtubeService,
 
     $scope.getVideos = function () {
     	console.log("In getVideos");
-        youtubeService.googleApiClientReady(keyWord).then(function (data) {
+        youtubeService.worksSearch(keyWord).then(function (data) {
             $scope.channel = data.items;
             console.log($scope.channel);
             $scope.createPlayer($scope.channel[0].id.videoId, $scope.channel[0].snippet.description);

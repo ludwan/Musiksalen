@@ -2,7 +2,7 @@ musiksalenApp.service('youtubeService', ['$http', '$q', function ($http, $q) {
     var apiKey = 'AIzaSyAdAGKp13vOjtEcBUqTiK6Q4u8iLzWY_6Q';
     var deferred = $q.defer();
 
-    this.googleApiClientReady = function (keyWord) {
+    this.worksSearch = function (keyWord) {
         console.log("In googleApiClientReady");
         gapi.client.setApiKey(apiKey);
         gapi.client.load('youtube', 'v3', function() {
