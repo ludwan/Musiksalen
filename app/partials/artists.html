@@ -1,17 +1,29 @@
 <div id="artists"> 
 
-
+    
 <h1>Browse artists</h1>
+
+<select id="period">
+    <option>Medieval (476–1400)</option>
+    <option>Renaissance	(1400–1600)</option>
+    <option>Baroque	(1600–1760)</option>
+    <option>Classical era (1730–1820)</option>
+    <option>Romantic era (1815–1910)</option>
+    <option>20th century (1900–2000)</option>
+</select>    
+
+<select id="country">
+    <option></option>
+</select>
+
+<hr>
     
-<div class="prefs"> </div>
-    
-    
-
-
-
-
-
-
+<div class="row">
+    <div ng-repeat="art in artists" class="col-md-4">
+        <a ng-href="#/artists/{{art.id}}"><img class="img-reponsive" ng-src={{art.images[0].url}} style="width:100%"></a>
+        <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
+    </div>
+</div>
 
 
 

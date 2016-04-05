@@ -51,6 +51,14 @@ musiksalenApp.config(['$routeProvider',
         templateUrl: 'partials/works.html',
         controller: 'WorksCtrl'
       }).
+      when('/artists',{
+        templateUrl: 'partials/artists.html',
+        controller: 'ArtistsCtrl'
+      }).
+      when('/artists/:artistId',{
+        templateUrl: 'partials/singleArtist.html',
+        controller: 'SingleArtistCtrl'
+      }).
       // TODO in Lab 5: add more conditions for the last two screens (overview and preparation)
       otherwise({
         redirectTo: '/home'
