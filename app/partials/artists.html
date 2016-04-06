@@ -23,14 +23,17 @@
 </div>
 
 <hr>
-    
 
 <div class="mainbody">
     <div class="container">
         <div class="row">
-            <div ng-repeat="art in artists" class="col-md-4">
-                <a ng-href="#/artists/{{art.id}}"><img check-image class="img img-reponsive" ng-src={{art.images[0].url}} style="width:100%"/></a>
-                <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
+            <div ng-repeat="art in artists" class="artist_card col-md-3">
+               <div class="image">
+                   <a ng-href="#/artists/{{art.id}}"><img check-image class="img img-reponsive" ng-src={{art.images[0].url}} style="width:100%"/></a>
+               </div>
+               <div class="artist_name">
+                   <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
+               </div>
             </div>
         </div>
     </div>
