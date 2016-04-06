@@ -43,7 +43,7 @@ body {
     
 }
 
-.toursection {
+.columnFlexWrapper {
     background-color: blanchedalmond; /*    change this*/
     height: 400px;
     margin-bottom: 20px;
