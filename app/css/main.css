@@ -1,17 +1,16 @@
 
 
 body {
-    background-color: #e8edf3;
+    background-color: dimgrey; /* change this  */
     
 }
 
 .header {
     padding-top: 25px;
     padding-bottom: 20px;
-    background-color: #e6cf8b;
+    background-color: #e6cf8b; /* change this  */
     position: fixed;
     width: 100%;
-    position: fixed;
     top: 0;
     left: 0;
     z-index: 9999;
@@ -41,6 +40,15 @@ body {
     
     margin-top:100px;
     padding: 20px;
+    
+}
+
+.toursection {
+    background-color: blanchedalmond; /*    change this*/
+    height: 400px;
+    margin-bottom: 20px;
+    padding: 20px;
+    
 }
 
 #myCarousel {
