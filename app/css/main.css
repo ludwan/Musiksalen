@@ -1,14 +1,29 @@
-
+/*
+header background & small title: #252121
+text: #4D281D
+big title: #A80603
+background: #F2EFEA
+link: #5C4099 hover:8A60E5
+*/
 
 body {
-    background-color: dimgrey; /* change this  */
+    background-color: #F2EFEA; /* change this  */
     
+}
+
+a {
+    color: #5C4099
+}
+
+a:hover {
+    color: #8A60E5;
+    text-decoration: none;
 }
 
 .header {
     padding-top: 25px;
     padding-bottom: 20px;
-    background-color: #e6cf8b; /* change this  */
+    background-color: #252121; /* change this  */
     position: fixed;
     width: 100%;
     top: 0;
@@ -27,12 +42,23 @@ body {
     display:inline;
     margin-left: 10px;
     margin-top: 20px;
+    color: #F2EFEA;
 }
 
 .header h2 {
     display: inline;
     margin:60px;
-    color: #22264b;
+    color: rgba(242, 239, 234, 0.5);
+}
+
+.header a {
+    color: rgba(242, 239, 234, 0.5);
+    );
+}
+
+.header a:hover {
+    color: rgba(242, 239, 234, 0.8);
+    );
 }
 
 
