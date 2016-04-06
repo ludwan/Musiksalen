@@ -5,23 +5,31 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 tag.src = "https://www.youtube.com/iframe_api";
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, youtubeService){
+musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, youtubeService, echoNestService){
 	console.log("In WorksCtrl");
-    var keyWord = "Moonlight Sonata"
 	
 	$window.initGapi = function() {
 		console.log("In initGapi");
-        $scope.$apply($scope.getVideos);
+        $scope.$apply($scope.loadWork);
     };
 
     $scope.loadWork = function() {
+        console.log("in loadWork");
         var workId = $routeParams.workId;
-        console.log(workId);
+
+        echoNestService.getWork.get({id : workId}, function(data){
+            console.log(data);
+            $scope.artistName = data.response.songs[0].artist_name;
+            $scope.workTitle = data.response.songs[0].title;
+            var keyWord = $scope.artistName + " " + $scope.workTitle;
+            $scope.getVideos(keyWord);
+        }, function (error) {
+            console.log("EchoNest get work failed: " + error);
+        });
     }
 
-    $scope.getVideos = function () {
+    $scope.getVideos = function (keyWord) {
     	console.log("In getVideos");
-        $scope.loadWork();
         youtubeService.worksSearch(keyWord).then(function (data) {
             $scope.channel = data.items;
             console.log($scope.channel);
@@ -73,7 +81,7 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
     $scope.$on('$viewContentLoaded', function() {
         console.log("In viewContentLoaded");
         if(gapi.client != undefined){
-            $scope.getVideos();
+            $scope.loadWork();
         }
     });   
 
