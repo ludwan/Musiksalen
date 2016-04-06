@@ -54,15 +54,17 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
     ,footer, etc.). The rest of the view specific layout will go into the html partials (check partials folder) -->
       
     <div class="header">
-        
-        <img id="logo" src="images/note.png"><h1>Musiksalen</h1>
-        <br>
-        <div id="menu">
-        <h2><a href="#/home">Home</a></h2>
-        <h2><a href="#/artists">Artists</a></h2>
-        <h2>My account</h2>
+        <div class="container">
+            <div class="col-md-12">
+                <img id="logo" src="images/note.png"><h1>Musiksalen</h1>
+                <br>
+                <div id="menu">
+                    <h2><a href="#/home">Home</a></h2>
+                    <h2><a href="#/artists">Artists</a></h2>
+                    <h2>My account</h2>
+                </div>
+           </div>
         </div>
-      
     </div>
         
     <!-- ng-view Angular directive is where the partials will be loaded. app.js configures the $routingProvider

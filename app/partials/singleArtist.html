@@ -1,33 +1,40 @@
 <div id="singleArtist">
 
-    <div class="row">
-        <!--Name of artist-->
-        <div class="col-md-4">
-        <h3>{{singleArtist.name}}</h3>
-    
-        <!--Images and Description-->
-        <img ng-src={{singleArtist.images[0].url}} style="width:100%">
-        <p>Active years: {{singleArtist.years_active[0].start}} - {{singleArtist.years_active[0].end}}</p>
-        <p>Genres:</p>
-        <div ng-repeat="genre in singleArtist.genres">
-            <p>{{genre.name}}</p>    
-        </div>
-        </div>
-        <!--Description-->
-        <div class="col-md-8">
-        <h4>Biography</h4>
-        <p>{{singleArtist.biographies[0].text}}</p>
-            
-        <!--Documentary-->
-        
-        <!--Songs-->
-        <h4>Songs</h4>
-        <div ng-repeat="song in singleArtist.songs">
-            <a ng-href="#/works/{{song.id}}"><p>{{song.title}}</p></a>
-        </div>   
-        
-        </div>
-        
-        
-    </div>
+   <div class="mainbody">
+       <div class="container">
+           <div class="row">
+               <div class="col-md-4">
+                   <div class="artistInfo">
+                       <!--Images and Description-->
+                       <img ng-src={{singleArtist.images[0].url}} style="width:100%">
+
+                       <!--Name of artist-->
+                       <h3>{{singleArtist.name}}</h3>
+
+                       <!--some information-->
+                       <p>Active years: {{singleArtist.years_active[0].start}} - {{singleArtist.years_active[0].end}}</p>
+                       <p>Genres:</p>
+                       <div ng-repeat="genre in singleArtist.genres">
+                           <p>{{genre.name}}</p>    
+                       </div>
+                   </div>
+               </div>
+               <!--Description-->
+               <div class="col-md-8">
+                   <h4>Biography</h4>
+                   <p>{{singleArtist.biographies[0].text}}</p>
+
+                   <!--Documentary-->
+
+                   <!--Songs-->
+                   <h4>Songs</h4>
+                   <div ng-repeat="song in singleArtist.songs">
+                       <a ng-href="#/works/{{song.id}}"><p>{{song.title}}</p></a>
+                   </div>   
+
+               </div>
+           </div>
+       </div>
+   </div>
+
 </div>
