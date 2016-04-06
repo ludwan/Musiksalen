@@ -8,7 +8,7 @@ body {
 .header {
     padding-top: 25px;
     padding-bottom: 20px;
-    background-color: #e6cf8b; /* change this  */
+    background-color: #252121; /* change this  */
     position: fixed;
     width: 100%;
     top: 0;
@@ -27,6 +27,7 @@ body {
     display:inline;
     margin-left: 10px;
     margin-top: 20px;
+    color: #A80603;
 }
 
 .header h2 {
@@ -42,6 +43,7 @@ body {
     padding: 20px;
     
 }
+
 
 .columnFlexWrapper {
     background-color: blanchedalmond; /*    change this*/
