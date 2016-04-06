@@ -102,6 +102,12 @@ a:hover {
     white-space: pre-line;
 }
 
+.img {
+    position: absolute;
+    margin: auto;
+    min-height: 100%;
+    min-width: 100%;
+}
 
 .artistInfo {
 /*
