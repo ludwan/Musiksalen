@@ -45,7 +45,11 @@ a:hover {
     display:inline;
     margin-left: 10px;
     margin-top: 20px;
+<<<<<<< HEAD
     color: #F2EFEA;
+=======
+    color: #A80603;
+>>>>>>> master
 }
 
 .header h2 {
@@ -70,6 +74,7 @@ a:hover {
     padding: 20px;
     
 }
+
 
 .columnFlexWrapper {
     background-color: blanchedalmond; /*    change this*/
