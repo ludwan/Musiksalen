@@ -5,16 +5,30 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 tag.src = "https://www.youtube.com/iframe_api";
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-musiksalenApp.controller('WorksCtrl', function ($scope, $window, youtubeService, $rootScope){
+musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, youtubeService, echoNestService){
 	console.log("In WorksCtrl");
-    var keyWord = "Moonlight Sonata"
 	
 	$window.initGapi = function() {
 		console.log("In initGapi");
-        $scope.$apply($scope.getVideos);
+        $scope.$apply($scope.loadWork);
     };
 
-    $scope.getVideos = function () {
+    $scope.loadWork = function() {
+        console.log("in loadWork");
+        var workId = $routeParams.workId;
+
+        echoNestService.getWork.get({id : workId}, function(data){
+            console.log(data);
+            $scope.artistName = data.response.songs[0].artist_name;
+            $scope.workTitle = data.response.songs[0].title;
+            var keyWord = $scope.artistName + " " + $scope.workTitle;
+            $scope.getVideos(keyWord);
+        }, function (error) {
+            console.log("EchoNest get work failed: " + error);
+        });
+    }
+
+    $scope.getVideos = function (keyWord) {
     	console.log("In getVideos");
         youtubeService.worksSearch(keyWord).then(function (data) {
             $scope.channel = data.items;
@@ -40,11 +54,10 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, youtubeService,
     	var currId = $scope.player.getVideoData()['video_id'];
 
     	console.log("In changeVideo");
+        $scope.getFullDescription(videoId);
   		$scope[currId] = false;
   		$scope[videoId] = true;  	
-    	$scope.player.cueVideoById(videoId, 0, 'large');
-        $scope.getFullDescription(videoId);
-        
+    	$scope.player.cueVideoById(videoId, 0, 'large');      
     }
 
     $scope.isTrue = function (videoId) {
@@ -59,7 +72,7 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, youtubeService,
     $scope.getFullDescription = function (videoId) {
         console.log("In getFullDescription");
         youtubeService.getFullDescription(videoId).then(function (data) {
-            $scope.videoDescription = data.items[0].snippet.description;
+        $scope.videoDescription = data.items[0].snippet.description;
         }, function (error){
             console.log('description failed: ' + error);
         });
@@ -68,7 +81,7 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, youtubeService,
     $scope.$on('$viewContentLoaded', function() {
         console.log("In viewContentLoaded");
         if(gapi.client != undefined){
-            $scope.getVideos();
+            $scope.loadWork();
         }
     });   
 
