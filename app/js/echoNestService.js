@@ -11,5 +11,11 @@ musiksalenApp.service('echoNestService', function ($resource){
     this.getArtist = $resource('http://developer.echonest.com/api/v4/artist/profile?bucket=images&bucket=artist_location&bucket=years_active&bucket=biographies&bucket=songs&bucket=genre',{
         format : 'json', 
         api_key : apiKey
-    })
+    });
+
+    this.getWork = $resource('http://developer.echonest.com/api/v4/song/search?',{
+        format : 'json',
+        api_key : apiKey,
+
+    });
 });

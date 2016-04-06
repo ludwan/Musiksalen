@@ -23,7 +23,7 @@
         <!--Songs-->
         <h4>Songs</h4>
         <div ng-repeat="song in singleArtist.songs">
-            <p>{{song.title}}</p>
+            <a ng-href="#/works/{{song.id}}"><p>{{song.title}}</p></a>
         </div>   
         
         </div>

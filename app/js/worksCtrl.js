@@ -5,7 +5,7 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 tag.src = "https://www.youtube.com/iframe_api";
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-musiksalenApp.controller('WorksCtrl', function ($scope, $window, youtubeService, $rootScope){
+musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, youtubeService){
 	console.log("In WorksCtrl");
     var keyWord = "Moonlight Sonata"
 	
@@ -14,8 +14,14 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, youtubeService,
         $scope.$apply($scope.getVideos);
     };
 
+    $scope.loadWork = function() {
+        var workId = $routeParams.workId;
+        console.log(workId);
+    }
+
     $scope.getVideos = function () {
     	console.log("In getVideos");
+        $scope.loadWork();
         youtubeService.worksSearch(keyWord).then(function (data) {
             $scope.channel = data.items;
             console.log($scope.channel);
@@ -40,11 +46,10 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, youtubeService,
     	var currId = $scope.player.getVideoData()['video_id'];
 
     	console.log("In changeVideo");
+        $scope.getFullDescription(videoId);
   		$scope[currId] = false;
   		$scope[videoId] = true;  	
-    	$scope.player.cueVideoById(videoId, 0, 'large');
-        $scope.getFullDescription(videoId);
-        
+    	$scope.player.cueVideoById(videoId, 0, 'large');      
     }
 
     $scope.isTrue = function (videoId) {
@@ -59,7 +64,7 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, youtubeService,
     $scope.getFullDescription = function (videoId) {
         console.log("In getFullDescription");
         youtubeService.getFullDescription(videoId).then(function (data) {
-            $scope.videoDescription = data.items[0].snippet.description;
+        $scope.videoDescription = data.items[0].snippet.description;
         }, function (error){
             console.log('description failed: ' + error);
         });
