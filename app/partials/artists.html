@@ -1,20 +1,21 @@
 <div id="artists"> 
 
+
 <div class="filter">
     <div class="container">
         <div class="row">
             <h1>Browse artists</h1>
         </div>
         <div class="row">
-            <select id="period">
-                <option>Medieval (476–1400)</option>
-                <option>Renaissance	(1400–1600)</option>
-                <option>Baroque	(1600–1760)</option>
-                <option>Classical era (1730–1820)</option>
-                <option>Romantic era (1815–1910)</option>
-                <option>20th century (1900–2000)</option>
-            </select>    
-            <select id="country">
+            <select id="period" ng-model="time" ng-change="filteredArtists(time,country)">
+                <option value="0476-1400">Medieval (476–1400)</option>
+                <option value="1400-1600">Renaissance	(1400–1600)</option>
+                <option value="1600-1760">Baroque	(1600–1760)</option>
+                <option value="1730-1820">Classical era (1730–1820)</option>
+                <option value="1815-1910">Romantic era (1815–1910)</option>
+                <option value="1900-2000">20th century (1900–2000)</option>
+            </select>     
+            <select id="country" ng-model="country">
                 <option></option>
             </select>
         </div>

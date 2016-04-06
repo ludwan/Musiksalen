@@ -45,7 +45,8 @@ musiksalenApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/home', {
-        templateUrl: 'partials/home.html'
+        templateUrl: 'partials/home.html',
+        controller: 'HomeCtrl'
       }).
       when('/works/:workId', {
         templateUrl: 'partials/works.html',

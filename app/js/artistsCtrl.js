@@ -7,20 +7,27 @@ musiksalenApp.controller('ArtistsCtrl', function($scope,  $window, echoNestServi
     
     // filter is searching keyword
     // 4.5 finish the filter for artists with period, country
-    $scope.filteredArtists = function(period, country, filter) {
-        return $scope.artists.filter(function(index, artist) {
-            var found = true;
-            if(filter){
-                found = false;
-                if(artist.name = filter) {
-                    found = true;
-                };
-                if(artist.name.indexOf(filter) != -1){
-                    found = true;
-                }
-            }
-            return artist.years_active == period && artist.artist_location == country && found;
+//    $scope.filteredArtists = function(time, country, filter) {
+    $scope.filteredArtists = function(time, country) {
+        var start, end;
+        start = Number(time.substr(0,4));
+        end = Number(time.substr(5,4));
+        console.log(start);
+        
+        echoNestService.ArtistSearch.get({genre : 'classical',artist_start_year_after : start, artist_end_year_before : end, artist_location : country},function(data){
+            $scope.artists = data.response.artists;
+            console.log(data.response.artists);
         });
+        
+        echoNestService.ArtistSearch.get({genre : 'classical',artist_start_year_before : start, artist_end_year_after : start, artist_location : country},function(data){
+            $scope.artists = $scope.artists.concat(data.response.artists) ;
+        });
+        
+        echoNestService.ArtistSearch.get({genre : 'classical',artist_start_year_before : end, artist_end_year_after : end, artist_location : country},function(data){
+            $scope.artists = $scope.artists.concat(data.response.artists) ;
+            console.log($scope.artists);
+        });
+        
     }
 
     
@@ -40,21 +47,3 @@ musiksalenApp.controller('ArtistsCtrl', function($scope,  $window, echoNestServi
     };
 });
 
-//	this.getAllDishes = function (type,filter) {
-//	  return $(dishes).filter(function(index,dish) {
-//		var found = true;
-//		if(filter){
-//			found = false;
-//			$.each(dish.ingredients,function(index,ingredient) {
-//				if(ingredient.name.indexOf(filter)!=-1) {
-//					found = true;
-//				}
-//			});
-//			if(dish.name.indexOf(filter) != -1)
-//			{
-//				found = true;
-//			}
-//		}
-//	  	return dish.type == type && found;
-//	  });	
-//	}
