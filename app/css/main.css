@@ -1,9 +1,4 @@
-/*COLOR SCHEME:
-#e8edf3 (light blue)
-#e6cf8b (light beige)
-#b56969 (reddish)
-#22264b (dark blue)
-*/
+
 
 body {
     background-color: #e8edf3;
@@ -39,6 +34,13 @@ body {
     display: inline;
     margin:60px;
     color: #22264b;
+}
+
+
+.contentwrapper {
+    
+    margin-top:100px;
+    padding: 20px;
 }
 
 #myCarousel {
