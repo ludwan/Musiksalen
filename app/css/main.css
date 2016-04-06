@@ -8,7 +8,10 @@ link: #5C4099 hover:8A60E5
 
 body {
     background-color: #F2EFEA; /* change this  */
-    
+}
+
+p {
+    color: #4D281D;
 }
 
 a {
