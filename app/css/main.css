@@ -15,12 +15,12 @@ p {
 }
 
 a {
-    color: #5C4099
+    color: #5C4099;
+    text-decoration: none;
 }
 
 a:hover {
     color: #8A60E5;
-    text-decoration: none;
 }
 
 .header {
@@ -56,12 +56,11 @@ a:hover {
 
 .header a {
     color: rgba(242, 239, 234, 0.5);
-    );
+    text-decoration: none;
 }
 
 .header a:hover {
     color: rgba(242, 239, 234, 0.8);
-    text-decoration: none;
 }
 
 
@@ -101,4 +100,14 @@ a:hover {
 
 #videoDescription {
     white-space: pre-line;
+}
+
+
+.artistInfo {
+/*
+    position:fixed;
+    top:0px;
+    left:0px;
+*/
+
 }
