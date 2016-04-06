@@ -58,7 +58,7 @@ a:hover {
 
 .header a:hover {
     color: rgba(242, 239, 234, 0.8);
-    );
+    text-decoration: none;
 }
 
 
