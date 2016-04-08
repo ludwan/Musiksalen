@@ -1,4 +1,4 @@
-musiksalenApp.controller('SingleArtistCtrl', function($scope, $routeParams, echoNestService, lastFmService){
+musiksalenApp.controller('SingleArtistCtrl', function($scope, $routeParams, $filter,echoNestService, lastFmService){
     
     $scope.ArtistId = $routeParams.artistId;
     // echoNestService.getArtist.get({id : $scope.ArtistId}, function(data){
@@ -12,7 +12,9 @@ musiksalenApp.controller('SingleArtistCtrl', function($scope, $routeParams, echo
     });
 
     lastFmService.getWorks.get({mbid : $scope.ArtistId}, function(data){
+    	console.log(data);
     	$scope.works = data.toptracks.track;
+        $scope.works = $filter('filter')($scope.works, {mbid: '!!'});
     });
     
 })
