@@ -23,33 +23,21 @@
                </div>
                <!--Description-->
                <div class="col-md-8">
-<<<<<<< HEAD
-                  <div class="section">
+                   <div class="section">
                       <h4>Biography</h4>
-                      <p>{{singleArtist.biographies[0].text}}</p>
-                  </div>
-=======
-                   <h4>Biography</h4>
-                   <p id="bio">{{singleArtist.bio.content}}</p>
->>>>>>> master
+                      <p id="bio">{{singleArtist.bio.content}}</p>
+                    </div>
 
                    <!--Documentary-->
 
                    <!--Songs-->
-<<<<<<< HEAD
                    <div class="section">
                        <h4>Songs</h4>
-                       <div ng-repeat="song in singleArtist.songs">
-                           <a ng-href="#/works/{{song.id}}"><p>{{song.title}}</p></a>
+                       <div ng-repeat="song in works">
+                           <a ng-href="#/works/{{song.mbid}}"><p>{{song.name}}</p></a>
                        </div>   
                    </div>
-=======
-                   <h4>Songs</h4>
-                   <div ng-repeat="song in works">
-                       <a ng-href="#/works/{{song.mbid}}"><p>{{song.name}}</p></a>
-                   </div>   
 
->>>>>>> master
                </div>
            </div>
        </div>
