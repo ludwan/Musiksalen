@@ -76,7 +76,6 @@ a:hover {
     
 }
 
-
 .columnFlexWrapper {
     background-color: blanchedalmond; /*    change this*/
     height: 400px;
@@ -105,6 +104,10 @@ a:hover {
 }
 
 #videoDescription {
+    white-space: pre-line;
+}
+
+#bio {
     white-space: pre-line;
 }
 

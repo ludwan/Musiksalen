@@ -5,7 +5,7 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 tag.src = "https://www.youtube.com/iframe_api";
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, youtubeService, echoNestService){
+musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, youtubeService, echoNestService, lastFmService){
 	console.log("In WorksCtrl");
 	
 	$window.initGapi = function() {
@@ -17,10 +17,10 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
         console.log("in loadWork");
         var workId = $routeParams.workId;
 
-        echoNestService.getWork.get({id : workId}, function(data){
+        lastFmService.getWorkInfo.get({mbid : workId}, function(data){
             console.log(data);
-            $scope.artistName = data.response.songs[0].artist_name;
-            $scope.workTitle = data.response.songs[0].title;
+            $scope.artistName = data.track.artist.name;
+            $scope.workTitle = data.track.name;
             var keyWord = $scope.artistName + " " + $scope.workTitle;
             $scope.getVideos(keyWord);
         }, function (error) {
