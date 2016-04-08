@@ -6,7 +6,7 @@
                <div class="col-md-4">
                    <div class="artistInfo">
                        <!--Images and Description-->
-                       <img ng-src={{singleArtist.images[0].url}} style="width:100%">
+                       <img ng-src={{singleArtist.image}} style="width:100%">
 
                        <!--Name of artist-->
                        <h3>{{singleArtist.name}}</h3>
@@ -22,14 +22,14 @@
                <!--Description-->
                <div class="col-md-8">
                    <h4>Biography</h4>
-                   <p>{{singleArtist.biographies[0].text}}</p>
+                   <p id="bio">{{singleArtist.bio.content}}</p>
 
                    <!--Documentary-->
 
                    <!--Songs-->
                    <h4>Songs</h4>
-                   <div ng-repeat="song in singleArtist.songs">
-                       <a ng-href="#/works/{{song.id}}"><p>{{song.title}}</p></a>
+                   <div ng-repeat="song in works">
+                       <a ng-href="#/works/{{song.mbid}}"><p>{{song.name}}</p></a>
                    </div>   
 
                </div>

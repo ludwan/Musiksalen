@@ -1,14 +1,29 @@
-musiksalenApp.controller('ArtistsCtrl', function($scope,  $window, echoNestService, $rootScope){
+musiksalenApp.controller('ArtistsCtrl', function($scope,  $window, echoNestService, lastFmService){
     
     echoNestService.ArtistSearch.get({genre : 'classical'},function(data){
         $scope.artists = data.response.artists;
         console.log(data.response.artists);
+
+        angular.forEach($scope.artists, function(value, key){
+            if(value.name != undefined){
+                lastFmService.getArtist.get({artist : value.name},function(data){
+                    console.log(data);
+                    var imgSrc = data['artist']['image'][2]['#text'];
+                    // var imgSrcArray = data.artist.image.map(function(image){ return image['#text'] });
+
+                    value.name = data.artist.name;
+                    value.image = imgSrc;
+                    value.id = data.artist.mbid;
+                });
+            }
+        });
     });
     
     // filter is searching keyword
     // 4.5 finish the filter for artists with period, country
 //    $scope.filteredArtists = function(time, country, filter) {
     $scope.filteredArtists = function(time, country) {
+        console.log("filteredArtists");
         var start, end;
         start = Number(time.substr(0,4));
         end = Number(time.substr(5,4));
@@ -29,21 +44,21 @@ musiksalenApp.controller('ArtistsCtrl', function($scope,  $window, echoNestServi
         });
         
     }
-
     
-}).directive('checkImage', function($http) {
-    return {
-        restrict: 'A',
-        link: function(scope, element, attrs) {
-            attrs.$observe('ngSrc', function(ngSrc) {
-                $http.get(ngSrc).success(function(){
-                    //alert('image exist');
-                }).error(function(){
-                    //alert('image not exist');
-                    element.attr('src', 'http://upload.wikimedia.org/wikipedia/commons/7/73/Lion_waiting_in_Namibia.jpg'); // set default image
-                });
-            });
-        }
-    };
 });
+// .directive('checkImage', function($http) {
+//     return {
+//         restrict: 'A',
+//         link: function(scope, element, attrs) {
+//             attrs.$observe('ngSrc', function(ngSrc) {
+//                 $http.get(ngSrc).success(function(){
+//                     //alert('image exist');
+//                 }).error(function(){
+//                     //alert('image not exist');
+//                     element.attr('src', 'http://upload.wikimedia.org/wikipedia/commons/7/73/Lion_waiting_in_Namibia.jpg'); // set default image
+//                 });
+//             });
+//         }
+//     };
+// });
 
