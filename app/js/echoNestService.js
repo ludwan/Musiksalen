@@ -17,4 +17,9 @@ musiksalenApp.service('echoNestService', function ($resource){
         format : 'json',
         api_key : apiKey
     });
+
+    this.getArtistWorks = $resource('http://developer.echonest.com/api/v4/artist/songs?', {
+        format : 'json',
+        api_key : apiKey
+    });
 });

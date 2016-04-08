@@ -11,9 +11,9 @@ musiksalenApp.controller('ArtistsCtrl', function($scope,  $window, echoNestServi
                     var imgSrc = data['artist']['image'][2]['#text'];
                     // var imgSrcArray = data.artist.image.map(function(image){ return image['#text'] });
 
-                    value.name = data.artist.name;
+                    value.finalName = data.artist.name;
                     value.image = imgSrc;
-                    value.id = data.artist.mbid;
+                    value.mbid = data.artist.mbid;
                 });
             }
         });

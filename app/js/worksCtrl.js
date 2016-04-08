@@ -16,11 +16,22 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
     $scope.loadWork = function() {
         console.log("in loadWork");
         var workId = $routeParams.workId;
+        // LASTFM VERSION
+        // lastFmService.getWorkInfo.get({mbid : workId}, function(data){
+        //     console.log(data);
+        //     $scope.artistName = data.track.artist.name;
+        //     $scope.workTitle = data.track.name;
+        //     var keyWord = $scope.artistName + " " + $scope.workTitle;
+        //     $scope.getVideos(keyWord);
+        // }, function (error) {
+        //     console.log("LastFm get work failed: " + error);
+        // });
 
-        lastFmService.getWorkInfo.get({mbid : workId}, function(data){
+        //ECHONEST VERSION
+        echoNestService.getWork.get({id : workId}, function(data){
             console.log(data);
-            $scope.artistName = data.track.artist.name;
-            $scope.workTitle = data.track.name;
+            $scope.artistName = data.response.songs[0].artist_name;
+            $scope.workTitle = data.response.songs[0].title;
             var keyWord = $scope.artistName + " " + $scope.workTitle;
             $scope.getVideos(keyWord);
         }, function (error) {
