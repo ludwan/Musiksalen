@@ -15,7 +15,8 @@ body {
   font-size: 1.6rem;
   font-family: "Sintony", sans-serif;
   color: #eaf2e3;
-  background-color: #3a2c41;
+/*  background-color: #3a2c41;*/
+    background-color: #F2EFEA;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

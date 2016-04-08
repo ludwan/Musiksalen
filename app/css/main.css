@@ -10,12 +10,13 @@ body {
     background-color: #F2EFEA; /* change this  */
 }
 
-#artists {
+#artists, #singleArtist, #works {
     background-color: #F2EFEA; /* change this  */
 }
 
 p {
     color: #4D281D;
+    margin: 10px;
 }
 
 a {
@@ -138,4 +139,27 @@ a:hover {
     left:0px;
 */
 
+}
+
+.card {}
+
+.card h3 {}
+
+.card p {}
+
+.section {
+    margin-bottom: 20px;
+}
+
+.section h4 {
+    color: #252121;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    margin-bottom: 15px;
+}
+
+.section p {
+    line-height: 20px;
+    margin-bottom: 5px;
 }
