@@ -128,6 +128,7 @@ a:hover {
 }
 
 .artist_name {
+    height: 60px;
     background-color: rgba(77, 40, 29, 0.1);
     text-align: center;
     padding: 15px;

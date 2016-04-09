@@ -12,23 +12,24 @@
                        <h3>{{singleArtist.name}}</h3>
 
                        <!--some information-->
-                       <p>Active years: {{singleArtist.years_active[0].start}} - {{singleArtist.years_active[0].end}}</p>
+                       <p>Active years: {{activeYears}}</p>
                        <p>Genres:</p>
-                       <div ng-repeat="genre in singleArtist.genres">
-                           <p>{{genre.name}}</p>    
-                       </div>
+                       <ul id="genres">
+                        <li ng-show="!genres.length">Not Available</li>
+                        <li ng-repeat="genre in genres">{{genre.name}}</li>
+                       </ul>
                    </div>
                </div>
                <!--Description-->
                <div class="col-md-8">
                    <h4>Biography</h4>
-                   <p id="bio">{{singleArtist.bio.content}}</p>
+                   <p id="bio" ng-bind-html="bio"></p>
 
                    <!--Documentary-->
 
                    <!--Songs-->
                    <h4>Songs</h4>
-                   <div ng-repeat="song in works">
+                   <div ng-repeat="song in works | unique: 'title'">
                        <a ng-href="#/works/{{song.id}}"><p>{{song.title}}</p></a>
                    </div>   
 

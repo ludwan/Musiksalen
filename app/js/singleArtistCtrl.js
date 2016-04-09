@@ -1,27 +1,54 @@
-musiksalenApp.controller('SingleArtistCtrl', function($scope, $routeParams, $filter,echoNestService, lastFmService){
+musiksalenApp.controller('SingleArtistCtrl', function($scope, $routeParams, $filter, echoNestService, lastFmService){
     
 
     $scope.ArtistId = $routeParams.artistId;
-    var string = "musicbrainz:artist:" + $scope.ArtistId;
-    console.log(string);
-    // echoNestService.getArtist.get({id : $scope.ArtistId}, function(data){
-    //     $scope.singleArtist = data.response.artist;
-    //     console.log($scope.singleArtist);
-    // });
-
+    $scope.bio = "Not available";
+    $scope.activeYears = "Not available";
     
-    lastFmService.getArtist.get({mbid : $scope.ArtistId}, function(data){
-        $scope.singleArtist = data.artist;
-        $scope.singleArtist.image = data['artist']['image'][4]['#text'];
+    echoNestService.getArtist.get({id : $scope.ArtistId}, function(data){
+        var artist = data.response.artist;
+        //console.log(artist);
+
+        $scope.getArtistInfo(artist.name);
+
+        //$scope.getWorksViaArtistId(artist.id);
+        $scope.getWorksViaPlaylistId(artist.id);
+        //$scope.getWorksViaSearchId(artist.id);
+
+        $scope.genres = artist.genres;
+        if(artist.years_active.length != 0){
+
+            $scope.activeYears = artist.years_active[0].start + " - " + artist.years_active[0].end;
+        }
     });
 
-    // lastFmService.getWorks.get({mbid : $scope.ArtistId}, function(data){
-    // 	console.log(data);
-    // 	$scope.works = data.toptracks.track;
-    //     $scope.works = $filter('filter')($scope.works, {mbid: '!!'});
-    // });
+    $scope.getWorksViaArtistId = function(artistId) {
+        echoNestService.getArtistWorks.get({id: artistId}, function(data){
+            $scope.works = data.response.songs;
+            //console.log(data);
+        })
+    }
+   
+    $scope.getWorksViaPlaylistId = function(artistId){
+        echoNestService.workPlaylistSearch.get({artist_id : artistId}, function(data){
+            $scope.works = data.response.songs;
+            console.log(data);
+        });
+    }
 
-    echoNestService.getArtistWorks.get({id : string}, function(data){
-        $scope.works = data.response.songs;
-    });    
+    $scope.getWorksViaSearchId = function(artistId){
+        echoNestService.workSearch.get({artist_id : artistId}, function(data){
+            $scope.works = data.response.songs;
+            //console.log(data);
+        });
+    }
+    
+    $scope.getArtistInfo = function(artistName) {
+        lastFmService.getArtist.get({artist: artistName}, function(data){
+            $scope.singleArtist = data.artist;
+            $scope.artistName = data.artist.name;
+            $scope.bio = $scope.singleArtist.bio.content;
+            $scope.singleArtist.image = data['artist']['image'][4]['#text'];
+        });
+    }
 });

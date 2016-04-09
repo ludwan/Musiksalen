@@ -29,10 +29,10 @@
         <div class="row">
             <div ng-repeat="art in artists" class="artist_card col-md-3">
                <div class="image">
-                   <a ng-href="#/artists/{{art.mbid}}"><img check-image class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
+                   <a ng-href="#/artists/{{art.id}}"><img check-image class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
                </div>
                <div class="artist_name">
-                   <a ng-href="#/artists/{{art.mbid}}"><p class="artist-name">{{art.finalName}}</p></a>
+                   <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.finalName}}</p></a>
                </div>
             </div>
         </div>

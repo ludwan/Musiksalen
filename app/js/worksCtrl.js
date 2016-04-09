@@ -6,15 +6,12 @@ tag.src = "https://www.youtube.com/iframe_api";
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, youtubeService, echoNestService, lastFmService){
-	console.log("In WorksCtrl");
 	
 	$window.initGapi = function() {
-		console.log("In initGapi");
         $scope.$apply($scope.loadWork);
     };
 
     $scope.loadWork = function() {
-        console.log("in loadWork");
         var workId = $routeParams.workId;
         // LASTFM VERSION
         // lastFmService.getWorkInfo.get({mbid : workId}, function(data){
@@ -40,7 +37,6 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
     }
 
     $scope.getVideos = function (keyWord) {
-    	console.log("In getVideos");
         youtubeService.worksSearch(keyWord).then(function (data) {
             $scope.channel = data.items;
             console.log($scope.channel);
@@ -51,7 +47,6 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
     };
 
     $scope.createPlayer = function (videoId) {
-    	console.log("In createPlayer");
         $scope.getFullDescription(videoId);
     	$scope[videoId] = true;
     	$scope.player = new YT.Player('player', {
@@ -64,7 +59,6 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
     $scope.changeVideo = function (videoId){
     	var currId = $scope.player.getVideoData()['video_id'];
 
-    	console.log("In changeVideo");
         $scope.getFullDescription(videoId);
   		$scope[currId] = false;
   		$scope[videoId] = true;  	
@@ -72,7 +66,6 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
     }
 
     $scope.isTrue = function (videoId) {
-    	console.log("In isTrue");
     	if($scope[videoId] == undefined || $scope[videoId] == false) {
     		return false;
     	} else {
@@ -81,7 +74,6 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
     }
 
     $scope.getFullDescription = function (videoId) {
-        console.log("In getFullDescription");
         youtubeService.getFullDescription(videoId).then(function (data) {
         $scope.videoDescription = data.items[0].snippet.description;
         }, function (error){
