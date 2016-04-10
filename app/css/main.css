@@ -43,6 +43,10 @@ a:hover {
     top: 0;
     left: 0;
     z-index: 9999;
+
+    -webkit-box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.26);
+    -moz-box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.26);
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.26);
 }
 
 .header #logo{
@@ -79,16 +83,52 @@ a:hover {
     background-color: rgba(250, 250, 250, 0.03);
 }
 
+/*
 #menu {
     margin-top: 20px;
+    display: inline;
+}
+*/
+
+#menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #252121;
+}
+
+.menu {
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#searchbar {
+/*    display: inline; */
+    float: right; 
+    
+}
+#searchfieldtext {
+    color:#4D281D;
+}
+
+#searchfieldtext:focus {
+    color:#4D281D;
 }
 
 
+
+
+/*
 #search {
     display: inline-block;
     float: right;
     margin-top: -11px;
 }
+*/
 
 
 #works {
@@ -235,6 +275,7 @@ a:hover {
     height: 60px;
     overflow: hidden;
 }
+
 
 /*
 #section1wrapper {

@@ -441,7 +441,7 @@ Content Sections - basic style
 
 #section1 {
     overflow: hidden;
-    margin-top: 170px;
+    margin-top: 155px;
 }
 
 
@@ -455,7 +455,7 @@ Content Sections - basic style
 .cd-section h1, .cd-section h2 {
   width: 90%;
   margin: 0 auto;
-    margin-top: 20px;
+  margin-top: 20px;
   text-transform: uppercase;
   font-size: 2.4rem;
   line-height: 1.4;
