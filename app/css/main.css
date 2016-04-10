@@ -117,12 +117,7 @@ a:hover {
 .image {
     position: relative;
     overflow: hidden;
-<<<<<<< HEAD
     padding-bottom: 100%;
-=======
-/*    padding-bottom: 100%;*/
-    
->>>>>>> master
 }
 
 .img {
@@ -130,18 +125,14 @@ a:hover {
     margin: auto;
     min-height: 100%;
     min-width: 100%;
-    border: 3px groove #F2EFEA;
+/*    border: 3px groove #F2EFEA;*/
 }
 
 .artist_name {
     height: 60px;
-<<<<<<< HEAD
     width: 100%;
     position: relative;
     background-color: rgba(77, 40, 29, 0.1);
-=======
-/*    background-color: rgba(77, 40, 29, 0.1);*/
->>>>>>> master
     text-align: center;
     font-size: 18px;
 }
@@ -162,7 +153,7 @@ a:hover {
 /* singleArtist */
 
 .section {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .backgroundimage {
