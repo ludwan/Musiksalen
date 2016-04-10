@@ -33,7 +33,7 @@ musiksalenApp.controller('HomeCtrl', function($scope,  $window, echoNestService,
             angular.forEach($scope.renaissanceArtists, function(value, key){
                 if(value.name != undefined){
                     lastFmService.getArtist.get({artist : value.name},function(data){
-                        console.log(data);
+                        //console.log(data);
                         var imgSrc = data['artist']['image'][2]['#text'];
                         // var imgSrcArray = data.artist.image.map(function(image){ return image['#text'] });
 
@@ -52,7 +52,7 @@ musiksalenApp.controller('HomeCtrl', function($scope,  $window, echoNestService,
             angular.forEach($scope.baroqueArtists, function(value, key){
                 if(value.name != undefined){
                     lastFmService.getArtist.get({artist : value.name},function(data){
-                        console.log(data);
+                        //console.log(data);
                         var imgSrc = data['artist']['image'][2]['#text'];
                         // var imgSrcArray = data.artist.image.map(function(image){ return image['#text'] });
 
@@ -70,7 +70,7 @@ musiksalenApp.controller('HomeCtrl', function($scope,  $window, echoNestService,
             angular.forEach($scope.classicalArtists, function(value, key){
                 if(value.name != undefined){
                     lastFmService.getArtist.get({artist : value.name},function(data){
-                        console.log(data);
+                        //console.log(data);
                         var imgSrc = data['artist']['image'][2]['#text'];
                         // var imgSrcArray = data.artist.image.map(function(image){ return image['#text'] });
 
@@ -106,7 +106,7 @@ musiksalenApp.controller('HomeCtrl', function($scope,  $window, echoNestService,
             angular.forEach($scope.twentyArtists, function(value, key){
                 if(value.name != undefined){
                     lastFmService.getArtist.get({artist : value.name},function(data){
-                        console.log(data);
+                        //console.log(data);
                         var imgSrc = data['artist']['image'][2]['#text'];
                         // var imgSrcArray = data.artist.image.map(function(image){ return image['#text'] });
 
