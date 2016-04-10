@@ -84,6 +84,12 @@ a:hover {
 }
 
 
+#search {
+    display: inline-block;
+    float: right;
+    margin-top: -11px;
+}
+
 
 #works {
     position: relative;
@@ -226,12 +232,6 @@ a:hover {
     margin-bottom: 15px;
     height: 60px;
     overflow: hidden;
-}
-
-
-.search {
-    display: inline-block;
-    float: right;
 }
 
 /*
