@@ -115,11 +115,11 @@ a:hover {
 .image {
     position: relative;
     overflow: hidden;
-/*    padding-bottom: 100%;*/
+    padding-bottom: 100%;
 }
 
 .img {
-    position: relative;
+    position: absolute;
     margin: auto;
     min-height: 100%;
     min-width: 100%;
@@ -131,7 +131,6 @@ a:hover {
     position: relative;
     background-color: rgba(77, 40, 29, 0.1);
     text-align: center;
-<<<<<<< HEAD
     font-size: 18px;
 }
 
@@ -146,16 +145,6 @@ a:hover {
 .artist-name {
     margin: 0;
     line-height: 24px;
-=======
-/*    padding: 5px;*/
-    line-height: 60px;
-}
-
-.artist_name span {
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
->>>>>>> master
 }
 
 /* singleArtist */
