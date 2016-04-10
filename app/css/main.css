@@ -139,10 +139,22 @@ a:hover {
 
 .artist_name {
     height: 60px;
+    width: 100%;
+    padding: 5px;
+    display: table;
     background-color: rgba(77, 40, 29, 0.1);
     text-align: center;
-    padding: 15px;
-    font-size: 16px;
+    font-size: 18px;
+}
+
+.artist_name a {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.artist-name {
+    margin: 0;
+    line-height: 24px;
 }
 
 /* singleArtist */
