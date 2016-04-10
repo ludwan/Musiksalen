@@ -39,4 +39,8 @@ musiksalenApp.service('echoNestService', function ($resource){
         api_key : apiKey,
         results : 50
     });
+    
+    this.medievalArtists = [{"id":"ARUXZG81187FB5ACA0","name":"Hildegard von Bingen"}, {"id":"ARZZ6AV1187FB412D9","name":"Léonin"}, {"id":"ARFHCDF1187FB5AB93","name":"Pérotin"}, {"id":"AR2JVUX1187FB5CEF5","name":"Guillaume de Machaut"}];
+    
+    
 });

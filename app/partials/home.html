@@ -66,48 +66,138 @@
 	</ul>
 </nav><!-- .cd-vertical-nav -->
 
+    
+<!--Find some arts/pics in that period-->
 <button class="cd-nav-trigger cd-image-replace">Open navigation<span aria-hidden="true"></span></button>
+
+<!--Need to be change into 2 rows, one side for works and one side for artists-->
 <section id="section1" class="cd-section">
 	<div class="content-wrapper">
-		<h1>Medieval<b>#2</b></h1>
-        <p>Medieval	(476–1400): Gregorian chant, Hildegard von Bingen, Leonin &amp; Perotin, Guillaume de Machaut, troubadour</p>
+		<h1>Medieval(476–1400)</h1>
+        <p>Medieval music was both sacred and secular. During this time, music transformed from monophonic to polyphonic. Notational and theoretical practices were developed. Some works:</p>
+        <p>Gregorian chant - Dies Irae</p>
+        <audio controls><source src="WorksinTour/Gregorian%20Chant%20-%20Dies%20Irae.mp3"></audio>
+        <p>Troubadour - Bernart de Ventadorn: Can vei la lauzeta</p> 
+        <audio controls><source src="WorksinTour/Bernart%20de%20Ventadorn-%20Can%20vei%20la%20lauzeta.mp3"></audio>
+        <p>Some composers:  Hildegard von Bingen, Leonin &amp; Perotin, Guillaume de Machaut</p>
+        
+            <div class="container">
+                <div class="row">
+                    <div ng-repeat="art in MedievalArtists" class="artist_card col-md-3">
+                        <div class="image">
+                            <a ng-href="#/artists/{{art.mbid}}"><img check-image class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
+                        </div>
+                        <div class="artist_name">
+                            <a ng-href="#/artists/{{art.mbid}}"><p class="artist-name">{{art.name}}</p></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
 		<a href="#section2" class="cd-scroll-down cd-image-replace">scroll down</a>
 	</div>
 </section><!-- cd-section -->
 
 <section id="section2" class="cd-section">
 	<div class="content-wrapper">
-		<h2>Renaissance</h2>
-		<p>(1400–1600)Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto numquam, totam iusto officia earum perferendis, culpa ad atque eveniet praesentium nobis expedita similique beatae tenetur. Distinctio vel tenetur, id cum.</p>
+		<h2>Renaissance(1400–1600)</h2>
+		<p>From the Renaissance era both secular and sacred music survives in quantity, and both vocal and instrumental. An enormous diversity of musical styles and genres flourished during the Renaissance.</p>
+        <p>Composers:</p>
+            <div class="container">
+                <div class="row">
+                    <div ng-repeat="art in renaissanceArtists.slice(0,4)" class="artist_card col-md-3">
+                        <div class="image">
+                            <a ng-href="#/artists/{{art.id}}"><img check-image class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
+                        </div>
+                        <div class="artist_name">
+                            <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 	</div>
 </section><!-- cd-section -->
 
 <section id="section3" class="cd-section">
 	<div class="content-wrapper">
-		<h2>Baroque</h2>
-		<p>(1600–1760)Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto numquam, totam iusto officia earum perferendis, culpa ad atque eveniet praesentium nobis expedita similique beatae tenetur. Distinctio vel tenetur, id cum.</p>
+		<h2>Baroque(1600–1760)</h2>
+		<p>The word "baroque" comes from the Portuguese word barroco, meaning misshapen pearl.The Baroque period saw the creation of tonality. During the period, composers and performers used more elaborate musical ornamentation, made changes in musical notation, and developed new instrumental playing techniques.</p>
+        <p>Composers:</p>
+        <div class="container">
+                <div class="row">
+                    <div ng-repeat="art in baroqueArtists.slice(0,4)" class="artist_card col-md-3">
+                        <div class="image">
+                            <a ng-href="#/artists/{{art.id}}"><img check-image class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
+                        </div>
+                        <div class="artist_name">
+                            <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 	</div>
 </section><!-- cd-section -->
 
 <section id="section4" class="cd-section">
 	<div class="content-wrapper">
-		<h2>Classical</h2>
-		<p>(1730–1820)Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto numquam, totam iusto officia earum perferendis, culpa ad atque eveniet praesentium nobis expedita similique beatae tenetur. Distinctio vel tenetur, id cum.</p>
+		<h2>Classical(1730–1820)</h2>
+		<p>Classical music has a lighter, clearer texture than Baroque music and is less complex. It is mainly homophonic, using a clear melody over a subordinate chordal accompaniment.Variety and contrast within a piece became more pronounced than before.</p>
+        <p>Composers:</p>
+        <div class="container">
+                <div class="row">
+                    <div ng-repeat="art in classicalArtists.slice(0,4)" class="artist_card col-md-3">
+                        <div class="image">
+                            <a ng-href="#/artists/{{art.id}}"><img check-image class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
+                        </div>
+                        <div class="artist_name">
+                            <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 	</div>
 </section><!-- cd-section -->
     
 <section id="section5" class="cd-section">
 	<div class="content-wrapper">
-		<h2>Romantic era</h2>
-		<p>(1815–1910)Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto numquam, totam iusto officia earum perferendis, culpa ad atque eveniet praesentium nobis expedita similique beatae tenetur. Distinctio vel tenetur, id cum.</p>
-	</div>
+		<h2>Romantic era(1815–1910)</h2>
+		<p>In romantic era, composers turned their attention to the expression of intense feelings in their music. This expression of emotion was the focus of all the arts of the self-described "Romantic" movement. Also, music in this era often took on a much more nationalistic purpose.</p>
+	
+    <div class="container">
+                <div class="row">
+                    <div ng-repeat="art in romanArtists.slice(0,4)" class="artist_card col-md-3">
+                        <div class="image">
+                            <a ng-href="#/artists/{{art.id}}"><img check-image class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
+                        </div>
+                        <div class="artist_name">
+                            <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
 </section><!-- cd-section -->
     
 <section id="section6" class="cd-section">
 	<div class="content-wrapper">
-		<h2>20th century</h2>
-		<p>(1900–2000)Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto numquam, totam iusto officia earum perferendis, culpa ad atque eveniet praesentium nobis expedita similique beatae tenetur. Distinctio vel tenetur, id cum.</p>
-	</div>
+		<h2>20th century(1900–2000)</h2>
+		<p>This era was without a dominant style and composers have created highly diverse kinds of music. Some movements were expanding the sytles of music, including impressionism, modernism, free dissonance and experimentalism, Expressionism and so on.
+        </p>
+	
+    <p>Composers:</p>
+    <div class="container">
+                <div class="row">
+                    <div ng-repeat="art in twentyArtists.slice(0,4)" class="artist_card col-md-3">
+                        <div class="image">
+                            <a ng-href="#/artists/{{art.id}}"><img check-image class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
+                        </div>
+                        <div class="artist_name">
+                            <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
 </section><!-- cd-section -->
 	
 <script src="js/jquery-2.1.4.js"></script>

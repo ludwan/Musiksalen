@@ -30,7 +30,7 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
             $scope.artistName = data.response.songs[0].artist_name;
             $scope.workTitle = data.response.songs[0].title;
             var keyWord = $scope.artistName + " " + $scope.workTitle;
-            $scope.getVideos(keyWord);
+            $scope.getVideos($scope.workTitle);
         }, function (error) {
             console.log("EchoNest get work failed: " + error);
         });
