@@ -300,3 +300,6 @@ select {
     position: relative;
 }
 
+i {
+    padding-bottom: 5px;
+}
