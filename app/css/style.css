@@ -106,7 +106,7 @@ Vertical navigation
 .cd-vertical-nav {
   position: fixed;
   z-index: 1;
-    margin-top: 100px;          /*    ADJUSTED */
+/*    margin-top: 100px;              ADJUSTED */
   right: 5%;
   bottom: 30px;
   width: 90%;
@@ -430,15 +430,14 @@ Content Sections - basic style
 -------------------------------- */
 .cd-section {
   /* vertically align its content*/
+    
   display: table;
   width: 100%;
   height: 100vh;
-    margin-top: 200px;
+   margin-top: 200px;
   position: relative;
 
 }
-
-
 
 
 
@@ -450,10 +449,11 @@ Content Sections - basic style
 }
 .cd-section h1, .cd-section h2 {
   width: 90%;
-  margin: 0 auto;
+  margin: 10 auto;
   text-transform: uppercase;
   font-size: 2.4rem;
   line-height: 1.4;
+    color: #4D281D;
    
 }
 
