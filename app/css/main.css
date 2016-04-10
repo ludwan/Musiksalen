@@ -184,3 +184,8 @@ li {
 .section div p {
     color: inherit;
 }
+
+.search {
+    display: inline-block;
+    float: right;
+}
