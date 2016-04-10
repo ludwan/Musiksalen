@@ -1,121 +1,61 @@
-musiksalenApp.controller('HomeCtrl', function($scope,  $window, echoNestService, lastFmService, $rootScope){
+musiksalenApp.controller('HomeCtrl', function ($scope, echoNestService, lastFmService, $q){
     
     echoNestService.ArtistSearch.get({genre : 'classical', min_familiarity : 0.65},function(data){
        
         $scope.topArtists = data.response.artists;
-        console.log($scope.topArtists);
+        // console.log($scope.topArtists);
     });
 //XU: Too many repeat in the code, try to use the value of section...    
-    var arts = [];
-    angular.forEach(echoNestService.medievalArtists, function(value, key){
-         if(value!= undefined){
-                
-            lastFmService.getArtist.get({artist : value.name},function(data){
-                // console.log(data);
-                var imgSrc = data['artist']['image'][2]['#text'];
-                // var imgSrcArray = data.artist.image.map(function(image){ return image['#text'] });
-                data.artist.mbid = value.id;
-                data.artist.image = imgSrc;
-                arts.push(data.artist);
-                    
-                console.log(arts);
-            }); 
-            $scope.MedievalArtists = arts;
-               
-        }
+
+    $scope.getArtistInfo = function(list){
+        angular.forEach(list, function(value, key){
+                if(value.name != undefined){
+                    lastFmService.getArtist.get({artist : value.name},function(data){
+                        var imgSrc = data['artist']['image'][2]['#text'];
+                        // var imgSrcArray = data.artist.image.map(function(image){ return image['#text'] });
+
+                        value.finalName = data.artist.name;
+                        value.image = imgSrc;
+                        value.mbid = data.artist.mbid;
+                    });
+                }
+            });
+    }
+
+    $scope.getTopArtists = function(selectedGenre, startYear, endYear){
+        var deferred = $q.defer();
+        var list;
+        echoNestService.ArtistSearch.get({genre : selectedGenre ,artist_start_year_after : startYear, artist_end_year_before : endYear, results : 4},function(data){
+            list = data.response.artists;
+            $scope.getArtistInfo(list);
+            deferred.resolve(list);
+        });
+
+        return deferred.promise;
+    }
+    //Ludwig: Fixed some of the code repeat
+    //    Medieval     
+    $scope.medievalArtists = [{"id":"ARUXZG81187FB5ACA0","name":"Hildegard von Bingen"}, {"id":"ARFHCDF1187FB5AB93","name":"Léonin"}, {"id":"ARZZ6AV1187FB412D9","name":"Pérotin"}, {"id":"AR2JVUX1187FB5CEF5","name":"Guillaume de Machaut"}];
+    $scope.getArtistInfo($scope.medievalArtists);
+    //    RENAISSANCE
+    $scope.getTopArtists('renaissance', 1400, 1600).then(function (data){   //Ludwig: i changed 'classical' to 'renaissance' and is it necessary with the years?
+        $scope.renaissanceArtists = data;
     });
-    
-//    RENAISSANCE
-    
-    echoNestService.ArtistSearch.get({genre : 'classical',artist_start_year_after : 1400, artist_end_year_before : 1600},function(data){
-            console.log(data);
-            $scope.renaissanceArtists = data.response.artists;
-            angular.forEach($scope.renaissanceArtists, function(value, key){
-                if(value.name != undefined){
-                    lastFmService.getArtist.get({artist : value.name},function(data){
-                        //console.log(data);
-                        var imgSrc = data['artist']['image'][2]['#text'];
-                        // var imgSrcArray = data.artist.image.map(function(image){ return image['#text'] });
-
-                        value.finalName = data.artist.name;
-                        value.image = imgSrc;
-                        value.mbid = data.artist.mbid;
-                    });
-                }
-            });
-        });
-    
-//    Baroque
-    echoNestService.ArtistSearch.get({genre : 'baroque'},function(data){
-            console.log(data);
-            $scope.baroqueArtists = data.response.artists;
-            angular.forEach($scope.baroqueArtists, function(value, key){
-                if(value.name != undefined){
-                    lastFmService.getArtist.get({artist : value.name},function(data){
-                        //console.log(data);
-                        var imgSrc = data['artist']['image'][2]['#text'];
-                        // var imgSrcArray = data.artist.image.map(function(image){ return image['#text'] });
-
-                        value.finalName = data.artist.name;
-                        value.image = imgSrc;
-                        value.mbid = data.artist.mbid;
-                    });
-                }
-            });
-        });
-//  Classical
-    echoNestService.ArtistSearch.get({genre : 'classical period'},function(data){
-            console.log(data);
-            $scope.classicalArtists = data.response.artists;
-            angular.forEach($scope.classicalArtists, function(value, key){
-                if(value.name != undefined){
-                    lastFmService.getArtist.get({artist : value.name},function(data){
-                        //console.log(data);
-                        var imgSrc = data['artist']['image'][2]['#text'];
-                        // var imgSrcArray = data.artist.image.map(function(image){ return image['#text'] });
-
-                        value.finalName = data.artist.name;
-                        value.image = imgSrc;
-                        value.mbid = data.artist.mbid;
-                    });
-                }
-            });
-        });
-//    Romantic
-    echoNestService.ArtistSearch.get({genre : 'classical',artist_start_year_after : 1815, artist_end_year_before : 1910},function(data){
-            console.log(data);
-            $scope.romanArtists = data.response.artists;
-            angular.forEach($scope.romanArtists, function(value, key){
-                if(value.name != undefined){
-                    lastFmService.getArtist.get({artist : value.name},function(data){
-                        console.log(data);
-                        var imgSrc = data['artist']['image'][2]['#text'];
-                        // var imgSrcArray = data.artist.image.map(function(image){ return image['#text'] });
-
-                        value.finalName = data.artist.name;
-                        value.image = imgSrc;
-                        value.mbid = data.artist.mbid;
-                    });
-                }
-            });
-        });
-//    20 century
-    echoNestService.ArtistSearch.get({genre : 'classical',artist_start_year_after : 1900, artist_end_year_before : 2000},function(data){
-            console.log(data);
-            $scope.twentyArtists = data.response.artists;
-            angular.forEach($scope.twentyArtists, function(value, key){
-                if(value.name != undefined){
-                    lastFmService.getArtist.get({artist : value.name},function(data){
-                        //console.log(data);
-                        var imgSrc = data['artist']['image'][2]['#text'];
-                        // var imgSrcArray = data.artist.image.map(function(image){ return image['#text'] });
-
-                        value.finalName = data.artist.name;
-                        value.image = imgSrc;
-                        value.mbid = data.artist.mbid;
-                    });
-                }
-            });
-        });
+    //    Baroque
+    $scope.getTopArtists('baroque').then(function (data){
+        $scope.baroqueArtists = data;
+    });
+    //  Classical
+    $scope.getTopArtists('classical period').then(function (data){
+        $scope.classicalArtists = data;
+    });
+    //    Romantic
+    $scope.getTopArtists('romantic', 1815, 1910).then(function (data){  //Ludwig: i changed 'classical' to 'romantic' and is it necessary with the years?
+        $scope.romanArtists = data;
+    });
+    //    20 century
+    $scope.getTopArtists('modern classical', 1900, 2000).then(function (data){  //Ludwig: i changed 'classical' to 'modern classical' and is it necessary with the years?
+        $scope.twentyArtists = data;
+    });
     
 });
