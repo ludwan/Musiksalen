@@ -10,7 +10,9 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-      <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+
     <!-- jQuery -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
@@ -20,6 +22,8 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-filter/dist/angular-filter.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     
     <!-- The application JavaScript code -->
     <script src="js/app.js"></script>
@@ -31,13 +35,14 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
 
     <script src="js/youtubeService.js"></script>
     <script src="js/echoNestService.js"></script>
+    <script src="js/lastFmService.js"></script>
 
 
     <script src="https://apis.google.com/js/client.js?onload=init"></script>
       
 <!--      CSS THINGS-->
       
-      	<meta charset="UTF-8">
+    <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<link href='https://fonts.googleapis.com/css?family=Sintony:400,700' rel='stylesheet' type='text/css'>
@@ -46,6 +51,8 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
 	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
 	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
 	<script src="js/modernizr.js"></script> <!-- Modernizr -->
+     
+    <link rel="stylesheet" href="css/main.css">
   	
 	<title>Vertical Fixed Navigation #2 | CodyHouse</title>
       
@@ -64,6 +71,7 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
                     <h2><a href="#/home">Home</a></h2>
                     <h2><a href="#/artists">Artists</a></h2>
                     <h2>My account</h2>
+                    <div id="search"><i class="fa fa-search"></i>&nbsp;<input type="search" name="googlesearch"></div>
                 </div>
            </div>
         </div>

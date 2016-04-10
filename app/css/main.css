@@ -10,21 +10,23 @@ body {
     background-color: #F2EFEA; /* change this  */
 }
 
-#artists {
+#artists, #singleArtist, #works {
     background-color: #F2EFEA; /* change this  */
 }
 
 p {
     color: #4D281D;
+    margin-bottom: 10px;
 }
 
 a {
-    color: #5C4099;
+    color: #A1693C;
     text-decoration: none;
 }
 
 a:hover {
-    color: #8A60E5;
+    color: #5C4099;
+    text-decoration: none;
 }
 
 .header {
@@ -70,8 +72,6 @@ a:hover {
 
 
 
-
-
 #works {
     position: relative;
     top: 200px;
@@ -88,6 +88,10 @@ a:hover {
 }
 
 #videoDescription {
+    white-space: pre-line;
+}
+
+#bio {
     white-space: pre-line;
 }
 
@@ -109,17 +113,62 @@ a:hover {
 }
 
 .artist_name {
+    height: 60px;
     background-color: rgba(77, 40, 29, 0.1);
     text-align: center;
     padding: 15px;
     font-size: 16px;
 }
 
-.artistInfo {
-/*
-    position:fixed;
-    top:0px;
-    left:0px;
-*/
+/* singleArtist */
 
+.section {
+    margin-bottom: 20px;
+}
+
+#Artistnamecard {
+    text-align: right;
+    color: #730502;
+}
+
+.section h3 {
+/*    color: #252121;*/
+    color: inherit;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 30px;
+    margin: 15px 0px;
+}
+
+#Artistnamecard p {
+    color: inherit;
+}
+
+li {
+    display: inline-block;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    border-bottom: 1px dotted;
+}
+
+.section h4 {
+    color: #252121;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 26px;
+    margin-bottom: 15px;
+}
+
+.section p {
+    line-height: 20px;
+    margin-bottom: 5px;
+}
+
+.section div p {
+    color: inherit;
+}
+
+.search {
+    display: inline-block;
+    float: right;
 }
