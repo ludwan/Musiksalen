@@ -1,27 +1,41 @@
 <div id="artists"> 
 
-    
-<h1>Browse artists</h1>
 
-<select id="period">
-    <option>Medieval (476–1400)</option>
-    <option>Renaissance	(1400–1600)</option>
-    <option>Baroque	(1600–1760)</option>
-    <option>Classical era (1730–1820)</option>
-    <option>Romantic era (1815–1910)</option>
-    <option>20th century (1900–2000)</option>
-</select>    
-
-<select id="country">
-    <option></option>
-</select>
+<div class="filter">
+    <div class="container">
+        <div class="row">
+            <h1>Browse artists</h1>
+        </div>
+        <div class="row">
+            <select id="period" ng-model="time" ng-change="filteredArtists(time,country)">
+                <option value="0476-1400">Medieval (476–1400)</option>
+                <option value="1400-1600">Renaissance	(1400–1600)</option>
+                <option value="1600-1760">Baroque	(1600–1760)</option>
+                <option value="1730-1820">Classical era (1730–1820)</option>
+                <option value="1815-1910">Romantic era (1815–1910)</option>
+                <option value="1900-2000">20th century (1900–2000)</option>
+            </select>     
+            <select id="country" ng-model="country">
+                <option></option>
+            </select>
+        </div>
+    </div>
+</div>
 
 <hr>
-    
-<div class="row">
-    <div ng-repeat="art in artists" class="col-md-4">
-        <a ng-href="#/artists/{{art.id}}"><img check-image class="img-reponsive" ng-src={{art.images[0].url}} style="width:100%"/></a>
-        <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
+
+<div class="mainbody">
+    <div class="container">
+        <div class="row">
+            <div ng-repeat="art in artists" class="artist_card col-md-3">
+               <div class="image">
+                   <a ng-href="#/artists/{{art.id}}"><img check-image class="img img-reponsive" ng-src={{art.images[0].url}} style="width:100%"/></a>
+               </div>
+               <div class="artist_name">
+                   <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
+               </div>
+            </div>
+        </div>
     </div>
 </div>
 

@@ -1,8 +1,10 @@
 <div id="homepage">
     
 <!--    Carousel for showing news/events etc-->
+
 <!--    <div id="myCarousel" class="carousel slide" data-ride="carousel">-->
-  <!-- Indicators -->
+
+<!-- Indicators -->
 <!--
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -13,23 +15,28 @@
 -->
 
   <!-- Wrapper for slides -->
+
 <!--
+
+   Better to be randomized
+
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img src="../images/note.png" alt="Event1">
+      <img ng-src={{topArtists[0].images[0].url}} alt="Event1">
     </div>
 
     <div class="item">
-      <img src="../images/note.png" alt="Event2">
+      <img ng-src={{topArtists[2].images[0].url}} alt="Event2">
+    </div>
+    
+    <div class="item">
+      <img ng-src={{topArtists[3].images[0].url}} alt="Event3">
+    </div>
+    
+    <div class="item">
+      <img ng-src={{topArtists[4].images[0].url}} alt="Event4">
     </div>
 
-    <div class="item">
-      <img src="../images/note.png" alt="Event3">
-    </div>
-
-    <div class="item">
-      <img src="../images/note.png" alt="Event4">
-    </div>
   </div>
 -->
 
@@ -60,60 +67,67 @@
 </nav><!-- .cd-vertical-nav -->
 
 <button class="cd-nav-trigger cd-image-replace">Open navigation<span aria-hidden="true"></span></button>
-
 <section id="section1" class="cd-section">
     
-	<div class="content-wrapper">
-        <img src="images/medieval.jpg">
-		<h1>Medieval</h1>
-        <div class="columnwrapper"></div>
-        <div class="columnwrapper"></div>
+
+        <img src="images/medieval.jpg" alt="" />
+		<h1><span>Medieval</span></h1>
+
+        <p>Medieval	(476–1400): Gregorian chant, Hildegard von Bingen, Leonin &amp; Perotin, Guillaume de Machaut, troubadour</p>
+<!--
+         <div ng-repeat="art in artists" class="artist_card col-md-3">
+               <div class="image">
+                   <a ng-href="#/artists/{{art.id}}"><img check-image class="img img-reponsive" ng-src={{art.images[0].url}} style="width:100%"/></a>
+               </div>
+               <div class="artist_name">
+                   <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
+               </div>
+            </div>
+-->
 		<a href="#section2" class="cd-scroll-down cd-image-replace">scroll down</a>
-	</div>
 </section><!-- cd-section -->
 
 <section id="section2" class="cd-section">
 	<div class="content-wrapper">
         <img src="images/creationadam.jpg">
 		<h2>Renaissance</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto numquam, totam iusto officia earum perferendis, culpa ad atque eveniet praesentium nobis expedita similique beatae tenetur. Distinctio vel tenetur, id cum.</p>
-    <div class="columnwrapper"></div>
+		<p>(1400–1600)Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto numquam, totam iusto officia earum perferendis, culpa ad atque eveniet praesentium nobis expedita similique beatae tenetur. Distinctio vel tenetur, id cum.</p>
+
 	</div>
 </section><!-- cd-section -->
 
 <section id="section3" class="cd-section">
 	<div class="content-wrapper">
 		<h2>Baroque</h2>
-        <div class="columnwrapper">
-		  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto numquam, totam iusto officia earum perferendis, culpa ad atque eveniet praesentium nobis expedita similique beatae tenetur. Distinctio vel tenetur, id cum.</p>
-        </div>
-        <div class="columnwrapper"></div>
+
+		<p>(1600–1760)Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto numquam, totam iusto officia earum perferendis, culpa ad atque eveniet praesentium nobis expedita similique beatae tenetur. Distinctio vel tenetur, id cum.</p>
+
 	</div>
 </section><!-- cd-section -->
 
 <section id="section4" class="cd-section">
 	<div class="content-wrapper">
 		<h2>Classical</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto numquam, totam iusto officia earum perferendis, culpa ad atque eveniet praesentium nobis expedita similique beatae tenetur. Distinctio vel tenetur, id cum.</p>
-	   <div class="columnwrapper"></div>
-    </div>
+
+		<p>(1730–1820)Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto numquam, totam iusto officia earum perferendis, culpa ad atque eveniet praesentium nobis expedita similique beatae tenetur. Distinctio vel tenetur, id cum.</p>
+	</div>
+
 </section><!-- cd-section -->
     
 <section id="section5" class="cd-section">
 	<div class="content-wrapper">
 		<h2>Romantic era</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto numquam, totam iusto officia earum perferendis, culpa ad atque eveniet praesentium nobis expedita similique beatae tenetur. Distinctio vel tenetur, id cum.</p>
-        
-    <div class="columnwrapper"></div>
-        
+
+		<p>(1815–1910)Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto numquam, totam iusto officia earum perferendis, culpa ad atque eveniet praesentium nobis expedita similique beatae tenetur. Distinctio vel tenetur, id cum.</p>
+
 	</div>
 </section><!-- cd-section -->
     
 <section id="section6" class="cd-section">
 	<div class="content-wrapper">
 		<h2>20th century</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto numquam, totam iusto officia earum perferendis, culpa ad atque eveniet praesentium nobis expedita similique beatae tenetur. Distinctio vel tenetur, id cum.</p>
-    <div class="columnwrapper"></div>
+
+		<p>(1900–2000)Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto numquam, totam iusto officia earum perferendis, culpa ad atque eveniet praesentium nobis expedita similique beatae tenetur. Distinctio vel tenetur, id cum.</p>
 	</div>
 </section><!-- cd-section -->
 	
@@ -121,69 +135,7 @@
 <script src="js/main.js"></script> <!-- Resource jQuery -->
     
     
-<!--    wrapper for taking the tour -->
-<!--
-<div class="contentwrapper">
-    <div class="verticalruler">
-    <h1>Take the tour</h1>
-    <div class="columnFlexWrapper" id="medieval">
 
-        <h2>Medieval</h2>
-        <div class="columnWrapper">
-        </div>
-        <div class="columnWrapper">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
-    </div>
-
-    
-    <div class="columnFlexWrapper" id="renaissance">
-        <h2>Renaissance</h2>
-        <div class="columnWrapper">
-        </div>
-         <div class="columnWrapper">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-        </div>
-    </div>
-
-    <div class="columnFlexWrapper" id="baroque">
-        <h2>Baroque</h2>
-        <div class="columnWrapper">
-        </div>
-         <div class="ColumnWrapper">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    
-    </div>
-    </div>
-    <div class="columnFlexWrapper" id="classical">
-         <h2>Classical</h2>
-        <div class="columnWrapper">
-        </div>
-         <div class="columnWrapper">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    
-        </div>
-    </div>
-     <div class="columnFlexWrapper" id="romantic">
-         <h2>Romantic era</h2>
-        <div class="columnWrapper">
-        </div>
-         <div class="columnWrapper">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    
-        </div>
-    </div>
-     <div class="columnFlexWrapper" id="20thcentury">
-         <h2>20th century</h2>
-        <div class="columnWrapper">
-        </div>
-         <div class="columnWrapper">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    
-        </div>
-    </div>
-    </div>
--->
-<!--    </div>  end of contentwrapper   -->
     </div> <!-- end of div homepage -->
+ 
+
