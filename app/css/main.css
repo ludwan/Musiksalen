@@ -272,9 +272,7 @@ a:hover {
     position: absolute;
     width: 100%;
     height: 100%;
-    text-align: center;
     overflow: hidden;
-    display: table;
 }
 
 .backgroundimage {
