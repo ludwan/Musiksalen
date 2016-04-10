@@ -277,7 +277,7 @@ select {
 
 .bgimg {
     z-index: -1;
-    /*opacity: 0.3; */ /*I think it looks better without the opacity //Ludwig*/
+    opacity: 0.3;
     position: absolute;
     width: 100%;
     height: 100%;
