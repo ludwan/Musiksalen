@@ -29,6 +29,9 @@ a:hover {
     text-decoration: none;
 }
 
+/*  HEADER STUFF  */
+
+
 .header {
     padding-top: 25px;
     padding-bottom: 20px;
@@ -95,6 +98,8 @@ a:hover {
     white-space: pre-line;
 }
 
+/*   HOME.HTML   */
+
 .artist_card {
     margin-bottom: 30px;
 }
@@ -102,11 +107,11 @@ a:hover {
 .image {
     position: relative;
     overflow: hidden;
-    padding-bottom: 100%;
+/*    padding-bottom: 100%;*/
 }
 
 .img {
-    position: absolute;
+    position: relative;
     margin: auto;
     min-height: 100%;
     min-width: 100%;
@@ -116,14 +121,32 @@ a:hover {
     height: 60px;
     background-color: rgba(77, 40, 29, 0.1);
     text-align: center;
-    padding: 15px;
-    font-size: 16px;
+/*    padding: 5px;*/
+    line-height: 60px;
+}
+
+.artist_name span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
 }
 
 /* singleArtist */
 
 .section {
     margin-bottom: 20px;
+}
+
+.backgroundimage {
+    z-index: -1;
+    opacity: 0.1;
+    max-width: 100%;
+    position: absolute;
+}
+
+.content-wrapper {
+    z-index: 1;
+    position: relative;
 }
 
 #Artistnamecard {
