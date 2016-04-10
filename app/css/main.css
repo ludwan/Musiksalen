@@ -123,16 +123,18 @@ a:hover {
 .artist_name {
     height: 60px;
     width: 100%;
-    padding: 5px;
-    display: table;
+    position: relative;
     background-color: rgba(77, 40, 29, 0.1);
     text-align: center;
     font-size: 18px;
 }
 
 .artist_name a {
-    display: table-cell;
-    vertical-align: middle;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
 }
 
 .artist-name {
