@@ -6,31 +6,9 @@ musiksalenApp.controller('HomeCtrl', function ($scope, echoNestService, lastFmSe
         // console.log($scope.topArtists);
     });
 //XU: Too many repeat in the code, try to use the value of section...    
-    var arts = [];
-    angular.forEach(echoNestService.medievalArtists, function(value, key){
-         if(value!= undefined){
-                
-            lastFmService.getArtist.get({artist : value.name},function(data){
-                // console.log(data);
-                var imgSrc = data['artist']['image'][2]['#text'];
-                // var imgSrcArray = data.artist.image.map(function(image){ return image['#text'] });
-                data.artist.mbid = value.id;
-                data.artist.image = imgSrc;
-                arts.push(data.artist);
-                    
-                // console.log(arts);
-            }); 
-            $scope.MedievalArtists = arts;
-               
-        }
-    });
 
-    $scope.getTopArtists = function(selectedGenre, startYear, endYear){
-        var deferred = $q.defer();
-        var list;
-        echoNestService.ArtistSearch.get({genre : selectedGenre ,artist_start_year_after : startYear, artist_end_year_before : endYear, results : 4},function(data){
-            list = data.response.artists;
-            angular.forEach(list, function(value, key){
+    $scope.getArtistInfo = function(list){
+        angular.forEach(list, function(value, key){
                 if(value.name != undefined){
                     lastFmService.getArtist.get({artist : value.name},function(data){
                         var imgSrc = data['artist']['image'][2]['#text'];
@@ -42,11 +20,23 @@ musiksalenApp.controller('HomeCtrl', function ($scope, echoNestService, lastFmSe
                     });
                 }
             });
+    }
+
+    $scope.getTopArtists = function(selectedGenre, startYear, endYear){
+        var deferred = $q.defer();
+        var list;
+        echoNestService.ArtistSearch.get({genre : selectedGenre ,artist_start_year_after : startYear, artist_end_year_before : endYear, results : 4},function(data){
+            list = data.response.artists;
+            $scope.getArtistInfo(list);
             deferred.resolve(list);
         });
+
         return deferred.promise;
     }
     //Ludwig: Fixed some of the code repeat
+    //    Medieval     
+    $scope.medievalArtists = [{"id":"ARUXZG81187FB5ACA0","name":"Hildegard von Bingen"}, {"id":"ARFHCDF1187FB5AB93","name":"Léonin"}, {"id":"ARZZ6AV1187FB412D9","name":"Pérotin"}, {"id":"AR2JVUX1187FB5CEF5","name":"Guillaume de Machaut"}];
+    $scope.getArtistInfo($scope.medievalArtists);
     //    RENAISSANCE
     $scope.getTopArtists('renaissance', 1400, 1600).then(function (data){   //Ludwig: i changed 'classical' to 'renaissance' and is it necessary with the years?
         $scope.renaissanceArtists = data;
