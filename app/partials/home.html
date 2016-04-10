@@ -74,7 +74,6 @@
 <section id="section1" class="cd-section">
     <img class="backgroundimage" src="../images/medieval2.jpg">
 
-
 	<div class="content-wrapper">
 		<h1>Medieval (476–1400)</h1>
         <p>Medieval music was both sacred and secular. During this time, music transformed from monophonic to polyphonic. Notational and theoretical practices were developed. Some works:</p>
@@ -140,14 +139,15 @@
 		<p>The word "baroque" comes from the Portuguese word barroco, meaning misshapen pearl.The Baroque period saw the creation of tonality. During the period, composers and performers used more elaborate musical ornamentation, made changes in musical notation, and developed new instrumental playing techniques.</p>
         <br><br>
         <p><b>Top Composers</b></p>
-        <br>        <div class="container">
+        <br>
+            <div class="container">
                 <div class="row">
                     <div ng-repeat="art in baroqueArtists.slice(0,4)" class="artist_card col-md-3">
                         <div class="image">
                             <a ng-href="#/artists/{{art.id}}"><img check-image class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
                         </div>
                         <div class="artist_name">
-                            <a ng-href="#/artists/{{art.id}}"><div class="artist-name">{{art.name}}</div></a>
+                            <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
                         </div>
                     </div>
                 </div>
@@ -171,7 +171,7 @@
                             <a ng-href="#/artists/{{art.id}}"><img check-image class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
                         </div>
                         <div class="artist_name">
-                            <a ng-href="#/artists/{{art.id}}"><div class="artist-name">{{art.name}}</div></a>
+                            <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
                         </div>
                     </div>
                 </div>
@@ -197,7 +197,7 @@
                             <a ng-href="#/artists/{{art.id}}"><img check-image class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
                         </div>
                         <div class="artist_name">
-                            <a ng-href="#/artists/{{art.id}}"><div class="artist-name">{{art.name}}</div></a>
+                            <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
                         </div>
                     </div>
                 </div>
@@ -223,7 +223,7 @@
                             <a ng-href="#/artists/{{art.id}}"><img check-image class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
                         </div>
                         <div class="artist_name">
-                            <a ng-href="#/artists/{{art.id}}"><div class="artist-name">{{art.name}}</div></a>
+                            <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
                         </div>
                     </div>
                 </div>
