@@ -469,7 +469,7 @@ Content Sections - basic style
 .cd-section p {
   margin: 1em auto 0;
   line-height: 1.6;
-  width: 90%;
+/*  width: 90%;*/
   max-width: 680px;
 /*  color: rgba(234, 242, 227, 0.6);*/
     

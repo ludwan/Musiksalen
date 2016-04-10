@@ -111,6 +111,12 @@ a:hover {
 
 
 
+#search {
+    display: inline-block;
+    float: right;
+    margin-top: -11px;
+}
+
 
 #works {
     position: relative;
@@ -145,6 +151,7 @@ a:hover {
     position: relative;
     overflow: hidden;
     padding-bottom: 100%;
+    text-align: left;
 }
 
 .img {
@@ -155,7 +162,7 @@ a:hover {
 /*    border: 3px groove #F2EFEA;*/
 }
 
-.artist_name {
+.artist_name, .cd-section .artist_name {
     height: 60px;
     width: 100%;
     position: relative;
@@ -164,7 +171,7 @@ a:hover {
     font-size: 18px;
 }
 
-.artist_name a {
+.artist_name a, .cd-section .artist_name a{
     position: absolute;
     top: 50%;
     left: 0;
@@ -172,8 +179,9 @@ a:hover {
     transform: translateY(-50%);
 }
 
-.artist-name {
+.artist-name, .cd-section .artist-name {
     margin: 0;
+    font-size: 100%;
     line-height: 24px;
 }
 
@@ -254,8 +262,6 @@ a:hover {
     height: 60px;
     overflow: hidden;
 }
-
-
 
 
 /*
