@@ -8,31 +8,36 @@
                        <!--Images and Description-->
                        <img ng-src={{singleArtist.image}} style="width:100%">
 
-                       <!--Name of artist-->
-                       <h3>{{singleArtist.name}}</h3>
+                       <div id="Artistnamecard" class="section">
+                           <!--Name of artist-->
+                           <h3>&#9734;&#32;{{singleArtist.name}}</h3>
 
-                       <!--some information-->
-                       <p>Active years: {{activeYears}}</p>
-                       <p>Genres:</p>
-                       <ul id="genres">
-                        <li ng-show="!genres.length">Not Available</li>
-                        <li ng-repeat="genre in genres">{{genre.name}}</li>
-                       </ul>
+                           <!--some information-->
+                           <p>Active years: {{activeYears}}</p>
+                           <p>Genres:</p>
+                           <ul id="genres">
+                               <li ng-show="!genres.length">Not Available</li>
+                               <li ng-repeat="genre in genres">{{genre.name}}</li>
+                           </ul>
+                       </div>
                    </div>
                </div>
                <!--Description-->
                <div class="col-md-8">
-                   <h4>Biography</h4>
-                   <p id="bio" ng-bind-html="bio"></p>
+                   <div class="section">
+                      <h4>Biography</h4>
+                       <p id="bio" ng-bind-html="bio"></p>
+                    </div>
 
                    <!--Documentary-->
 
                    <!--Songs-->
-                   <h4>Songs</h4>
-                   <div ng-repeat="song in works | unique: 'title'">
-                       <a ng-href="#/works/{{song.id}}"><p>{{song.title}}</p></a>
-                   </div>   
-
+                   <div class="section">
+                       <h4>Songs</h4>
+                       <div ng-repeat="song in works | unique: 'title'">
+                           <a ng-href="#/works/{{song.id}}"><p>{{song.title}}&#32;&#9734;</p></a>
+                       </div>  
+                   </div>
                </div>
            </div>
        </div>
