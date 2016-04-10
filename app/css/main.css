@@ -106,16 +106,26 @@ a:hover {
 #searchbar {
 /*    display: inline; */
     float: right; 
+    
+}
+#searchfieldtext {
+    color:#4D281D;
+}
+
+#searchfieldtext:focus {
+    color:#4D281D;
 }
 
 
 
 
+/*
 #search {
     display: inline-block;
     float: right;
     margin-top: -11px;
 }
+*/
 
 
 #works {
