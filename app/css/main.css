@@ -204,18 +204,6 @@ a:hover {
     margin-bottom: 20px;
 }
 
-.backgroundimage {
-    z-index: -1;
-    opacity: 0.3;
-    max-width: 100%;
-    position: absolute;
-}
-
-.content-wrapper {
-    z-index: 1;
-    position: relative;
-}
-
 #Artistnamecard {
     text-align: right;
     color: #730502;
@@ -276,6 +264,32 @@ a:hover {
     overflow: hidden;
 }
 
+/* HOME PAGE */
+
+.bgimg {
+    z-index: -1;
+    opacity: 0.3;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    overflow: hidden;
+    display: table;
+}
+
+.backgroundimage {
+    position: relative;
+    height: 100%;
+    min-width: 100%;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+}
+
+.content-wrapper {
+    z-index: 1;
+    position: relative;
+}
 
 /*
 #section1wrapper {
