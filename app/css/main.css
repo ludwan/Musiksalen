@@ -30,6 +30,11 @@ a:hover {
     text-decoration: none;
 }
 
+select {
+    color: #4D281D;
+}
+
+
 /*  HEADER STUFF  */
 
 
@@ -198,6 +203,10 @@ a:hover {
     line-height: 24px;
 }
 
+.row h1 {
+    color: #4D281D;
+}
+
 /* singleArtist */
 
 .section {
@@ -268,7 +277,7 @@ a:hover {
 
 .bgimg {
     z-index: -1;
-    opacity: 0.3;
+    /*opacity: 0.3; */ /*I think it looks better without the opacity //Ludwig*/
     position: absolute;
     width: 100%;
     height: 100%;
@@ -291,39 +300,3 @@ a:hover {
     position: relative;
 }
 
-/*
-#section1wrapper {
-    background-image: url("../images/medieval2.jpg");
-    background-size: cover;
-    background-position: center;
-}
-#section2 {
-    background-image: url("../images/renaissance.jpg");
-    background-size: cover;
-    background-position: center;
-}
-
-#section3 {
-    background-image: url("../images/baroque.jpg");
-    background-size: cover;
-    background-position: center;
-}
-
-#section4 {
-    background-image: url("../images/classical.jpg");
-    background-size: cover;
-    background-position: center;
-}
-
-#section5 {
-    background-image: url("../images/romanticism.jpg");
-    background-size: cover;
-    background-position: center;
-}
-
-#section6 {
-    background-image: url("../images/modern.jpg");
-    background-size: cover;
-    background-position: center;
-}
-*/
