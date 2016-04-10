@@ -2,20 +2,26 @@
    
 <div class="mainbody">
     <div class="container">
-        <h1>{{workTitle}}</h1>
-        <p> By: {{artistName}}</p>
-
+        <div class="section">
+           <h3>{{workTitle}}</h3>
+           <p> By: {{artistName}}</p>
+        </div>
 
         <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
         <div id="player"></div>
 
         <p id="videoDescription">{{videoDescription}}</p>
 
-        <h2>Additional Videos</h2>
-        <div id="additional">
-            <div ng-repeat="video in channel" class="video_thumbnail" ng-hide="isTrue('{{video.id.videoId}}')" >
-                <img ng-src="{{video.snippet.thumbnails.default.url}}" ng-click="changeVideo(video.id.videoId)">
-                <p>{{video.snippet.title}}</p>
+        <div class="section">
+            <h4>Additional Videos</h4>
+        </div>
+        
+        <div id="additional" class="row">
+            <div ng-repeat="video in channel" class="video_thumbnail col-md-2" ng-hide="isTrue('{{video.id.videoId}}')" >
+                <img ng-src="{{video.snippet.thumbnails.medium.url}}" ng-click="changeVideo(video.id.videoId)">
+                <div class="video_names">
+                    <p>{{video.snippet.title}}</p>
+                </div>
             </div>
         </div>
     </div>

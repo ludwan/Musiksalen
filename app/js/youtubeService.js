@@ -10,7 +10,7 @@ musiksalenApp.service('youtubeService', ['$http', '$q', function ($http, $q) {
             var request = gapi.client.youtube.search.list({
                                 q: keyWord,
                                 part: 'snippet',
-                                maxResults: 10,
+                                maxResults: 13,
                                 order: 'relevance',
                                 fields: 'items(id,snippet(thumbnails, title))',
                                 type: 'video'
