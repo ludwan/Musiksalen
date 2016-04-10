@@ -16,6 +16,7 @@ body {
 
 p {
     color: #4D281D;
+    line-height: 20px;
     margin-bottom: 10px;
 }
 
@@ -106,7 +107,7 @@ a:hover {
     white-space: pre-line;
 }
 
-/*   HOME.HTML   */
+/*   Artists   */
 
 .artist_card {
     margin-bottom: 30px;
@@ -172,7 +173,7 @@ a:hover {
 
 .section h3 {
 /*    color: #252121;*/
-    color: inherit;
+    color: #730502;
     font-weight: 700;
     font-size: 28px;
     line-height: 30px;
@@ -206,6 +207,25 @@ a:hover {
 .section div p {
     color: inherit;
 }
+
+/* Works */
+
+#videoDescription {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.video_thumbnail img {
+    width: 100%;
+}
+
+.video_names {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    height: 60px;
+    overflow: hidden;
+}
+
 
 .search {
     display: inline-block;
