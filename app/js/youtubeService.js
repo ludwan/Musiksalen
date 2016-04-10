@@ -12,7 +12,8 @@ musiksalenApp.service('youtubeService', ['$http', '$q', function ($http, $q) {
                                 part: 'snippet',
                                 maxResults: 10,
                                 order: 'relevance',
-                                fields: 'items(id,snippet(thumbnails, title))'
+                                fields: 'items(id,snippet(thumbnails, title))',
+                                type: 'video'
                             });
             request.execute(function(response) {
                 deferred.resolve(response.result);

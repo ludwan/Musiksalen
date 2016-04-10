@@ -7,12 +7,15 @@
             <h1>Browse artists</h1>
         </div>
         <div class="row">
-            <select id="period" ng-model="time" ng-change="filteredArtists(time,country)">
-                <option value="0476-1400">Medieval (476–1400)</option>
-                <option value="1400-1600">Renaissance	(1400–1600)</option>
-                <option value="1600-1760">Baroque	(1600–1760)</option>
-                <option value="1730-1820">Classical era (1730–1820)</option>
-                <option value="1815-1910">Romantic era (1815–1910)</option>
+            <!--    Can be replaced by genre+time, if don't have time, check genre        -->
+            <select id="period" ng-model="genre" ng-change="filteredArtists(genre,country)">
+                <option value="classical">All time</option>
+                <option value="early music">Medieval (476–1400)</option>
+                <option value="renaissance">Renaissance	(1400–1600)</option>
+                <option value="baroque">Baroque	(1600–1760)</option>
+                <option value="classical period">Classical era (1730–1820)</option>
+                <!-- romantic and 20th need time control -->
+                <option value="1815–1910">Romantic era (1815–1910)</option>
                 <option value="1900-2000">20th century (1900–2000)</option>
             </select>     
             <select id="country" ng-model="country">
