@@ -4,6 +4,7 @@ musiksalenApp.controller('SingleArtistCtrl', function($scope, $routeParams, $fil
     $scope.ArtistId = $routeParams.artistId;
     $scope.bio = "Not available";
     $scope.activeYears = "Not available";
+    $scope.loading = 1;
     
     echoNestService.getArtist.get({id : $scope.ArtistId}, function(data){
         var artist = data.response.artist;
@@ -20,6 +21,7 @@ musiksalenApp.controller('SingleArtistCtrl', function($scope, $routeParams, $fil
 
             $scope.activeYears = artist.years_active[0].start + " - " + artist.years_active[0].end;
         }
+        $scope.loading--;
     });
 
     $scope.getWorksViaArtistId = function(artistId) {
@@ -30,9 +32,11 @@ musiksalenApp.controller('SingleArtistCtrl', function($scope, $routeParams, $fil
     }
    
     $scope.getWorksViaPlaylistId = function(artistId){
+        $scope.loading++;
         echoNestService.workPlaylistSearch.get({artist_id : artistId}, function(data){
             $scope.works = data.response.songs;
             console.log(data);
+            $scope.loading--;
         });
     }
 
@@ -44,11 +48,13 @@ musiksalenApp.controller('SingleArtistCtrl', function($scope, $routeParams, $fil
     }
     
     $scope.getArtistInfo = function(artistName) {
+        $scope.loading++;
         lastFmService.getArtist.get({artist: artistName}, function(data){
             $scope.singleArtist = data.artist;
             $scope.artistName = data.artist.name;
             $scope.bio = $scope.singleArtist.bio.content;
             $scope.singleArtist.image = data['artist']['image'][4]['#text'];
+            $scope.loading--;
         });
     }
 });

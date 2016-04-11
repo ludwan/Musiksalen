@@ -1,6 +1,9 @@
 <div id="works">
+<div class="spinner" ng-hide="loading === 0">
+    <img src="../images/spinner.gif"/> <!-- Ludwig: Image Subject to change-->
+</div>
    
-<div class="mainbody">
+<div class="mainbody" ng-show="loading === 0">
     <div class="container">
         <div class="section">
            <h3>{{workTitle}}</h3>

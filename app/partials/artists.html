@@ -8,7 +8,7 @@
         </div>
         <div class="row">
             <!--    Can be replaced by genre+time, if don't have time, check genre        -->
-            <select id="period" ng-model="genre" required ng-options='option.value as option.name for option in typeOptionsPeriod' ng-change="filteredArtists(genre,country)">
+            <select id="period" ng-model="genre" required ng-options='option.value as option.name for option in typeOptionsPeriod' ng-change="firstPage(genre,country)">
             </select>     
 <!--
             <select id="country" ng-model="country">
@@ -22,17 +22,23 @@
 <hr>
 
 <div class="mainbody">
-    <div class="container">
+    <div class="spinner" ng-hide="loading === 0">
+        <img src="../images/spinner.gif"/> <!-- Ludwig: Image Subject to change-->
+    </div>
+    <div class="container" ng-show="loading === 0">
         <div class="row">
             <div ng-repeat="art in artists" class="artist_card col-md-3">
                <div class="image">
-                   <a ng-href="#/artists/{{art.id}}"><img check-image class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
+                   <a ng-href="#/artists/{{art.id}}"><img fallback class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
                </div>
                <div class="artist_name">
                    <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.finalName}}</p></a>
                </div>
             </div>
         </div>
+        <button class="pagerButton" ng-click="firstPage(genre,country)" ng-disabled="onFirstPage">First</button>
+        <button class="pagerButton" ng-click="previousPage(genre,country)" ng-disabled="onFirstPage"><</button>
+        <button class="pagerButton" ng-click="nextPage(genre,country)" ng-disabled="onLastPage">></button>
     </div>
 </div>
 

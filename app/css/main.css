@@ -207,6 +207,14 @@ select {
     color: #4D281D;
 }
 
+.pagerButton {
+
+}
+
+.pagerButton[disabled] {
+    opacity: 0.5;
+}
+
 /* singleArtist */
 
 .section {
@@ -302,4 +310,18 @@ select {
 
 i {
     padding-bottom: 5px;
+}
+
+.spinner {
+    position: absolute;
+    top: 50%;
+    /* Firefox */
+    left: -moz-calc(50% - 175px);
+    /* WebKit */
+    left: -webkit-calc(50% - 175px);
+    /* Opera */
+    left: -o-calc(50% - 175px);
+    /* Standard */
+    left: calc(50% - 175px);
+
 }
