@@ -6,12 +6,15 @@ tag.src = "https://www.youtube.com/iframe_api";
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, youtubeService, echoNestService, lastFmService){
+
+    $scope.loading = 0;
 	
 	$window.initGapi = function() {
         $scope.$apply($scope.loadWork);
     };
 
     $scope.loadWork = function() {
+        $scope.loading++;
         var workId = $routeParams.workId;
         // LASTFM VERSION
         // lastFmService.getWorkInfo.get({mbid : workId}, function(data){
@@ -31,12 +34,14 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
             $scope.workTitle = data.response.songs[0].title;
             var keyWord = $scope.artistName + " " + $scope.workTitle;
             $scope.getVideos($scope.workTitle);
+            $scope.loading--;
         }, function (error) {
             console.log("EchoNest get work failed: " + error);
         });
     }
 
     $scope.getVideos = function (keyWord) {
+        $scope.loading++;
         youtubeService.worksSearch(keyWord).then(function (data) {
             $scope.channel = data.items;
             console.log($scope.channel);
@@ -54,6 +59,7 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
           width: '640',
           videoId: videoId
         });
+        $scope.loading--;
     }
 
     $scope.changeVideo = function (videoId){

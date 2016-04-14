@@ -1,10 +1,8 @@
 musiksalenApp.service('echoNestService', function ($resource){
     
     var apiKey = '4IGS4L1R7UE1N2UKS'; 
-    this.ArtistSearch = $resource('http://developer.echonest.com/api/v4/artist/search?bucket=images&bucket=artist_location&bucket=years_active&bucket=genre', {
+    this.ArtistSearch = $resource('http://developer.echonest.com/api/v4/artist/search?bucket=artist_location&bucket=years_active&bucket=genre', {
         format : 'json',
-        //fuzzy_match : true,
-        // artist_end_year_before : 2000,
         api_key : apiKey,
         sort : 'familiarity-desc',
         results : 20 
@@ -37,7 +35,8 @@ musiksalenApp.service('echoNestService', function ($resource){
         format : 'json',
         type : 'artist',
         api_key : apiKey,
-        results : 50
+        results : 50,
+        sort : 'song_currency-desc'
     });
     
 });
