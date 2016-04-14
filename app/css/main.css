@@ -38,13 +38,13 @@ select {
 /*  HEADER STUFF  */
 
 
-.header {
-    padding-top: 25px;
+header {
+    padding-top: 20px;
     padding-bottom: 10px;
     background-color: #252121; /* change this  */
     position: fixed;
     width: 100%;
-/*    height: 15%*/
+    height: 180px;
     top: 0;
     left: 0;
     z-index: 9999;
@@ -52,16 +52,26 @@ select {
     -webkit-box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.26);
     -moz-box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.26);
     box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.26);
+    
+    -webkit-transition: top 0.3s ease-in-out;
+    -moz-transition: top 0.3s ease-in-out;
+    -ms-transition: top 0.3s ease-in-out;
+    -o-transition: top 0.3s ease-in-out;
+    transition: top 0.3s ease-in-out;
 }
 
-.header #logo{
+header.smaller {
+    top: -100px;
+}
+
+header #logo{
     width: 40px;
     margin-left: 20px;
     margin-top: 20px;
 
 }
 
-.header h1 {
+header h1 {
     display:inline;
     margin-left: 10px;
     margin-top: 20px;
@@ -70,20 +80,20 @@ select {
     font-family: serif;
 }
 
-.header h2 {
+header h2 {
     display: inline-block;
 /*    margin: 10px 60px;*/
     color: rgba(242, 239, 234, 0.5);
 }
 
-.header a {
+header a {
     padding: 8px 60px;
     border: 0;
     color: rgba(242, 239, 234, 0.5);
     text-decoration: none;
 }
 
-.header a:hover {
+header a:hover {
     color: rgba(242, 239, 234, 0.8);
     background-color: rgba(250, 250, 250, 0.03);
 }
@@ -305,9 +315,7 @@ select {
     position: absolute;
     width: 100%;
     height: 100%;
-    text-align: center;
     overflow: hidden;
-    display: table;
 }
 
 .backgroundimage {

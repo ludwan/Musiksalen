@@ -16,6 +16,19 @@ var init = function() {
   if(typeof(window.initGapi) === typeof(Function)){
     window.initGapi();
   }
+  window.addEventListener('scroll', function(e){
+        var distanceY = window.pageYOffset || document.documentElement.scrollTop, shrinkOn = 220,
+            header = document.querySelector("header");
+        if(distanceY > shrinkOn) {
+            classie.add(header,"smaller");
+        }
+        else{
+            if (classie.has(header,"smaller")){
+                classie.remove(header,"smaller");
+            }
+        }
+    });
+
 }
 
 // Here we configure our application module and more specifically our $routeProvider. 
