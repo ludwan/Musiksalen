@@ -173,6 +173,11 @@ header a:hover {
 
 .artist_card {
     margin-bottom: 30px;
+    transition: 0.3s ease;
+}
+
+.artist_card:hover {
+    transform: scale(1.1, 1.1);
 }
 
 .image {
@@ -224,6 +229,9 @@ header a:hover {
 .pagerButton[disabled] {
     opacity: 0.5;
 }
+
+
+
 
 /* singleArtist */
 
@@ -280,6 +288,14 @@ header a:hover {
     margin-bottom: 20px;
 }
 
+.video_thumbnail {   
+    transition: 0.3s ease;
+}
+
+.video_thumbnail:hover {
+    transform: scale(1.1, 1.1);
+}
+
 .video_thumbnail img {
     width: 100%;
 }
@@ -324,12 +340,12 @@ i {
     position: absolute;
     top: 50%;
     /* Firefox */
-    left: -moz-calc(50% - 175px);
+    left: -moz-calc(50% - 40px);
     /* WebKit */
-    left: -webkit-calc(50% - 175px);
+    left: -webkit-calc(50% - 40px);
     /* Opera */
-    left: -o-calc(50% - 175px);
+    left: -o-calc(50% - 40px);
     /* Standard */
-    left: calc(50% - 175px);
+    left: calc(50% - 40px);
 
 }

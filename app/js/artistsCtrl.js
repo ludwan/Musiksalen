@@ -12,7 +12,7 @@ musiksalenApp.controller('ArtistsCtrl', function($scope,  $window, echoNestServi
     // ];
 
     $scope.typeOptionsPeriod = [
-        { name: 'All periods', value: 'classical' }, 
+        { name: 'All periods', value: ['classical', 'early music', 'renaissance', 'baroque', 'classical period', 'romantic', 'modern classical'] }, 
         { name: 'Medieval (476–1400)', value: 'early music' }, 
         { name: 'Renaissance (1400–1600)', value: 'renaissance' },
         { name: 'Baroque (1600–1760)', value: 'baroque' },
@@ -21,9 +21,52 @@ musiksalenApp.controller('ArtistsCtrl', function($scope,  $window, echoNestServi
         { name: '20th century (1900–2000)', value: 'modern classical' }
     ];
 
+    $scope.typeOptionsCountry = [
+      {name:"All countries"},
+      {name:"Argentina"},
+      {name:"Australia"},
+      {name:"Austria"},
+      {name:"Belgium"},
+      {name:"Brazil"},
+      {name:"Canada"},
+      {name:"Czech Republic"},
+      {name:"Denmark"},
+      {name:"Estonia"},
+      {name:"Finland"},
+      {name:"France"},
+      {name:"Germany"},
+      {name:"Hungary"},
+      {name:"Iceland"}, //Special music
+      {name:"Ireland"},
+      {name:"Italy"},
+      {name:"Japan"}, //Special music
+      {name:"Jersey"},
+      {name:"Latvia"},  //Special music
+      {name:"Lebanon"}, //Special music
+      {name:"Lithuania"}, //Special music
+      {name:"Mexico"},
+      {name:"Monaco"},  //Special music
+      {name:"Netherlands"},
+      {name:"Norway"},
+      {name:"Poland"},
+      {name:"Portugal"},  //Special music
+      {name:"Romania"},
+      {name:"Russian Federation"},
+      {name:"Singapore"}, //Special music
+      {name:"Slovakia"},
+      {name:"Spain"},
+      {name:"Sweden"},
+      {name:"Switzerland"},
+      {name:"United Kingdom"},
+      {name:"United States"},
+      {name:"Venezuela"} //Special music
+    ];
+
+
     $scope.pager = 0;
     $scope.loading = 0;
     $scope.genre = $scope.typeOptionsPeriod[0].value;
+    $scope.country = $scope.typeOptionsCountry[0].name;
     $scope.onFirstPage = true;
     $scope.onLastPage = false;
 
@@ -74,41 +117,54 @@ musiksalenApp.controller('ArtistsCtrl', function($scope,  $window, echoNestServi
     //it also includes artists that plays a specific genre but not necessarily from that time period
     //What do you think is the better one?
     //From the code point of view it's definitely better! I was trying to keep it more accurate to the time period and composer, since take medieval for example, you can see some modern group..
-    $scope.filteredArtists = function(selectedGenre, country){
-        echoNestService.ArtistSearch.get({genre : selectedGenre, artist_location : country, start : $scope.pager},function(data){
-                $scope.handleData(data);
-                $scope.loading--;
-        });
+    // $scope.filteredArtists = function(selectedGenre, country){
+    //     echoNestService.ArtistSearch.get({genre : selectedGenre, artist_location : country, start : $scope.pager},function(data){
+    //             $scope.handleData(data);
+    //             $scope.loading--;
+    //     });
+        
+    $scope.filteredArtists = function(){
+      var selectedCountry;
+      console.log($scope.country);
+      console.log($scope.genre);
+
+      if($scope.country != "All countries"){
+        selectedCountry = $scope.country;
+      }
+
+      echoNestService.ArtistSearch.get({genre : $scope.genre, artist_location : selectedCountry, start : $scope.pager},function(data){
+              console.log(data);
+              $scope.handleData(data);
+              $scope.loading--;
+      });
     }
 
     //Pagination methods
-    $scope.nextPage = function(genre, country){
+    $scope.nextPage = function(){
         $scope.loading++;
         $scope.pager += resultsPerPage;
         $scope.onFirstPage = false;
-        $scope.filteredArtists(genre, country);
+        $scope.filteredArtists();
     }
 
-    $scope.previousPage = function(genre, country){
+    $scope.previousPage = function(){
         $scope.loading++;
         $scope.pager -= resultsPerPage;
         if($scope.pager == 0){
             $scope.onFirstPage = true;
         }
         $scope.onLastPage = false;
-        $scope.filteredArtists(genre, country);
+        $scope.filteredArtists();
     }
 
-    $scope.firstPage = function(genre, country){
+    $scope.firstPage = function(){
         $scope.loading++;
         $scope.pager = 0;
         $scope.onFirstPage = true;
         $scope.onLastPage = false;
-        $scope.filteredArtists(genre, country);
+        $scope.filteredArtists();
     }
 
-    $scope.firstPage($scope.genre);
-
-    this.countryList = [];
+    $scope.firstPage();
 
 });
