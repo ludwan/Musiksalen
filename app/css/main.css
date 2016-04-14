@@ -111,7 +111,7 @@ select {
     text-decoration: none;
 }
 
-#searchbar {
+#SearchBar {
 /*    display: inline; */
     float: right; 
     
@@ -147,6 +147,11 @@ select {
 }
 
 #singleArtist {
+    position: relative;
+    top: 200px;   
+}
+
+#search {
     position: relative;
     top: 200px;   
 }

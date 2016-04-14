@@ -30,6 +30,7 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
         //ECHONEST VERSION
         echoNestService.getWork.get({id : workId}, function(data){
             console.log(data);
+            $scope.artistId = data.response.songs[0].artist_id;
             $scope.artistName = data.response.songs[0].artist_name;
             $scope.workTitle = data.response.songs[0].title;
             var keyWord = $scope.artistName + " " + $scope.workTitle;
