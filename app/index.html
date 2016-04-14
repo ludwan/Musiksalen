@@ -26,6 +26,8 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     
     <!-- The application JavaScript code -->
+    <script src="js/classie.js"></script>
+    
     <script src="js/app.js"></script>
 
     <script src="js/homeCtrl.js"></script>
@@ -63,7 +65,7 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
     <!-- Here in index.html you should put only the layout that is shared among all the screens (e.g. header
     ,footer, etc.). The rest of the view specific layout will go into the html partials (check partials folder) -->
       
-    <div class="header">
+    <header>
         <div class="container">
             <div class="col-md-12">
                 <img id="logo" src="images/note.png"><h1>Musiksalen</h1>
@@ -84,7 +86,7 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
                 </div>
            </div>
         </div>
-    </div>
+    </header>
     <div ng-view></div>
 
   </body>
