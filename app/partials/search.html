@@ -1,0 +1,25 @@
+<div id="search"> 
+
+<div class="mainbody">
+<!--
+    <div class="spinner" ng-hide="loading === 0">
+        <img src="../images/alphabets-music-2-122626.gif"/>
+    </div>
+-->
+    <div class="container">
+        <div class="row">
+            <div ng-repeat="artist in searchResultArtists" class="artist_card col-md-3">
+               <div class="image">
+                   <a ng-href="#/artists/{{artist.id}}"><img fallback class="img img-reponsive" ng-src="{{artist.image}}" style="width:100%"/></a>
+               </div>
+               <div class="artist_name">
+                   <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.finalName}}</p></a>
+               </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</div>

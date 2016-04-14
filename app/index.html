@@ -32,6 +32,7 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
     <script src="js/worksCtrl.js"></script>
     <script src="js/artistsCtrl.js"></script>
     <script src="js/singleArtistCtrl.js"></script>
+    <script src="js/searchCtrl.js"></script>
     <script src="js/login.js"></script>
 
     <script src="js/youtubeService.js"></script>
@@ -74,7 +75,9 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
                     <li class="menu"><h2><a href="#/home">Home</a></h2></li>
                     <li class="menu"><h2><a href="#/artists">Artists</a></h2></li>
                     <li class="menu"><h2><a href="#/">My account</a></h2></li>
-                    <li  id="searchbar"><div id="search"><i class="fa fa-search"></i>&nbsp;<input id="searchfieldtext" type="search" name="googlesearch"></div></li>
+                    <li class="menu"><h2><a href="#/performer">Performers</a></h2></li>
+                    <li id="searchbar"><a href="#/search"><div id="search"><i class="fa fa-search"></i>&nbsp;<input ng-model="query" ng-keypress="searchArtists(query,$event)" ng-controller="SearchCtrl" type="text"/></div></a></li>
+                    <!--  Press 'enter' then go to the search page -->
                     </ul>
                     
 
@@ -82,9 +85,6 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
            </div>
         </div>
     </div>
-        
-    <!-- ng-view Angular directive is where the partials will be loaded. app.js configures the $routingProvider
-    where you specify which partial should be loaded when. -->
     <div ng-view></div>
 
   </body>

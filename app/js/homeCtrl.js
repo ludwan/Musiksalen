@@ -24,7 +24,7 @@ musiksalenApp.controller('HomeCtrl', function ($scope, echoNestService, lastFmSe
     //$scope.getArtistInfo($scope.medievalArtists);
     lastFmService.updateArtists($scope.medievalArtists);
     //    RENAISSANCE
-    $scope.getTopArtists('renaissance', 1400, 1600).then(function (data){   //Ludwig: i changed 'classical' to 'renaissance' and is it necessary with the years?
+    $scope.getTopArtists('renaissance', 1400, 1600).then(function (data){   //Ludwig: i changed 'classical' to 'renaissance' and is it necessary with the years?   //Xu: Here are some overlap with baroque, but I think it's okay to do without year.
         $scope.renaissanceArtists = data;
     });
     //    Baroque
@@ -36,11 +36,11 @@ musiksalenApp.controller('HomeCtrl', function ($scope, echoNestService, lastFmSe
         $scope.classicalArtists = data;
     });
     //    Romantic
-    $scope.getTopArtists('romantic', 1815, 1910).then(function (data){  //Ludwig: i changed 'classical' to 'romantic' and is it necessary with the years?
+    $scope.getTopArtists('romantic', 1815, 1910).then(function (data){  //Ludwig: i changed 'classical' to 'romantic' and is it necessary with the years?   //Xu: the year here is quite important especially for romantic peroid, since I remembered I saw some composer from modern time are also classified into romantic
         $scope.romanArtists = data;
     });
     //    20 century
-    $scope.getTopArtists('modern classical', 1900, 2000).then(function (data){  //Ludwig: i changed 'classical' to 'modern classical' and is it necessary with the years?
+    $scope.getTopArtists('modern classical', 1900, 2000).then(function (data){  //Ludwig: i changed 'classical' to 'modern classical' and is it necessary with the years?    //Xu: 20th century music is a concept of time, there are a lot of genre, so I just put the time constraint here and still search for classical
         $scope.twentyArtists = data;
     });
     

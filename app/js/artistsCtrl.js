@@ -73,6 +73,7 @@ musiksalenApp.controller('ArtistsCtrl', function($scope,  $window, echoNestServi
     //Ludwig: This is simpler and includes more artists (Those who does not have any active yers) however 
     //it also includes artists that plays a specific genre but not necessarily from that time period
     //What do you think is the better one?
+    //From the code point of view it's definitely better! I was trying to keep it more accurate to the time period and composer, since take medieval for example, you can see some modern group..
     $scope.filteredArtists = function(selectedGenre, country){
         echoNestService.ArtistSearch.get({genre : selectedGenre, artist_location : country, start : $scope.pager},function(data){
                 $scope.handleData(data);
