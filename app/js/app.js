@@ -8,7 +8,7 @@
 // also see that we included separate JavaScript files for these modules. Angular
 // has other core modules that you might want to use and explore when you go deeper
 // into developing Angular applications. For this lab, these two will suffice.
-var musiksalenApp = angular.module('musiksalen', ['ngRoute','ngResource','ngCookies','angular.filter', 'ngSanitize']);
+var musiksalenApp = angular.module('musiksalen', ['ngRoute','ngResource','ngCookies','angular.filter', 'ngSanitize', 'firebase']);
 
 var init = function() {
   console.log("We are in init");
@@ -16,6 +16,19 @@ var init = function() {
   if(typeof(window.initGapi) === typeof(Function)){
     window.initGapi();
   }
+  window.addEventListener('scroll', function(e){
+        var distanceY = window.pageYOffset || document.documentElement.scrollTop, shrinkOn = 220,
+            header = document.querySelector("header");
+        if(distanceY > shrinkOn) {
+            classie.add(header,"smaller");
+        }
+        else{
+            if (classie.has(header,"smaller")){
+                classie.remove(header,"smaller");
+            }
+        }
+    });
+
 }
 
 // Here we configure our application module and more specifically our $routeProvider. 
