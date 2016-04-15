@@ -354,3 +354,17 @@ i {
     left: calc(50% - 40px);
 
 }
+
+/* LOGIN PAGE */
+
+#login {
+    position: relative;
+    top: 200px;
+}
+
+/*REGISTER PAGE */
+
+#register {
+    position: relative;
+    top: 200px;
+}
