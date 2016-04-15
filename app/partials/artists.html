@@ -15,6 +15,10 @@
                 <!-- <option ng-selected="selected">All countries</option> -->
             </select>
 
+            <select id="sortSelect" ng-model="sort" required ng-options='option.value as option.name for option in typeOptionsSorting' ng-change="firstPage()">
+                <!-- <option ng-selected="selected">All countries</option> -->
+            </select>
+
         </div>
     </div>
 </div>

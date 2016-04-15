@@ -12,13 +12,14 @@ musiksalenApp.controller('ArtistsCtrl', function($scope,  $window, echoNestServi
     // ];
 
     $scope.typeOptionsPeriod = [
-        { name: 'All periods', value: ['classical', 'early music', 'renaissance', 'baroque', 'classical period', 'romantic', 'modern classical'] }, 
+        { name: 'All periods', value: ['classical', 'early music', 'renaissance', 'baroque', 'classical period', 'romantic', 'modern classical', 'classical performance'] }, 
         { name: 'Medieval (476–1400)', value: 'early music' }, 
         { name: 'Renaissance (1400–1600)', value: 'renaissance' },
         { name: 'Baroque (1600–1760)', value: 'baroque' },
         { name: 'Classical period (1730–1820)', value: 'classical period' },
         { name: 'Romantic period (1815–1910)', value: 'romantic' },
-        { name: '20th century (1900–2000)', value: 'modern classical' }
+        { name: '20th century (1900–2000)', value: 'modern classical' },
+        { name: 'Classical performers', value: 'classical performance' }
     ];
 
     $scope.typeOptionsCountry = [
@@ -29,15 +30,21 @@ musiksalenApp.controller('ArtistsCtrl', function($scope,  $window, echoNestServi
       {name:"Belgium"},
       {name:"Brazil"},
       {name:"Canada"},
+      {name:"Chile"}, //Performer
+      {name:"China"}, //Performer
       {name:"Czech Republic"},
       {name:"Denmark"},
       {name:"Estonia"},
       {name:"Finland"},
       {name:"France"},
+      {name:"Georgia"}, //Performer
       {name:"Germany"},
+      {name:"Greece"},  //Performer
       {name:"Hungary"},
       {name:"Iceland"}, //Special music
+      {name:"India"}, //Performer
       {name:"Ireland"},
+      {name:"Israel"},  //Performer
       {name:"Italy"},
       {name:"Japan"}, //Special music
       {name:"Jersey"},
@@ -52,14 +59,29 @@ musiksalenApp.controller('ArtistsCtrl', function($scope,  $window, echoNestServi
       {name:"Portugal"},  //Special music
       {name:"Romania"},
       {name:"Russian Federation"},
+      {name:"Serbia"},  //Performer
+      {name:"Singapore"},
+      {name:"Sint Maarten"},
       {name:"Singapore"}, //Special music
       {name:"Slovakia"},
+      {name:"South Korea"}, //Performer
       {name:"Spain"},
       {name:"Sweden"},
       {name:"Switzerland"},
+      {name:"Turkey"},  //Performer
+      {name:"Ukraine"}, //Performer
       {name:"United Kingdom"},
       {name:"United States"},
       {name:"Venezuela"} //Special music
+    ];
+
+    $scope.typeOptionsSorting = [
+        { name: 'Familiarity (Highest)', value: 'familiarity-desc' }, 
+        { name: 'Familiarity (Lowest)', value: 'familiarity-asc' }, 
+        { name: 'Hotness (Highest)', value: 'hotttnesss-desc' },
+        { name: 'Hotness (Lowest)', value: 'hotttnesss-asc' },
+        { name: 'Newest', value: 'artist_start_year-desc' },
+        { name: 'Oldest', value: 'artist_start_year-asc' }
     ];
 
 
@@ -67,6 +89,7 @@ musiksalenApp.controller('ArtistsCtrl', function($scope,  $window, echoNestServi
     $scope.loading = 0;
     $scope.genre = $scope.typeOptionsPeriod[0].value;
     $scope.country = $scope.typeOptionsCountry[0].name;
+    $scope.sort = $scope.typeOptionsSorting[0].value;
     $scope.onFirstPage = true;
     $scope.onLastPage = false;
 
@@ -132,7 +155,7 @@ musiksalenApp.controller('ArtistsCtrl', function($scope,  $window, echoNestServi
         selectedCountry = $scope.country;
       }
 
-      echoNestService.ArtistSearch.get({genre : $scope.genre, artist_location : selectedCountry, start : $scope.pager},function(data){
+      echoNestService.ArtistSearch.get({genre : $scope.genre, artist_location : selectedCountry, start : $scope.pager, sort : $scope.sort},function(data){
               console.log(data);
               $scope.handleData(data);
               $scope.loading--;
