@@ -15,6 +15,10 @@
                 <!-- <option ng-selected="selected">All countries</option> -->
             </select>
 
+            <select id="sortSelect" ng-model="sort" required ng-options='option.value as option.name for option in typeOptionsSorting' ng-change="firstPage()">
+                <!-- <option ng-selected="selected">All countries</option> -->
+            </select>
+
         </div>
     </div>
 </div>
@@ -42,8 +46,8 @@
         <button class="pagerButton" ng-click="nextPage(genre,country)" ng-disabled="onLastPage">&gt;</button>
  -->
         <button class="pagerButton" ng-click="firstPage()" ng-disabled="onFirstPage">First</button>
-        <button class="pagerButton" ng-click="previousPage()" ng-disabled="onFirstPage"><</button>
-        <button class="pagerButton" ng-click="nextPage()" ng-disabled="onLastPage">></button>
+        <button class="pagerButton" ng-click="previousPage()" ng-disabled="onFirstPage">&lt;</button>
+        <button class="pagerButton" ng-click="nextPage()" ng-disabled="onLastPage">&gt;</button>
     </div>
 </div>
 

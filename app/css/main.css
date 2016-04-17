@@ -121,7 +121,7 @@ header a:hover {
     text-decoration: none;
 }
 
-#searchbar {
+#SearchBar {
 /*    display: inline; */
     float: right; 
     
@@ -157,6 +157,11 @@ header a:hover {
 }
 
 #singleArtist {
+    position: relative;
+    top: 200px;   
+}
+
+#search {
     position: relative;
     top: 200px;   
 }
@@ -348,4 +353,18 @@ i {
     /* Standard */
     left: calc(50% - 40px);
 
+}
+
+/* LOGIN PAGE */
+
+#login {
+    position: relative;
+    top: 200px;
+}
+
+/*REGISTER PAGE */
+
+#register {
+    position: relative;
+    top: 200px;
 }
