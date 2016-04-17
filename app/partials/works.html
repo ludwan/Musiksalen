@@ -13,7 +13,16 @@
         <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
         <div id="player"></div>
 
-        <p id="videoDescription">{{videoDescription}}</p>
+        <div id="videoDescription"
+                            hm-read-more
+                            hm-text="{{videoDescription}}" 
+                            hm-limit="400" 
+                            hm-more-text="Show more" 
+                            hm-less-text="Show less"
+                            hm-dots-class="dots"
+                            hm-link-class="links"> </div>
+        
+<!--        <p id="videoDescription">{{videoDescription}}</p>-->
 
         <div class="section">
             <h4>Additional Videos</h4>

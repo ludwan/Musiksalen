@@ -28,8 +28,18 @@
                <div class="col-md-8">
                    <div class="section">
                       <h4>Biography</h4>
-                       <a href="javascript:history.back()"><i class="fa fa-long-arrow-left">Back to list</i></a>
-                       <p id="bio" ng-bind-html="bio"></p>
+                       <a href="javascript:history.back()"><i class="fa fa-long-arrow-left"> Back to list</i></a>
+                       <br>
+                       <div id="bio"
+                          hm-read-more
+                            hm-text="{{bio}}" 
+                            hm-limit="800" 
+                            hm-more-text="Show more" 
+                            hm-less-text="Show less"
+                            hm-dots-class="dots"
+                            hm-link-class="links"> </div>
+                       
+                        
                     </div>
 
                    <!--Documentary-->

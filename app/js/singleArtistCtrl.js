@@ -55,6 +55,8 @@ musiksalenApp.controller('SingleArtistCtrl', function($scope, $routeParams, $fil
             $scope.bio = $scope.singleArtist.bio.content;
             $scope.singleArtist.image = data['artist']['image'][4]['#text'];
             $scope.loading--;
+  
         });
+        
     }
 });
