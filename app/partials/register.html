@@ -2,28 +2,18 @@
     <p>Register<p>
     <form name="form" ng-submit="register()" role="form">
         <div class="form-group">
-            <label for="username">First name</label>
-            <input type="text" name="firstName" id="firstName" class="form-control" ng-model="firstName" required />
-            <span ng-show="IF MISSING OR BAD" class="help-block">First name is required</span>
-        </div>
-        <div class="form-group">
-            <label for="username">Last name</label>
-            <input type="text" name="lastName" id="Text1" class="form-control" ng-model="lastName" required />
-            <span ng-show="IF MISSING OR BAD" class="help-block">Last name is required</span>
-        </div>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" class="form-control" ng-model="username" required />
-            <span ng-show="IF MISSING OR BAD" class="help-block">Username is required</span>
+            <label for="email">E-mail (Username)</label>
+            <input type="text" name="email" id="email" class="form-control" ng-model="email" required />
+            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">email is required</span>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
             <input type="password" name="password" id="password" class="form-control" ng-model="password" required />
-            <span ng-show="fIF MISSING OR BAD" class="help-block">Password is required</span>
+            <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
         </div>
         <div class="form-actions">
-            <button type="submit" ng-disabled="IF INVALID FORM OR LOADING">Register</button>
-            <img ng-if="IF LOADING" src="../images/graphics-music-965598.gif" />
+            <button type="submit" ng-disabled="form.$invalid || loading">Register</button>
+            <img ng-show="loading" src="../images/graphics-music-965598.gif" />
             <a href="#/login">Cancel</a>
         </div>
     </form>
