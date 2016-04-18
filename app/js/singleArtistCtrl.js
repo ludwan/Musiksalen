@@ -1,10 +1,12 @@
-musiksalenApp.controller('SingleArtistCtrl', function($scope, $routeParams, $filter, echoNestService, lastFmService){
+musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $filter, echoNestService, lastFmService, userService){
     
 
     $scope.ArtistId = $routeParams.artistId;
     $scope.bio = "Not available";
     $scope.activeYears = "Not available";
     $scope.loading = 1;
+    var ref = new Firebase("https://sweltering-inferno-7067.firebaseio.com/favoriteArtists");
+    var uid = userService.getUserId();
     
     echoNestService.getArtist.get({id : $scope.ArtistId}, function(data){
         var artist = data.response.artist;
@@ -35,7 +37,6 @@ musiksalenApp.controller('SingleArtistCtrl', function($scope, $routeParams, $fil
         $scope.loading++;
         echoNestService.workPlaylistSearch.get({artist_id : artistId}, function(data){
             $scope.works = data.response.songs;
-            console.log(data);
             $scope.loading--;
         });
     }
@@ -59,4 +60,51 @@ musiksalenApp.controller('SingleArtistCtrl', function($scope, $routeParams, $fil
         });
         
     }
+
+    $scope.checkFavorite = function(){
+        var string = uid + "/" + $scope.ArtistId;
+        var favoriteRef = ref.child(string);
+
+        favoriteRef.on("value", function(snapshot) {
+            if(snapshot.val() == null){
+                $scope.favorited = false;
+            } else {
+                $scope.favorited = true;
+            }
+        }, function (errorObject) {
+            //TODO some proper error handling with windows etc
+            console.log("The read failed: " + errorObject.code);
+        });
+    };
+
+    $scope.checkFavorite();
+
+    var onComplete = function(error) {
+        //TODO some proper error handling with windows etc instead
+        if (error) {
+            console.log('Synchronization failed');
+        } else {
+            console.log('Synchronization succeeded');
+        }
+    };
+
+    $scope.addFavorite = function() {
+        //TODO Error message or something if not logged in
+        var array = {};
+        array[$scope.ArtistId] = true;
+
+        var userRef = ref.child(uid);
+        userRef.update(array, onComplete);
+        $scope.favorited = true;
+    }
+
+    $scope.removeFavorite = function() {
+        var string = uid + "/" + $scope.ArtistId;
+
+        var favoriteRef = ref.child(string);
+        favoriteRef.remove(onComplete);
+        $scope.favorited = false;
+    }
+
+    
 });

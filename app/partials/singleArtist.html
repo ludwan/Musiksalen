@@ -21,6 +21,8 @@
                                <li ng-show="!genres.length">Not Available</li>
                                <li ng-repeat="genre in genres">{{genre.name}}</li>
                            </ul>
+                           <button ng-hide="favorited" ng-click="addFavorite()">Favorite</button>
+                           <button ng-show="favorited" ng-click="removeFavorite()">Unfavorite</button>
                        </div>
                    </div>
                </div>

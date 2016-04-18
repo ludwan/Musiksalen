@@ -8,6 +8,8 @@
         <div class="section">
            <h3>{{workTitle}}</h3>
            <p><a ng-href="#/artists/{{artistId}}"> By: {{artistName}}</a></p>
+            <button ng-hide="favorited" ng-click="addFavorite()">Favorite</button>
+            <button ng-show="favorited" ng-click="removeFavorite()">Unfavorite</button>
         </div>
 
         <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
