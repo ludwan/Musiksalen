@@ -5,9 +5,12 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 tag.src = "https://www.youtube.com/iframe_api";
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, youtubeService, echoNestService, lastFmService){
+musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, youtubeService, echoNestService, lastFmService, userService){
 
     $scope.loading = 0;
+    var ref = new Firebase("https://sweltering-inferno-7067.firebaseio.com/favoriteSongs");
+    var uid = userService.getUserId();
+    var workId = $routeParams.workId;
 	
 	$window.initGapi = function() {
         $scope.$apply($scope.loadWork);
@@ -15,7 +18,6 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
 
     $scope.loadWork = function() {
         $scope.loading++;
-        var workId = $routeParams.workId;
         // LASTFM VERSION
         // lastFmService.getWorkInfo.get({mbid : workId}, function(data){
         //     console.log(data);
@@ -88,11 +90,57 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
         });
     }
 
+    $scope.checkFavorite = function(){
+        var string = uid + "/" + workId;
+        var favoriteRef = ref.child(string);
+
+        favoriteRef.on("value", function(snapshot) {
+            if(snapshot.val() == null){
+                $scope.favorited = false;
+            } else {
+                $scope.favorited = true;
+            }
+        }, function (errorObject) {
+            //TODO some proper error handling with windows etc
+            console.log("The read failed: " + errorObject.code);
+        });
+    };
+
+
+    var onComplete = function(error) {
+        //TODO some proper error handling with windows etc instead
+        if (error) {
+            console.log('Synchronization failed');
+        } else {
+            console.log('Synchronization succeeded');
+        }
+    };
+
+    $scope.addFavorite = function() {
+        //TODO Error message or something if not logged in
+        var array = {};
+        array[workId] = true;
+
+        var userRef = ref.child(uid);
+        userRef.update(array, onComplete);
+        $scope.favorited = true;
+    }
+
+    $scope.removeFavorite = function() {
+        var string = uid + "/" + workId;
+
+        var favoriteRef = ref.child(string);
+        favoriteRef.remove(onComplete);
+        $scope.favorited = false;
+    }
+
     $scope.$on('$viewContentLoaded', function() {
         console.log("In viewContentLoaded");
         if(gapi.client != undefined){
             $scope.loadWork();
         }
+        $scope.checkFavorite();
+
     });   
 
 });

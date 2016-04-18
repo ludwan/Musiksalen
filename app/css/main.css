@@ -10,6 +10,7 @@ body {
     background-color: #F2EFEA; /* change this  */
 }
 
+
 #artists, #singleArtist, #works {
     background-color: #F2EFEA; /* change this  */
 }
@@ -17,7 +18,7 @@ body {
 p {
     color: #4D281D;
     line-height: 20px;
-    margin-bottom: 10px;
+    
 }
 
 a {
@@ -171,8 +172,19 @@ header a:hover {
 }
 
 #bio {
-    white-space: pre-line;
+/*    white-space: pre-line;*/
+    color: #4D281D;
+    line-height: 20px;
+/*    margin-bottom: 10px;*/
 }
+
+article {
+    max-height: 200px;
+    color: #4D281D;
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+
 
 /*   Artists   */
 
@@ -291,6 +303,7 @@ header a:hover {
 #videoDescription {
     margin-top: 10px;
     margin-bottom: 20px;
+    color: #4D281D;
 }
 
 .video_thumbnail {   

@@ -8,7 +8,7 @@
 // also see that we included separate JavaScript files for these modules. Angular
 // has other core modules that you might want to use and explore when you go deeper
 // into developing Angular applications. For this lab, these two will suffice.
-var musiksalenApp = angular.module('musiksalen', ['ngRoute','ngResource','ngCookies','angular.filter', 'ngSanitize', 'firebase']);
+var musiksalenApp = angular.module('musiksalen', ['ngRoute','ngResource', 'ngAnimate', 'ngCookies','angular.filter', 'ngSanitize', 'firebase', 'hm.readmore']);
 
 var init = function() {
   console.log("We are in init");
