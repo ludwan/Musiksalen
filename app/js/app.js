@@ -85,6 +85,10 @@ musiksalenApp.config(['$routeProvider',
         templateUrl: 'partials/register.html',
         controller: 'RegisterCtrl'
       }).
+      when('/myAccount', {
+        templateUrl: 'partials/myAccount.html',
+        controller: 'MyAccountCtrl'
+      }).
       // TODO in Lab 5: add more conditions for the last two screens (overview and preparation)
       otherwise({
         redirectTo: '/home'

@@ -90,13 +90,13 @@ musiksalenApp.controller('ArtistsCtrl', function($scope,  $window, $cookieStore,
     var NumOfCountry = $cookieStore.get('NumOfCountry');
     var NumOfPeriod = $cookieStore.get('NumOfPeriod');
     var NumOfSort = $cookieStore.get('NumOfSort');
-    if(NumOfCountry === -1){
+    if(NumOfCountry === undefined){
         NumOfCountry = 0;
     }
-    if(NumOfPeriod === -1){
+    if(NumOfPeriod === undefined){
         NumOfPeriod = 0;
     }
-    if(NumOfSort === -1){
+    if(NumOfSort === undefined){
         NumOfSort = 0;
     }
     

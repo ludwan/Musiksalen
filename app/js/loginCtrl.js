@@ -1,4 +1,4 @@
-musiksalenApp.controller('LoginCtrl', function($scope, userService, $location){
+musiksalenApp.controller('LoginCtrl', function ($scope, userService, $location){
 
 
 	$scope.login = function() {
@@ -29,7 +29,7 @@ musiksalenApp.controller('LoginCtrl', function($scope, userService, $location){
 				$scope.loading = false;
 				userService.setUserId(authData.uid);
 			    console.log("Authenticated successfully with payload:", authData);
-			    $location.path('/home');	//TODO change this to "My account" page instead of "home"
+			    $location.path('/myAccount');
 			    $scope.$apply();
 			}
 		});
