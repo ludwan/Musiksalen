@@ -1,4 +1,5 @@
-musiksalenApp.controller('ArtistsCtrl', function($scope,  $window, echoNestService, lastFmService){
+//musiksalenApp.controller('ArtistsCtrl', ['$cookies', function($scope,  $window, $cookies, echoNestService, lastFmService){
+musiksalenApp.controller('ArtistsCtrl', function($scope,  $window, $cookieStore, echoNestService, lastFmService){
     var resultsPerPage = 20; //Ludwig: Should this be 20 (5x4) or 16 (4x4)?
 
     // $scope.typeOptionsPeriod = [
@@ -84,15 +85,33 @@ musiksalenApp.controller('ArtistsCtrl', function($scope,  $window, echoNestServi
         { name: 'Oldest', value: 'artist_start_year-asc' }
     ];
 
-
     $scope.pager = 0;
     $scope.loading = 0;
-    $scope.genre = $scope.typeOptionsPeriod[0].value;
-    $scope.country = $scope.typeOptionsCountry[0].name;
-    $scope.sort = $scope.typeOptionsSorting[0].value;
+    var NumOfCountry = $cookieStore.get('NumOfCountry');
+    var NumOfPeriod = $cookieStore.get('NumOfPeriod');
+    var NumOfSort = $cookieStore.get('NumOfSort');
+    if(NumOfCountry === -1){
+        NumOfCountry = 0;
+    }
+    if(NumOfPeriod === -1){
+        NumOfPeriod = 0;
+    }
+    if(NumOfSort === -1){
+        NumOfSort = 0;
+    }
+    
+    console.log(NumOfCountry);
+    
+    $scope.genre = $scope.typeOptionsPeriod[NumOfPeriod].value;
+    $scope.country = $scope.typeOptionsCountry[NumOfCountry].name;
+    $scope.sort = $scope.typeOptionsSorting[NumOfSort].value;
+    
+    //    $scope.genre = $scope.typeOptionsPeriod[0].value;   //cookies
+//    $scope.country = $scope.typeOptionsCountry[0].name;
     $scope.onFirstPage = true;
     $scope.onLastPage = false;
 
+    
     $scope.handleData = function(data){
         $scope.loading++;
         $scope.artists = data.response.artists;
@@ -103,60 +122,27 @@ musiksalenApp.controller('ArtistsCtrl', function($scope,  $window, echoNestServi
         $scope.loading--;
     } 
     
-// filter is searching keyword
-// 4.5 finish the filter for artists with period, country
-
-    // $scope.filteredArtists = function(genre, country) {
-    //     console.log("filteredArtists");
-
-    //     if(genre=="1815-1910" || genre=="1900-2000"){
-    //         var start, end;
-    //         start = Number(genre.substr(0,4));
-    //         end = Number(genre.substr(5,4));
-            
-    //         echoNestService.ArtistSearch.get({genre : "classical", artist_start_year_after : start, artist_end_year_before : end, artist_location : country, start : $scope.pager},function(data){
-    //             console.log(data);
-    //             $scope.handleData(data);
-    //         });
-    //     } else if(genre==="classical"){
-    //         echoNestService.ArtistSearch.get({genre : "classical", artist_location : country, start : $scope.pager},function(data){
-    //             console.log(data);
-    //             $scope.handleData(data);
-    //         });
-    //     } else if(genre==="early music"){
-    //         echoNestService.ArtistSearch.get({genre : "early music", artist_start_year_after : 476, artist_end_year_before : 1400, artist_location : country, start : $scope.pager},function(data){
-    //             console.log(data);
-    //             $scope.handleData(data);
-    //         });
-    //     }else{
-    //         echoNestService.ArtistSearch.get({genre : genre, artist_location : country, artist_end_year_before:2000, start : $scope.pager},function(data){
-    //             console.log(data);
-    //             $scope.handleData(data);
-    //         });
-    //     }
-    // };
-
-    //Ludwig: This is simpler and includes more artists (Those who does not have any active yers) however 
-    //it also includes artists that plays a specific genre but not necessarily from that time period
-    //What do you think is the better one?
-    //From the code point of view it's definitely better! I was trying to keep it more accurate to the time period and composer, since take medieval for example, you can see some modern group..
-    // $scope.filteredArtists = function(selectedGenre, country){
-    //     echoNestService.ArtistSearch.get({genre : selectedGenre, artist_location : country, start : $scope.pager},function(data){
-    //             $scope.handleData(data);
-    //             $scope.loading--;
-    //     });
-        
+    $scope.findIndex = function(array, key, value) {
+        for (var i = 0; i < array.length; i++) {
+            if (array[i][key] === value) {
+                return i;
+            }
+        }
+        return null;
+    }
+    
     $scope.filteredArtists = function(){
       var selectedCountry;
-      console.log($scope.country);
-      console.log($scope.genre);
-
+      $cookieStore.put('NumOfCountry',  $scope.findIndex($scope.typeOptionsCountry, "name", $scope.country));
+      $cookieStore.put('NumOfPeriod', $scope.findIndex($scope.typeOptionsPeriod, "value", $scope.genre));
+      $cookieStore.put('NumOfSort', $scope.findIndex($scope.typeOptionsSorting, "value", $scope.sort));
+        
       if($scope.country != "All countries"){
         selectedCountry = $scope.country;
       }
 
       echoNestService.ArtistSearch.get({genre : $scope.genre, artist_location : selectedCountry, start : $scope.pager, sort : $scope.sort},function(data){
-              console.log(data);
+//              console.log(data);
               $scope.handleData(data);
               $scope.loading--;
       });
@@ -189,5 +175,6 @@ musiksalenApp.controller('ArtistsCtrl', function($scope,  $window, echoNestServi
     }
 
     $scope.firstPage();
-
+    
+    
 });
