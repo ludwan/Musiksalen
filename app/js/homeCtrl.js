@@ -1,6 +1,6 @@
 musiksalenApp.controller('HomeCtrl', function ($scope, echoNestService, lastFmService, $q){
     
-    echoNestService.ArtistSearch.get({genre : 'classical', min_familiarity : 0.65},function(data){
+    echoNestService.ArtistSearch.get({genre : 'classical', min_familiarity : 0.35},function(data){
        
         $scope.topArtists = data.response.artists;
         // console.log($scope.topArtists);
@@ -10,7 +10,7 @@ musiksalenApp.controller('HomeCtrl', function ($scope, echoNestService, lastFmSe
     $scope.getTopArtists = function(selectedGenre, startYear, endYear){
         var deferred = $q.defer();
         var list;
-        echoNestService.ArtistSearch.get({genre : selectedGenre ,artist_start_year_after : startYear, artist_end_year_before : endYear, results : 4},function(data){
+        echoNestService.ArtistSearch.get({genre : selectedGenre ,artist_start_year_after : startYear, artist_end_year_before : endYear, results :5},function(data){
             list = data.response.artists;
             lastFmService.updateArtists(list);
             deferred.resolve(list);

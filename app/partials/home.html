@@ -77,7 +77,7 @@
     </div>
 
 	<div class="content-wrapper">
-		<h1>Medieval (476–1400)</h1>
+		<h2>Medieval (476–1400)</h2>
         <p>Medieval music was both sacred and secular. During this time, music transformed from monophonic to polyphonic. Notational and theoretical practices were developed. Some works:</p>
 <!--
         <p>Gregorian chant - Dies Irae</p><br>
@@ -92,15 +92,16 @@
         
             <div class="container">
                 <div class="row">
-                    <div ng-repeat="art in medievalArtists" class="artist_card col-md-3">
+                    <div class="col-md-2"></div>
+                    <div ng-repeat="art in medievalArtists" class="artist_card col-md-2">
                         <div class="image">
                             <a ng-href="#/artists/{{art.id}}"><img check-image class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
                         </div>
-                        <div class="artist_name">
+                        <div class="s_artist_name artist_name">
                             <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
                         </div>
-
                     </div>
+                    <div class="col-md-2"></div>
                 </div>
             </div>
         </div>
@@ -120,14 +121,16 @@
         <br>
             <div class="container">
                 <div class="row">
-                    <div ng-repeat="art in renaissanceArtists.slice(0,4)" class="artist_card col-md-3">
+                    <div class="col-md-1"></div>
+                    <div ng-repeat="art in renaissanceArtists.slice(0,5)" class="artist_card col-md-2">
                         <div class="image">
                             <a ng-href="#/artists/{{art.id}}"><img check-image class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
                         </div>
-                        <div class="artist_name">
+                        <div class="s_artist_name artist_name">
                             <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
                         </div>
                     </div>
+                    <div class="col-md-1"></div>
                 </div>
             </div>
 
@@ -147,14 +150,16 @@
         <br>
             <div class="container">
                 <div class="row">
-                    <div ng-repeat="art in baroqueArtists.slice(0,4)" class="artist_card col-md-3">
+                    <div class="col-md-1"></div>
+                    <div ng-repeat="art in baroqueArtists.slice(0,5)" class="artist_card col-md-2">
                         <div class="image">
                             <a ng-href="#/artists/{{art.id}}"><img check-image class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
                         </div>
-                        <div class="artist_name">
+                        <div class="s_artist_name artist_name">
                             <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
                         </div>
                     </div>
+                    <div class="col-md-1"></div>
                 </div>
             </div>
 
@@ -173,14 +178,16 @@
         <br>
         <div class="container">
                 <div class="row">
-                    <div ng-repeat="art in classicalArtists.slice(0,4)" class="artist_card col-md-3">
+                    <div class="col-md-1"></div>
+                    <div ng-repeat="art in classicalArtists.slice(0,5)" class="artist_card col-md-2">
                         <div class="image">
                             <a ng-href="#/artists/{{art.id}}"><img check-image class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
                         </div>
-                        <div class="artist_name">
+                        <div class=" s_artist_name artist_name">
                             <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
                         </div>
                     </div>
+                    <div class="col-md-1"></div>
                 </div>
             </div>
 
@@ -201,14 +208,16 @@
         <br>
     <div class="container">
                 <div class="row">
-                    <div ng-repeat="art in romanArtists.slice(0,4)" class="artist_card col-md-3">
+                    <div class="col-md-1"></div>
+                    <div ng-repeat="art in romanArtists.slice(0,5)" class="artist_card col-md-2">
                         <div class="image">
                             <a ng-href="#/artists/{{art.id}}"><img check-image class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
                         </div>
-                        <div class="artist_name">
+                        <div class="s_artist_name artist_name">
                             <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
                         </div>
                     </div>
+                    <div class="col-md-1"></div>
                 </div>
         </div>
     </div>
@@ -229,14 +238,16 @@
         <br>
     <div class="container">
                 <div class="row">
-                    <div ng-repeat="art in twentyArtists.slice(0,4)" class="artist_card col-md-3">
+                    <div class="col-md-1"></div>
+                    <div ng-repeat="art in twentyArtists.slice(0,5)" class="artist_card col-md-2">
                         <div class="image">
                             <a ng-href="#/artists/{{art.id}}"><img check-image class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
                         </div>
-                        <div class="artist_name">
+                        <div class="s_artist_name artist_name">
                             <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
                         </div>
                     </div>
+                    <div class="col-md-1"></div>
                 </div>
         </div>
     </div>

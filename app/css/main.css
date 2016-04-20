@@ -118,7 +118,8 @@ header h1 {
     display:inline;
     margin-left: 10px;
     margin-top: 20px;
-    color: #A80603;
+/*    color: #A80603;*/
+    color: hsl(2, 97%, 27%);
     font-size: 40px;
     font-family: serif;
 }
@@ -232,11 +233,14 @@ article {
 
 .artist_card {
     margin-bottom: 30px;
+    opacity: 1;
     transition: 0.3s ease;
 }
 
 .artist_card:hover {
     transform: scale(1.1, 1.1);
+    opacity: 0.6;
+    
 }
 
 .image {
@@ -271,12 +275,17 @@ article {
     transform: translateY(-50%);
 }
 
-.artist-name, .cd-section .artist-name {
+.artist-name{
     margin: 0;
     font-size: 100%;
     line-height: 24px;
 }
 
+.cd-section .artist-name {
+    margin: 3px;
+    font-size: 90%;
+    line-height: 20px;
+}
 
 .row h1 {
     color: #4D281D;
@@ -393,8 +402,21 @@ article {
     position: relative;
 }
 
+.content-wrapper h2 {
+    color: #730502;
+}
+
 i {
     padding-bottom: 5px;
+}
+
+.row-centered{
+/*
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+*/
 }
 
 .spinner {
