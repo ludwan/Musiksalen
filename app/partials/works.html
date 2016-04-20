@@ -5,6 +5,10 @@
    
 <div class="mainbody" ng-show="loading === 0">
     <div class="container">
+        <div class="alert" ng-show="favoriteError">
+            <span class="closebtn" ng-click="favoriteError=false">&times;</span> 
+            You have to login in order to favorite a work.
+        </div>
         <div class="section">
            <h3>{{workTitle}}</h3>
            <p><a ng-href="#/artists/{{artistId}}"> By: {{artistName}}</a></p>

@@ -90,12 +90,16 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
 
     $scope.addFavorite = function() {
         //TODO Error message or something if not logged in
-        var array = {};
-        array[$scope.ArtistId] = true;
+        if(uid === null){
+            $scope.favoriteError = true;
+        } else {
+            var array = {};
+            array[$scope.ArtistId] = true;
 
-        var userRef = ref.child(uid);
-        userRef.update(array, onComplete);
-        $scope.favorited = true;
+            var userRef = ref.child(uid);
+            userRef.update(array, onComplete);
+            $scope.favorited = true;
+        }
     }
 
     $scope.removeFavorite = function() {

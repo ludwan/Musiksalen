@@ -118,12 +118,16 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
 
     $scope.addFavorite = function() {
         //TODO Error message or something if not logged in
-        var array = {};
-        array[workId] = true;
+        if(uid === null){
+            $scope.favoriteError = true;
+        } else {
+            var array = {};
+            array[workId] = true;
 
-        var userRef = ref.child(uid);
-        userRef.update(array, onComplete);
-        $scope.favorited = true;
+            var userRef = ref.child(uid);
+            userRef.update(array, onComplete);
+            $scope.favorited = true;
+        }
     }
 
     $scope.removeFavorite = function() {

@@ -5,6 +5,10 @@
    <div class="mainbody" ng-show="loading === 0">
        <div class="container">
            <div class="row">
+                <div class="alert" ng-show="favoriteError">
+                  <span class="closebtn" ng-click="favoriteError=false">&times;</span> 
+                  You have to login in order to favorite an artist.
+                </div>
                <div class="col-md-4">
                    <div class="artistInfo">
                        <!--Images and Description-->
