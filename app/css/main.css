@@ -50,6 +50,16 @@ select {
     background-color: #f44336; /* Red */
     color: white;
     margin-bottom: 15px;
+    opacity: 1;
+    transition: opacity 0.6s;
+    -moz-transition: opacity 0.6s; /* Firefox 4 */
+    -webkit-transition: opacity 0.6s; /* Safari and Chrome */
+    -o-transition: opacity 0.6s; /* Opera */
+    -ms-transition: opacity 0.6s;
+}
+
+.alert.ng-hide {
+  opacity: 0;
 }
 
 /* The close button */
