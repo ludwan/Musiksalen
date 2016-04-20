@@ -4,20 +4,22 @@
 <div class="filter">
     <div class="container">
         <div class="row">
-            <h1>Browse artists</h1>
+            <h2>Browse artists</h2>
+            <br>
         </div>
         <div class="row">
             <!--    Can be replaced by genre+time, if don't have time, check genre        -->
+            <div class="col-md-4">
             <select class="selectArtists" id="periodSelect" ng-model="genre" required ng-options='option.value as option.name for option in typeOptionsPeriod' ng-change="firstPage()">
-            </select>     
+            </select> </div>
 
-            <select id="countrySelect" ng-model="country" required ng-options='option.name as option.name for option in typeOptionsCountry' ng-change="firstPage()">
+            <div class="col-md-4"><select id="countrySelect" ng-model="country" required ng-options='option.name as option.name for option in typeOptionsCountry' ng-change="firstPage()">
                 <!-- <option ng-selected="selected">All countries</option> -->
-            </select>
+            </select></div>
 
-            <select id="sortSelect" ng-model="sort" required ng-options='option.value as option.name for option in typeOptionsSorting' ng-change="firstPage()">
+            <div class="col-md-4"><select id="sortSelect" ng-model="sort" required ng-options='option.value as option.name for option in typeOptionsSorting' ng-change="firstPage()">
                 <!-- <option ng-selected="selected">All countries</option> -->
-            </select>
+            </select></div>
 
         </div>
     </div>
