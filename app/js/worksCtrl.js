@@ -118,26 +118,27 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
     };
 
     $scope.addFavorite = function() {
-        //TODO Error message or something if not logged in
         if(uid === null){
             $scope.favoriteError = true;
         } else {
             var array = {};
             array[workId] = true;
+            var string = uid + "/" + $scope.artistId;
 
-            var userRef = ref.child(uid);
+            var userRef = ref.child(string);
             userRef.update(array, onComplete);
             $scope.favorited = true;
         }
     }
 
     $scope.removeFavorite = function() {
-        var string = uid + "/" + workId;
+        var string = uid + "/" + $scope.artistId +"/"+ workId;
 
         var favoriteRef = ref.child(string);
         favoriteRef.remove(onComplete);
         $scope.favorited = false;
     }
+
 
     $scope.$on('$viewContentLoaded', function() {
         console.log("In viewContentLoaded");

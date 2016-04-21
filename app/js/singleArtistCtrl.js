@@ -6,6 +6,7 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
     $scope.activeYears = "Not available";
     $scope.loading = 1;
     var ref = new Firebase("https://sweltering-inferno-7067.firebaseio.com/favoriteArtists");
+    var songRef = new Firebase("https://sweltering-inferno-7067.firebaseio.com/favoriteSongs");
     var uid = userService.getUserId();
     
     echoNestService.getArtist.get({id : $scope.ArtistId}, function(data){
@@ -71,14 +72,12 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
             } else {
                 $scope.favorited = true;
             }
-            $scope.$apply();
+            $scope.$evalAsync();
         }, function (errorObject) {
             //TODO some proper error handling with windows etc
             console.log("The read failed: " + errorObject.code);
         });
     };
-
-    $scope.checkFavorite();
 
     var onComplete = function(error) {
         //TODO some proper error handling with windows etc instead
@@ -109,6 +108,54 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
         favoriteRef.remove(onComplete);
         $scope.favorited = false;
     }
+
+    $scope.checkFavoriteSongs = function() {
+        var string = uid + "/" + $scope.ArtistId;
+        var favoriteSongRef = songRef.child(string);
+
+        favoriteSongRef.on("value", function(snapshot) {
+            if(snapshot.val() == null){
+                console.log("Nothing here");
+            } else {
+                angular.forEach(snapshot.val(), function(value, key){
+                    $scope[key] = value;
+                });
+            }
+            //$scope.$apply();
+        }, function (errorObject) {
+            //TODO some proper error handling with windows etc
+            console.log("The read failed: " + errorObject.code);
+        });
+    }
+
+    $scope.addFavoriteSong = function(workId) {
+        console.log(workId);
+        if(uid === null){
+            $scope.favoriteError = true;
+        } else {
+            var array = {};
+            array[workId] = true;
+            var string = uid + "/" + $scope.ArtistId;
+
+            var userRef = songRef.child(string);
+            userRef.update(array, onComplete);
+            $scope[workId] = true;
+        }
+    }
+
+    $scope.removeFavoriteSong = function(workId) {
+        var string = uid + "/" + $scope.ArtistId +"/"+ workId;
+        console.log(string);
+        var favoriteRef = songRef.child(string);
+        favoriteRef.remove(onComplete);
+        $scope[workId] = false;
+    }
+
+
+    $scope.$on('$viewContentLoaded', function() {
+        $scope.checkFavoriteSongs();
+        $scope.checkFavorite();
+    });
 
     
 });
