@@ -9,7 +9,7 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
     <title>Musiksalen</title>
     
 <!--    Google Fonts -->
-      <link href='https://fonts.googleapis.com/css?family=IM+Fell+DW+Pica|Vollkorn:400,700,400italic|Gentium+Book+Basic' rel='stylesheet' type='text/css'>
+      <link href='https://fonts.googleapis.com/css?family=IM+Fell+DW+Pica|Vollkorn:400,700,400italic|Gentium+Book+Basic:400,700italic,700' rel='stylesheet' type='text/css'>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -101,20 +101,15 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
             <div class="col-md-12">
 <!--                <img id="logo" src="images/note.png">-->
                 <h1>Musiksalen</h1>
-                <br>
-                <br>
-                
                 <div id="menu">
                     <ul>
-                    <li class="menu"><h2><a href="#/home">Home</a></h2></li>
-                    <li class="menu"><h2><a href="#/artists">Artists</a></h2></li>
-                    <li class="menu" ng-hide="loggedIn()"><h2><a href="#/login">Login</a></h2></li>
-                    <li class="menu" ng-show="loggedIn()"><h2><a href="#/myAccount">My account</a></h2></li>
-                    <li id="SearchBar"><a href="#/search"><div><i class="fa fa-search"></i>&nbsp;<input id="searchfield" ng-model="query" ng-keypress="searchArtists(query,$event)" type="text"/></div></a></li>
+                    <li class="menu"><a href="#/home">Home</a></li>
+                    <li class="menu"><a href="#/artists">Artists</a></li>
+                    <li class="menu" ng-hide="loggedIn()"><a href="#/login">Login</a></li>
+                    <li class="menu" ng-show="loggedIn()"><a href="#/myAccount">My account</a></li>
+<!--                    <li id="SearchBar"><a href="#/search"><div><i class="fa fa-search"></i>&nbsp;<input id="searchfield" ng-model="query" ng-keypress="searchArtists(query,$event)" type="text"/></div></a></li>-->
                     <!--  Press 'enter' then go to the search page -->
                     </ul>
-                    
-
                 </div>
            </div>
         </div>

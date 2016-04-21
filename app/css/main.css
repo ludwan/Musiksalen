@@ -82,12 +82,11 @@ select {
 
 
 header {
-    padding-top: 20px;
-    padding-bottom: 10px;
     background-color: #252121; /* change this  */
     position: fixed;
+    overflow: hidden;
     width: 100%;
-    height: 180px;
+    height: 150px;
     top: 0;
     left: 0;
     z-index: 9999;
@@ -96,50 +95,68 @@ header {
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.26);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.26);
     
-    -webkit-transition: top 0.3s ease-in-out;
-    -moz-transition: top 0.3s ease-in-out;
-    -ms-transition: top 0.3s ease-in-out;
-    -o-transition: top 0.3s ease-in-out;
-    transition: top 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 header.smaller {
-    top: -100px;
-}
-
-header #logo{
-    width: 40px;
-    margin-left: 20px;
-    margin-top: 20px;
-
+    height: 75px;
 }
 
 header h1 {
-    display:inline;
-    margin-left: 60px;
+    display:inline-block;
 /*    color: #A80603;*/
+    height: 150px;
+    line-height: 150px;
+    float: left;
     color: hsl(2, 97%, 27%);
-    font-size: 48px;
-    line-height: 80px;
+    font-size: 72px;
     text-shadow: 4px 4px 4px rgba(255, 255, 255, 0.05);
+    
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
-header h2 {
+header.smaller h1{
+    height: 75px;
+    line-height: 75px;
+    font-size: 36px;
+}
+
+#menu {
     display: inline-block;
-/*    margin: 10px 60px;*/
-    color: rgba(242, 239, 234, 0.5);
+    float: right;
 }
 
 header a {
-    padding: 8px 60px;
+    padding: 0px 20px;
     border: 0;
     color: rgba(242, 239, 234, 0.5);
+    font-size: 20px;
     text-decoration: none;
+    line-height: 150px;
+    
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+header.smaller a {
+    line-height: 75px;
+    font-size: 18px;
 }
 
 header a:hover {
     color: rgba(242, 239, 234, 0.8);
-    background-color: rgba(250, 250, 250, 0.03);
+    background-color: rgba(250, 250, 250, 0.05);
 }
 
 
@@ -148,15 +165,14 @@ header a:hover {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #252121;
 }
 
 .menu {
     float: left;
-    display: block;
+    display: inline-block;
     text-align: center;
-    padding: 14px 16px;
     text-decoration: none;
+    color: rgba(242, 239, 234, 0.5);
 }
 
 #SearchBar {
@@ -389,6 +405,21 @@ article {
 
 /* HOME PAGE */
 
+h2.genre {
+    font-size: 4rem;
+}
+
+h2.time {
+    margin-top: -10px;
+    font-size: 3rem;
+}
+
+h5 {
+    font-size: 2.2rem;
+/*    font-weight: 700;*/
+/*    font-style: italic;*/
+}
+
 .bgimg {
     z-index: -1;
     opacity: 0.3;
@@ -511,12 +542,20 @@ section p {
 */
 }
 
+.star:click {
+    animation: none;
+}
+
 .star:hover {
 /*
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
 */
     animation: vibrate 0.5s 0s infinite alternate;
+}
+
+.star.ng-hide {
+    animation: none;
 }
 
 @keyframes vibrate {
