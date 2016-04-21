@@ -2,7 +2,7 @@
 <!-- Notice the ng-app Angular directive. This tells Angular where the application starts and also
 which module to associate the app with. In app.js we create the "dinnerPlanner" module. -->
 <html lang="en" ng-app="musiksalen">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -86,13 +86,14 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
     <link rel="shortcut icon" href="favicon.ico"/>
   	
       
-  </head>
-  <body ng-controller="SearchCtrl" >
+</head>
+
+<body ng-controller="SearchCtrl" >
     <!-- Here in index.html you should put only the layout that is shared among all the screens (e.g. header
     ,footer, etc.). The rest of the view specific layout will go into the html partials (check partials folder) -->
 
       
-<!--    <div class="header">-->
+    <div class="whole">
       
       
     <header ng-controller="HeaderCtrl">
@@ -100,7 +101,7 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
         <div class="container">
             <div class="col-md-12">
 <!--                <img id="logo" src="images/note.png">-->
-                <h1>Musiksalen</h1>
+                <a id="logo" href="#/home"><h1>Musiksalen</h1></a>
                 <div id="menu">
                     <ul>
                     <li class="menu"><a href="#/home">Home</a></li>
@@ -115,18 +116,11 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
         </div>
     </header>
       
-    <div ng-view></div>
-    </body>
+    <div id="ng-part" ng-view></div>
     
     <footer class="footer">
-      <div class="container">
-      
-      <p>Design by: Xu Han, Sofie Nyström, Ludwig Sidenmark and Tingye Zhong</p>
-      
+        <p>Design by: Xu Han, Sofie Nyström, Ludwig Sidenmark and Tingye Zhong</p>  
+    </footer>
     </div>
-  </footer>
-      
-      
-  
-  
+</body>
 </html>
