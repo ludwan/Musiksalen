@@ -299,6 +299,9 @@ article {
     opacity: 0.5;
 }
 
+#sortSelect{
+    float: right;
+}
 
 
 

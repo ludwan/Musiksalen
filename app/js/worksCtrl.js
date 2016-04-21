@@ -100,6 +100,7 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
             } else {
                 $scope.favorited = true;
             }
+            $scope.$apply();
         }, function (errorObject) {
             //TODO some proper error handling with windows etc
             console.log("The read failed: " + errorObject.code);

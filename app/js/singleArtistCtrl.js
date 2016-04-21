@@ -71,6 +71,7 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
             } else {
                 $scope.favorited = true;
             }
+            $scope.$apply();
         }, function (errorObject) {
             //TODO some proper error handling with windows etc
             console.log("The read failed: " + errorObject.code);
@@ -89,7 +90,6 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
     };
 
     $scope.addFavorite = function() {
-        //TODO Error message or something if not logged in
         if(uid === null){
             $scope.favoriteError = true;
         } else {

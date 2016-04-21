@@ -17,4 +17,8 @@
             <a href="#/register"><button>Register</button></a>
         </div>
     </form>
+    <div class="alert" ng-show="loginError">
+      <span class="closebtn" ng-click="loginError=false">&times;</span> 
+      {{errorMessage}}
+    </div>
 </div>

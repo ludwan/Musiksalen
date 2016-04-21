@@ -4,24 +4,34 @@ musiksalenApp.controller('RegisterCtrl', function($scope, $location){
 
 	$scope.register = function(){
 		$scope.loading = true;
+		$scope.registerError = false;
 
 		ref.createUser({
 		  email    : $scope.email,
 		  password : $scope.password
 		}, function(error, userData) {
-		  if (error) {
-		  	//TODO MAKE ERROR WINDOW TELLING THE USER WHAT THE PROBLEM IS
-		    console.log("Error creating user:", error);
-		    $scope.loading = false;
-		    $scope.$apply();
+		  	if (error) {
+		  		switch (error.code) {
+			      	case "EMAIL_TAKEN":
+	      				$scope.registerError = true;
+	      				$scope.errorMessage = "The new user account cannot be created because the email is already in use.";
+				        break;
+			     	case "INVALID_EMAIL":
+			     		$scope.registerError = true;
+      					$scope.errorMessage = "The specified email is not a valid email.";
+				        break;
+			      	default:
+			      		$scope.registerError = true;
+			      		$scope.errorMessage = "Error creating user: " + error;
+			    }
+			    $scope.loading = false;
+			    $scope.$apply();
 
-		  } else {
-		    console.log("Successfully created user account with uid:", userData.uid);
-		    $scope.loading = false;
-			$location.path('/login');
-		  	$scope.$apply();
-
-		  }
+		  	} else {
+			    $scope.loading = false;
+				$location.path('/login');
+			  	$scope.$apply();
+		  	}
 		});
 	}
 
