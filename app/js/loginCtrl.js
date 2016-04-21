@@ -1,9 +1,13 @@
-musiksalenApp.controller('LoginCtrl', function ($scope, userService, $location){
-
+musiksalenApp.controller('LoginCtrl', function($scope, userService, $location){
 
 	$scope.login = function() {
 		$scope.loading = true;
+
     	$scope.loginError = false;
+
+        $cookieStore.put('user', $scope.user);
+        $cookieStore.put('password', $scope.password);
+
 		var ref = new Firebase("https://sweltering-inferno-7067.firebaseio.com");
 
 		ref.authWithPassword({

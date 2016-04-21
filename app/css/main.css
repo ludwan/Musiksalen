@@ -193,7 +193,6 @@ header a:hover {
 }
 
 #SearchBar {
-/*    display: inline; */
     float: right; 
     
 }
@@ -337,10 +336,6 @@ article {
 
 .pagerButton[disabled] {
     opacity: 0.5;
-}
-
-#sortSelect{
-    float: right;
 }
 
 

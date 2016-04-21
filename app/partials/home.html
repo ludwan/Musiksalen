@@ -77,14 +77,11 @@
     </div>
 
 	<div class="content-wrapper">
-		<h2>Medieval (476–1400)</h2>
+
+
+		<h1>Medieval (476–1400)</h1>
         <p>Medieval music was both sacred and secular. During this time, music transformed from monophonic to polyphonic. Notational and theoretical practices were developed.</p>
-<!--
-        <p>Gregorian chant - Dies Irae</p><br>
-        <audio controls><source src="WorksinTour/Gregorian%20Chant%20-%20Dies%20Irae.mp3"></audio>
-        <p>Troubadour - Bernart de Ventadorn: Can vei la lauzeta</p><br>
-        <audio controls><source src="WorksinTour/Bernart%20de%20Ventadorn-%20Can%20vei%20la%20lauzeta.mp3"></audio>
--->
+
         <br><br>
         <p><b>- Top Composers -</b></p>
         <br>
@@ -92,7 +89,7 @@
         
             <div class="container">
                 <div class="row">
-                    <div class="col-md-2"></div>
+                    <div class="col-md-1"></div>
                     <div ng-repeat="art in medievalArtists" class="artist_card col-md-2">
                         <div class="image">
                             <a ng-href="#/artists/{{art.id}}"><img check-image class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
@@ -101,7 +98,7 @@
                             <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
                         </div>
                     </div>
-                    <div class="col-md-2"></div>
+                    <div class="col-md-1"></div>
                 </div>
             </div>
         </div>

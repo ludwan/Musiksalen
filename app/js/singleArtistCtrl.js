@@ -1,4 +1,4 @@
-musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $filter, echoNestService, lastFmService, userService){
+musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $filter, echoNestService, lastFmService, userService, youtubeService){
     
 
     $scope.ArtistId = $routeParams.artistId;
@@ -14,7 +14,11 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
         //console.log(artist);
 
         $scope.getArtistInfo(artist.name);
-
+        
+        var keyWord = artist.name + "documentary";
+        $scope.getVideos(keyWord);
+        console.log(keyWord);
+        
         //$scope.getWorksViaArtistId(artist.id);
         $scope.getWorksViaPlaylistId(artist.id);
         //$scope.getWorksViaSearchId(artist.id);
@@ -156,6 +160,44 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
         $scope.checkFavoriteSongs();
         $scope.checkFavorite();
     });
+    
+    //documentary
+//    $window.initGapi = function() {
+//        $scope.$apply($scope.loadWork);
+//    };
+
+   
+
+    $scope.getVideos = function (keyWord) {
+        $scope.loading++;
+        youtubeService.worksSearch(keyWord).then(function (data) {
+            $scope.channel = data.items;
+            console.log($scope.channel);
+            $scope.createPlayer($scope.channel[0].id.videoId);
+        }, function (error) {
+            console.log('Failed: ' + error)
+        });
+    };
+
+    $scope.createPlayer = function (videoId) {
+        
+    	$scope[videoId] = true;
+    	$scope.player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: videoId
+        });
+        $scope.loading--;
+    }
+
+    $scope.changeVideo = function (videoId){
+    	var currId = $scope.player.getVideoData()['video_id'];
+
+        $scope.getFullDescription(videoId);
+  		$scope[currId] = false;
+  		$scope[videoId] = true;  	
+    	$scope.player.cueVideoById(videoId, 0, 'large');      
+    }
 
     
 });
