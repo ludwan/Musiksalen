@@ -39,12 +39,18 @@ a:hover {
     text-decoration: none;
 }
 
+a:visited, a:active, a:-webkit-any-link {
+    color: #A1693C;
+    text-decoration: none;
+}
+
 select {
     color: #4D281D;
 }
 
 /* The alert message box */
 .alert {
+    margin: 20px 0;
     padding: 20px;
     background-color: rgba(244, 67, 54, 0.4); /* Red */
     color: white;
@@ -107,11 +113,10 @@ header.smaller {
 
 header h1 {
     display:inline-block;
-/*    color: #A80603;*/
     height: 150px;
     line-height: 150px;
     float: left;
-    color: hsl(2, 97%, 27%);
+    color: #730502;
     font-size: 72px;
     font-style: normal;
     text-shadow: 4px 4px 4px rgba(255, 255, 255, 0.05);
@@ -155,6 +160,10 @@ header a {
     -ms-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
+}
+
+header a:visited, header a:active, header a:-webkit-any-link {
+    color: rgba(242, 239, 234, 0.5);
 }
 
 header.smaller a {
@@ -210,25 +219,25 @@ header a:hover {
 
 #works {
     position: relative;
-    padding-top: 200px;
+    padding-top: 175px;
     margin-bottom: 50px;
 }
 
 #artists {
     position: relative;
-    padding-top: 200px;
+    padding-top: 175px;
     margin-bottom: 50px;
 }
 
 #singleArtist {
     position: relative;
-    padding-top: 200px;
+    padding-top: 175px;
     margin-bottom: 50px;
 }
 
 #search {
     position: relative;
-    padding-top: 200px;
+    padding-top: 175px;
     margin-bottom: 50px;
 }
 
@@ -474,7 +483,7 @@ i {
 
 .spinner {
     position: absolute;
-    top: 50%;
+    top: 100%;
     /* Firefox */
     left: -moz-calc(50% - 40px);
     /* WebKit */

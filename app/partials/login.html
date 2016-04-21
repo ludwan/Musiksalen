@@ -13,8 +13,10 @@
         </div>
         <div class="form-actions">
             <button type="submit" ng-disabled="form.$invalid || loading">Login</button>
-            <img ng-if="loading" src="../images/graphics-music-965598.gif" />
             <a href="#/register"><button>Register</button></a>
+        </div>
+        <div class="spinner" ng-if="loading">
+            <img src="../images/graphics-music-965598.gif"/>
         </div>
     </form>
     <div class="alert" ng-show="loginError">
