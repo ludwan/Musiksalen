@@ -116,12 +116,12 @@ header #logo{
 
 header h1 {
     display:inline;
-    margin-left: 10px;
-    margin-top: 20px;
+    margin-left: 60px;
 /*    color: #A80603;*/
     color: hsl(2, 97%, 27%);
-    font-size: 40px;
-    font-family: serif;
+    font-size: 48px;
+    line-height: 80px;
+    text-shadow: 4px 4px 4px rgba(255, 255, 255, 0.05);
 }
 
 header h2 {
@@ -264,7 +264,7 @@ article {
     position: relative;
     background-color: rgba(77, 40, 29, 0.1);
     text-align: center;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .artist_name a, .cd-section .artist_name a{
@@ -273,6 +273,7 @@ article {
     left: 0;
     width: 100%;
     transform: translateY(-50%);
+    font-style: normal;
 }
 
 .artist-name{
@@ -450,3 +451,43 @@ i {
     top: 200px;
 }
 
+/* the FONTS */
+
+h1 {
+    font-family: 'IM Fell DW Pica', serif;
+    font-weight: 400;
+}
+
+h2 {
+    font-family: 'IM Fell DW Pica', serif;
+    font-weight: 400;
+}
+
+h3 {
+/*    font-family: 'Goudy Bookletter 1911', serif;*/
+    font-family: 'Gentium Book Basic', serif;
+    font-weight: 400;
+}
+
+h4 {
+/*    font-family: 'Goudy Bookletter 1911', serif;*/
+    font-family: 'Gentium Book Basic', serif;
+    font-weight: 400;
+}
+
+p, body {
+    font-family: 'Vollkorn', serif;
+    font-weight: 400;
+}
+
+a, i {
+    font-family: 'Vollkorn', serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+section p {
+/*    font-family: 'Goudy Bookletter 1911', serif;*/
+    font-family: 'Gentium Book Basic', serif;
+    font-weight: 400;
+}
