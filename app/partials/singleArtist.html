@@ -16,7 +16,11 @@
 
                        <div id="Artistnamecard" class="section">
                            <!--Name of artist-->
-                           <h3>&#9734;&#32;{{singleArtist.name}}</h3>
+                           <h3>
+                               <span class="star" ng-hide="favorited" ng-click="addFavorite()">&#9734;&#32;</span>
+                               <span class="star" ng-show="favorited" ng-click="removeFavorite()">&#9733;&#32;</span>
+                               {{singleArtist.name}}
+                           </h3>
 
                            <!--some information-->
                            <p>Active years: {{activeYears}}</p>
@@ -25,8 +29,13 @@
                                <li ng-show="!genres.length">Not Available</li>
                                <li ng-repeat="genre in genres">{{genre.name}}</li>
                            </ul>
+<!--
                            <button ng-hide="favorited" ng-click="addFavorite()">Favorite</button>
                            <button ng-show="favorited" ng-click="removeFavorite()">Unfavorite</button>
+-->
+                           <p class="back-to-list"><a href="javascript:history.back()">
+<!--                           <i class="fa fa-long-arrow-left"></i>-->
+                               &larr;Back to list</a></p>
                        </div>
                    </div>
                </div>
@@ -34,7 +43,6 @@
                <div class="col-md-8">
                    <div class="section">
                       <h4>Biography</h4>
-                       <a href="javascript:history.back()"><i class="fa fa-long-arrow-left"> Back to list</i></a>
                        <br>
                        <div id="bio"
                           hm-read-more
@@ -54,7 +62,11 @@
                    <div class="section">
                        <h4>Songs</h4>
                        <div ng-repeat="song in works | unique: 'title'">
-                           <a ng-href="#/works/{{song.id}}"><p>{{song.title}}&#32;&#9734;</p></a>
+                           <p>
+                               <span class="star" ng-hide="favorited" ng-click="addFavorite()">&#9734;&#32;</span>
+                               <span class="star" ng-show="favorited" ng-click="removeFavorite()">&#9733;&#32;</span>
+                           <a ng-href="#/works/{{song.id}}">{{song.title}}</a>
+                           </p>
                        </div>  
                    </div>
                </div>

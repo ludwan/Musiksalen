@@ -47,7 +47,7 @@ select {
 /* The alert message box */
 .alert {
     padding: 20px;
-    background-color: #f44336; /* Red */
+    background-color: rgba(244, 67, 54, 0.4); /* Red */
     color: white;
     margin-bottom: 15px;
     opacity: 1;
@@ -92,9 +92,9 @@ header {
     left: 0;
     z-index: 9999;
 
-    -webkit-box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.26);
-    -moz-box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.26);
-    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.26);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.26);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.26);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.26);
     
     -webkit-transition: top 0.3s ease-in-out;
     -moz-transition: top 0.3s ease-in-out;
@@ -354,6 +354,10 @@ article {
     color: inherit;
 }
 
+.back-to-list {
+    margin-top: 20px;
+}
+
 /* Works */
 
 #videoDescription {
@@ -490,4 +494,55 @@ section p {
 /*    font-family: 'Goudy Bookletter 1911', serif;*/
     font-family: 'Gentium Book Basic', serif;
     font-weight: 400;
+}
+
+/* STAR */
+
+.star {
+    padding: 2px;
+    /*
+    -webkit-transition: transform 0.3s ease-in-out;
+    -moz-transition: transform 0.3s ease-in-out;
+    -ms-transition: transform 0.3s ease-in-out;
+    -o-transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+*/
+}
+
+.star:hover {
+/*
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+*/
+    animation: vibrate 0.5s 0s infinite alternate;
+}
+
+@keyframes vibrate {
+    0% {
+        padding: 2px 2px 2px 2px;
+    }
+    
+    20% {
+        padding: 2px 3px 2px 1px;
+    }
+    
+    35% {
+        padding: 2px 2px 2px 2px;
+    }
+    
+    50% {
+        padding: 2px 0px 2px 4px;
+    }
+    
+    65% {
+        padding: 2px 2px 2px 2px;
+    }
+    
+    80% {
+        padding: 2px 4px 2px 0px;
+    }
+    
+    100% {
+        padding: 2px 2px 2px 2px;
+    }
 }

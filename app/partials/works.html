@@ -10,10 +10,15 @@
             You have to login in order to favorite a work.
         </div>
         <div class="section">
-           <h3>{{workTitle}}</h3>
+            <h3>{{workTitle}}
+                <span class="star" ng-hide="favorited" ng-click="addFavorite()">&#32;&#9734;</span>
+                <span class="star" ng-show="favorited" ng-click="removeFavorite()">&#32;&#9733;</span>
+            </h3>
            <p><a ng-href="#/artists/{{artistId}}"> By: {{artistName}}</a></p>
+<!--
             <button ng-hide="favorited" ng-click="addFavorite()">Favorite</button>
             <button ng-show="favorited" ng-click="removeFavorite()">Unfavorite</button>
+-->
         </div>
 
         <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
