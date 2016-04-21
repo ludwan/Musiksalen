@@ -4,8 +4,6 @@
 <div class="filter">
     <div class="container">
         <div class="row">
-            <br>
-            <br>
             <h2>Browse artists</h2>
             <br>
         </div>
@@ -49,9 +47,13 @@
         <button class="pagerButton" ng-click="previousPage(genre,country)" ng-disabled="onFirstPage">&lt;</button>
         <button class="pagerButton" ng-click="nextPage(genre,country)" ng-disabled="onLastPage">&gt;</button>
  -->
-        <button class="pagerButton" ng-click="firstPage()" ng-disabled="onFirstPage">First</button>
-        <button class="pagerButton" ng-click="previousPage()" ng-disabled="onFirstPage">&lt;</button>
-        <button class="pagerButton" ng-click="nextPage()" ng-disabled="onLastPage">&gt;</button>
+        <div id="pagerbuttons">
+        <button class="pagerButton btn btn-default" ng-click="firstPage()" ng-disabled="onFirstPage">First</button>
+        <button class="pagerButton btn btn-default" ng-click="previousPage()" ng-disabled="onFirstPage">&lt;</button>
+        <button class="pagerButton btn btn-default" ng-click="nextPage()" ng-disabled="onLastPage">&gt;</button>
+        </div>
+        <br>
+        <br>
     </div>
 </div>
 

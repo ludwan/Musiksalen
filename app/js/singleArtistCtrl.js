@@ -8,11 +8,12 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
     var ref = new Firebase("https://sweltering-inferno-7067.firebaseio.com/favoriteArtists");
     var uid = userService.getUserId();
     
-    echoNestService.getArtist.get({id : $scope.ArtistId}, function(data){
+    echoNestService.getArtist.get({id : $scope.ArtistId, bucket :"artist_location"}, function(data){
         var artist = data.response.artist;
-        //console.log(artist);
+        console.log(artist);
 
         $scope.getArtistInfo(artist.name);
+        $scope.artistlocation = artist.artist_location.country;
 
         //$scope.getWorksViaArtistId(artist.id);
         $scope.getWorksViaPlaylistId(artist.id);
@@ -55,6 +56,7 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
             $scope.artistName = data.artist.name;
             $scope.bio = $scope.singleArtist.bio.content;
             $scope.singleArtist.image = data['artist']['image'][4]['#text'];
+            console.log($scope.singleArtist);
             $scope.loading--;
   
         });

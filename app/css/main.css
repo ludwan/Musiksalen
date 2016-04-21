@@ -293,9 +293,13 @@ article {
 .row h1 {
     color: #4D281D;
 }
+#pagerbuttons {
+    float:right;
+    margin-bottom: 40px;
+}
 
 .pagerButton {
-
+    color: #4D281D;
 }
 
 .pagerButton[disabled] {
