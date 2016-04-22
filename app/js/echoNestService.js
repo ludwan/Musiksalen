@@ -13,6 +13,11 @@ musiksalenApp.service('echoNestService', function ($resource){
         api_key : apiKey
     });
 
+    this.getBasicArtist = $resource('https://developer.echonest.com/api/v4/artist/profile?', {
+        format : 'json',
+        api_key : apiKey
+    });
+
     this.getWork = $resource('https://developer.echonest.com/api/v4/song/profile?',{
         format : 'json',
         api_key : apiKey

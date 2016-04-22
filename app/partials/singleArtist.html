@@ -6,8 +6,8 @@
        <div class="container">
            <div class="row">
                 <div class="alert" ng-show="favoriteError">
-                  <span class="closebtn" ng-click="favoriteError=false">&times;</span> 
-                  You have to login in order to favorite an artist.
+                  <span class="closebtn" ng-click="favoriteError=false">&times;</span>
+                  {{errorMessage}}
                 </div>
                <div class="col-md-4">
                    <div class="artistInfo">
@@ -39,6 +39,7 @@
                        </div>
                    </div>
                </div>
+              
                <!--Description-->
                <div class="col-md-8">
                    <div class="section">
@@ -51,9 +52,7 @@
                             hm-more-text="Show more" 
                             hm-less-text="Show less"
                             hm-dots-class="dots"
-                            hm-link-class="links"></div>
-                       
-                        
+                            hm-link-class="links"></div>           
                     </div>
 
                    <!--Documentary-->
@@ -77,5 +76,4 @@
            </div>
        </div>
    </div>
-
 </div>

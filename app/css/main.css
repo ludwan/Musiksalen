@@ -549,6 +549,7 @@ section p {
 
 .star {
     padding: 2px;
+    cursor: pointer;
     /*
     -webkit-transition: transform 0.3s ease-in-out;
     -moz-transition: transform 0.3s ease-in-out;

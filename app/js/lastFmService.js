@@ -22,20 +22,19 @@ musiksalenApp.service('lastFmService', function ($resource, $q, $http){
     });
 
     this.updateArtists = function(list){
+        console.log(list);
         var getArtistVar = this.getArtist;
         angular.forEach(list, function(value, key){
             
             if(value.name != undefined){
+                value.image = "../images/score-placeholder.png";
                 getArtistVar.get({artist : value.name},function(data){
-                    
                     var imgSrc = data['artist']['image'][2]['#text'];
 
                     value.finalName = data.artist.name;
-                    if(imgSrc === undefined){
-                        value.image = "../images/score-placeholder.png";
-                    }else{
+                    if(imgSrc !== undefined){
                         value.image = imgSrc;
-                    };
+                    }
                     
                     value.mbid = data.artist.mbid;
                     

@@ -9,7 +9,7 @@
             <h2>Browse artists</h2>
             <br>
         </div>
-        <div class="row">
+        <div class="row" id="filters">
             <!--    Can be replaced by genre+time, if don't have time, check genre        -->
             <div class="col-md-3">
             <select class="selectArtists" id="periodSelect" ng-model="genre" required ng-options='option.value as option.name for option in typeOptionsPeriod' ng-change="firstPage()">
@@ -22,7 +22,7 @@
             <div class="col-md-3"><select id="sortSelect" ng-model="sort" required ng-options='option.value as option.name for option in typeOptionsSorting' ng-change="firstPage()">
                 <!-- <option ng-selected="selected">All countries</option> -->
             </select></div>
-            <div id="SearchBar" class="col-md-3"><input id="searchfield" ng-model="query" ng-keypress="searchArtists(query,$event)" type="text"/>&nbsp;<a href="" ng-click="searchArtists(query,$event)"><i class="fa fa-search"></i></a></div>
+            <div id="SearchBar" class="col-md-3"><input id="searchfield" ng-model="query" my-enter="searchArtists()" type="text"/>&nbsp;<a href="" ng-click="searchArtists()"><i class="fa fa-search"></i></a></div>
         </div>
     </div>
 </div>

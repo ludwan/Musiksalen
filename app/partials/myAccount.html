@@ -1,3 +1,18 @@
-<div id="login" class="col-md-6 col-md-offset-3">
+<div id="login">
+	<h2>Signed in as: {{userName}}</h2>
+
+	<h2>Favorite Artists</h2>
+	<div class="row">
+        <div ng-repeat="art in artists" class="artist_card col-md-3">
+           <div class="image">
+               <a ng-href="#/artists/{{art.id}}"><img fallback class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
+           </div>
+           <div class="artist_name">
+               <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
+           </div>
+        </div>
+    </div>
+
+	<h2>Favorite Songs</h2>
 	<button ng-click="logout()">Logout</button>
 </div>
