@@ -48,6 +48,7 @@ musiksalenApp.service('firebaseService', ['$http', '$q', function (userService, 
         favArtistsRef.on("value", function (snapshot) {
             deferred.resolve(snapshot.val());
         }, function (errorObject) {
+            //TODO PROPER ERROR HANDLING
             console.log("The read failed: " + errorObject.code);
         });
         return deferred.promise;
@@ -83,6 +84,19 @@ musiksalenApp.service('firebaseService', ['$http', '$q', function (userService, 
             deferred.resolve(snapshot.val());
         }, function (errorObject) {
             //TODO some proper error handling with windows etc
+            console.log("The read failed: " + errorObject.code);
+        });
+        return deferred.promise;
+    }
+
+    this.getFavoriteSongs = function(userId) {
+        var deferred = $q.defer();
+        var favSongsRef = songRef.child(userId);
+
+        favSongsRef.on("value", function (snapshot) {
+            deferred.resolve(snapshot.val());
+        }, function (errorObject) {
+            //TODO PROPER ERROR HANDLING
             console.log("The read failed: " + errorObject.code);
         });
         return deferred.promise;

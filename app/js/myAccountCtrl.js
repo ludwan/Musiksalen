@@ -7,30 +7,44 @@ musiksalenApp.controller('MyAccountCtrl', function ($scope, $location, userServi
 		$location.path('/home');
 	}
 
-	$scope.getFavoriteArtists = function(){
+	$scope.getFavoriteArtists = function() {
 		$scope.artists = [];
 		firebaseService.getFavoriteArtists(userService.getUserId()).then(function (data){
 			angular.forEach(data, function(value, key){
 				echoNestService.getBasicArtist.get({id : key}, function(data2){
-					//console.log(data2);
 					var array = {};
-					array["id"] = data2.response.artist.id;
-					array["name"] = data2.response.artist.name;
-					$scope.artists.push(array);
+					array['id'] = data2.response.artist.id;
+					array['name'] = data2.response.artist.name;
+
+					lastFmService.getArtist.get({artist : array['name']}, function(data) {
+						array['image'] = data['artist']['image'][2]['#text'];
+						$scope.artists.push(array);
+					});
 				});
-				//$scope.favArtistIds.push(key);
-				//console.log($scope.favArtistIds);
 			});
-			lastFmService.updateArtists($scope.artists);
+		});
+	}
+
+	$scope.getFavoriteSongs = function() {
+		$scope.songIds = [];
+		firebaseService.getFavoriteSongs(userService.getUserId()).then(function (data){
+			angular.forEach(data, function(value, key){
+				angular.forEach(value, function(value, key){
+					$scope.songIds.push(key);
+				})
+			});
+			echoNestService.getWork.get({id : $scope.songIds}, function (data){
+				$scope.songs = data.response.songs;
+			});
 		});
 	}
 
     $scope.$on('$viewContentLoaded', function() {
-        console.log("In viewContentLoaded");
         if(userService.getUserId() == null){
             $location.path('/login');
         }
         $scope.userName = userService.getUserName();
         $scope.getFavoriteArtists();
+        $scope.getFavoriteSongs();
     });
 });
