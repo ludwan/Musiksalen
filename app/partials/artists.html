@@ -30,6 +30,10 @@
 <hr>
 
 <div class="mainbody">
+    <div class="alert" ng-show="error">
+        <span class="closebtn" ng-click="error=false">&times;</span>
+        {{errorMessage}}
+    </div>
     <div class="spinner" ng-hide="loading === 0">
         <img src="../images/graphics-music-965598.gif"/> <!-- Ludwig: Image Subject to change-->
     </div>
@@ -40,7 +44,7 @@
                    <a ng-href="#/artists/{{art.id}}"><img fallback class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
                </div>
                <div class="artist_name">
-                   <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.finalName}}</p></a>
+                   <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
                </div>
             </div>
         </div>

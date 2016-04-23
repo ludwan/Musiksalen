@@ -1,4 +1,4 @@
-musiksalenApp.controller('ArtistsCtrl', function($scope, $window, $cookieStore, $filter, echoNestService, lastFmService){
+musiksalenApp.controller('ArtistsCtrl', function($scope, $cookieStore, $filter, echoNestService, lastFmService){
     var resultsPerPage = 20; //Ludwig: Should this be 20 (5x4) or 16 (4x4)?
 
     $scope.typeOptionsPeriod = [
@@ -108,9 +108,6 @@ musiksalenApp.controller('ArtistsCtrl', function($scope, $window, $cookieStore, 
     $scope.country = $scope.typeOptionsCountry[NumOfCountry].name;
     $scope.sort = $scope.typeOptionsSorting[NumOfSort].value;
     
-
-
-    
     $scope.handleData = function(data){
         $scope.loading++;
         $scope.artists = data;
@@ -131,17 +128,20 @@ musiksalenApp.controller('ArtistsCtrl', function($scope, $window, $cookieStore, 
     }
     
     $scope.searchArtists = function(){
-            $scope.loading++;
-            var selectedCountry;
-            if($scope.country != "All countries"){
-                selectedCountry = $scope.country;
-            }
-            echoNestService.ArtistSearch.get({name : $scope.query, fuzzy_match : true, genre: $scope.genre}, function(data){
-                $scope.array = data;
-                var filteredData = $filter('filter')(data.response.artists, selectedCountry);
-                $scope.handleData(filteredData);
-                $scope.loading--;
-            });     
+        $scope.loading++;
+        var selectedCountry;
+        if($scope.country != "All countries"){
+            selectedCountry = $scope.country;
+        }
+        echoNestService.ArtistSearch.get({name : $scope.query, fuzzy_match : true, genre: $scope.genre}, function(data){
+            $scope.array = data;
+            var filteredData = $filter('filter')(data.response.artists, selectedCountry);
+            $scope.handleData(filteredData);
+            $scope.loading--;
+        }, function(error){
+            $scope.error = true;
+            $scope.errorMessage = "There was an error while searching for artists";
+        });     
     }
 
     $scope.filteredArtists = function(){
@@ -156,9 +156,11 @@ musiksalenApp.controller('ArtistsCtrl', function($scope, $window, $cookieStore, 
         echoNestService.ArtistSearch.get({genre : $scope.genre, artist_location : selectedCountry, start : $scope.pager, sort : $scope.sort, fuzzy_match : true},function(data){
             $scope.handleData(data.response.artists);
             $scope.loading--;
+        }, function(error){
+            $scope.error = true;
+            $scope.errorMessage = "There was an error while filtering artists";
         });
-    }
-    
+    }   
     
     //Pagination methods
     $scope.nextPage = function(){
@@ -190,8 +192,6 @@ musiksalenApp.controller('ArtistsCtrl', function($scope, $window, $cookieStore, 
         $cookieStore.put('NumOfSort', $scope.findIndex($scope.typeOptionsSorting, "value", $scope.sort));
     }
 
-
-    $scope.filteredArtists();
-    
+    $scope.filteredArtists();   
     
 });

@@ -35,8 +35,7 @@ musiksalenApp.service('firebaseService', ['$http', '$q', function (userService, 
         favoriteRef.on("value", function (snapshot) {
             deferred.resolve(snapshot.val());
         }, function (errorObject) {
-            //TODO some proper error handling with windows etc
-            console.log("The read failed: " + errorObject.code);
+            deferred.reject(errorObject);
         });
         return deferred.promise;
     }
@@ -48,8 +47,7 @@ musiksalenApp.service('firebaseService', ['$http', '$q', function (userService, 
         favArtistsRef.on("value", function (snapshot) {
             deferred.resolve(snapshot.val());
         }, function (errorObject) {
-            //TODO PROPER ERROR HANDLING
-            console.log("The read failed: " + errorObject.code);
+            deferred.reject(errorObject);
         });
         return deferred.promise;
     }
@@ -83,8 +81,7 @@ musiksalenApp.service('firebaseService', ['$http', '$q', function (userService, 
         favoriteSongRef.on("value", function (snapshot) {
             deferred.resolve(snapshot.val());
         }, function (errorObject) {
-            //TODO some proper error handling with windows etc
-            console.log("The read failed: " + errorObject.code);
+            deferred.reject(errorObject);
         });
         return deferred.promise;
     }
@@ -96,8 +93,7 @@ musiksalenApp.service('firebaseService', ['$http', '$q', function (userService, 
         favSongsRef.on("value", function (snapshot) {
             deferred.resolve(snapshot.val());
         }, function (errorObject) {
-            //TODO PROPER ERROR HANDLING
-            console.log("The read failed: " + errorObject.code);
+            deferred.reject(errorObject);
         });
         return deferred.promise;
     }

@@ -22,6 +22,9 @@ musiksalenApp.controller('MyAccountCtrl', function ($scope, $location, userServi
 					});
 				});
 			});
+		}, function (error){
+			$scope.error = true;
+			$scope.errorMessage = "There was an error loading user data";
 		});
 	}
 
@@ -35,7 +38,13 @@ musiksalenApp.controller('MyAccountCtrl', function ($scope, $location, userServi
 			});
 			echoNestService.getWork.get({id : $scope.songIds}, function (data){
 				$scope.songs = data.response.songs;
+			}, function (error){
+				$scope.error = true;
+				$scope.errorMessage = "There was an error loading user data";
 			});
+		}, function (error){
+			$scope.error = true;
+			$scope.errorMessage = "There was an error loading user data";
 		});
 	}
 

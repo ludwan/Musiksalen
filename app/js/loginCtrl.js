@@ -16,19 +16,19 @@ musiksalenApp.controller('LoginCtrl', function($scope, userService, $location){
 			    switch (error.code) {
 				    case "INVALID_EMAIL":
 				    	$scope.loginError = true;
-				    	$scope.errorMessage = "The specified user account email is invalid."
+				    	$scope.errorMessage = "The specified user account email is invalid.";
 				        break;
 				    case "INVALID_PASSWORD":
 				    	$scope.loginError = true;
-				    	$scope.errorMessage = "The specified user account password is incorrect."
+				    	$scope.errorMessage = "The specified user account password is incorrect.";
 				        break;
 				    case "INVALID_USER":
 				    	$scope.loginError = true;
-				    	$scope.errorMessage = "The specified user account does not exist."
+				    	$scope.errorMessage = "The specified user account does not exist.";
 				        break;
 				    default:
 				    	$scope.loginError = true;
-				    	$scope.errorMessage = "Error logging user in:" + error
+				    	$scope.errorMessage = "Error logging user in:" + error;
 			    }
 			    $scope.$apply();
 			} else {

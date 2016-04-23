@@ -1,3 +1,4 @@
+//Stores the logged in user's user-id and username for the controllers to access
 musiksalenApp.service('userService', function() {
     this.userId = null;
     this.userName = null;

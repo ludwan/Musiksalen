@@ -23,8 +23,10 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
         }
         $scope.loading--;
     }, function (error) {
-            $scope.loading--;
+            console.log(error);
             $scope.favoriteError = true;
+            console.log($scope.favoriteError);
+            console.log($scope.loading);
             $scope.errorMessage = "There was an error loading artist info";
     });
    
@@ -34,7 +36,6 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
             $scope.works = data.response.songs;
             $scope.loading--;
         }, function (error) {
-            $scope.loading--;
             $scope.favoriteError = true;
             $scope.errorMessage = "There was an error loading artist info";
         });
@@ -50,7 +51,6 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
             $scope.loading--;
   
         }, function (error) {
-            $scope.loading--;
             $scope.favoriteError = true;
             $scope.errorMessage = "There was an error loading artist info";
         });       
@@ -64,7 +64,6 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
                 $scope.favorited = false; 
             }
         }, function (error){
-            $scope.loading--;
             $scope.favoriteError = true;
             $scope.errorMessage = "There was an error loading user data";
         });
@@ -78,7 +77,6 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
                 });
             }
         }, function (error){
-            $scope.loading--;
             $scope.favoriteError = true;
             $scope.errorMessage = "There was an error loading user data";
         });
@@ -131,7 +129,6 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
             youtubeService.createPlayer($scope.player, channel[0].id.videoId);
             $scope.loading--;
         }, function (error) {
-            $scope.loading--;
             $scope.favoriteError = true;
             $scope.errorMessage = "There was an error loading Youtube data";
         });

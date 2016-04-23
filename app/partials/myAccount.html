@@ -1,6 +1,10 @@
 <div id="myAccount">
 	<h2>Signed in as: {{userName}}</h2>
   <button ng-click="logout()">Logout</button>
+  <div class="alert" ng-show="error">
+    <span class="closebtn" ng-click="error=false">&times;</span>
+    {{errorMessage}}
+  </div>
 	<h2>Favorite Artists</h2>
 	<div class="row">
     <div ng-repeat="art in artists" class="artist_card col-md-3">
