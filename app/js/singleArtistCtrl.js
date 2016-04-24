@@ -5,6 +5,7 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
     $scope.ArtistId = $routeParams.artistId;
     $scope.bio = "Not available";
     $scope.activeYears = "Not available";
+    $scope.artistlocation = "Not available";
     $scope.loading = 1;
     var uid = userService.getUserId();
     
@@ -16,8 +17,10 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
         var artist = data.response.artist;        
         var keyWord = artist.name + " documentary";
 
+        if(artist.artist_location.country != undefined){
+            $scope.artistlocation = artist.artist_location.country;
+        }
         
-        $scope.artistlocation = artist.artist_location.country;
         $scope.genres = artist.genres;
 
         $scope.getArtistInfo(artist.name);      
