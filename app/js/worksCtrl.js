@@ -56,7 +56,6 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
     //This function changes the currently playing video to a new one.
     //It also hides the new video among 'Additional videos' and displays the old one
     $scope.changeVideo = function (videoId){
-        console.log($scope.player.getVideoData());
     	var currId = $scope.player.getVideoData()['video_id'];
 
         $scope.getFullDescription(videoId);

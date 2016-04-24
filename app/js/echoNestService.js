@@ -1,7 +1,7 @@
-musiksalenApp.service('echoNestService', function ($resource){
+musiksalenApp.service('echoNestService', function ($http,$resource){
     
     var apiKey = '4IGS4L1R7UE1N2UKS';
-
+    $http.defaults.useXDomain = true;
     //Searches for artists
     this.ArtistSearch = $resource('https://developer.echonest.com/api/v4/artist/search?bucket=artist_location', {
         format : 'json',
