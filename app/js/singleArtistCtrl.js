@@ -113,9 +113,7 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
     //in. If a user is not logged in an error message will be displayed instead
     $scope.addFavorite = function() {
         if(uid === null){
-            console.log("error = true");
             $scope.error = true;
-            console.log($scope.error);
             $scope.errorMessage = "You have to login in order to favorite an artist";
 
         } else {
