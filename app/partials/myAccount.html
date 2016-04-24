@@ -11,6 +11,7 @@
                 {{errorMessage}}
             </div>
             <h3>Favorite Artists</h3>
+            <p ng-hide="likeArtists">You don't have favorite artists now.</p>
             <div class="row">
                 <div ng-repeat="art in artists" class="artist_card col-md-3">
                     <div class="image">
@@ -27,7 +28,8 @@
             <h3>Favorite Songs</h3>
             <div class="row">
                 <div id="fav-song-list" class="col-md-12">
-                    <table>  
+                    <p ng-hide="likeSongs">You don't have favorite songs now.</p>
+                    <table ng-show="likeSongs">  
                         <tr>
                             <th class="song-col"><a ng-click="sortType = 'title'; sortReverse = !sortReverse">
                                 Song

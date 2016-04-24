@@ -12,7 +12,7 @@ window.addEventListener('scroll', function(e){
     }
 });
 
-musiksalenApp.controller('HeaderCtrl', function($scope, userService){	
+musiksalenApp.controller('HeaderCtrl', function($scope, $location, userService){	
 
 	//This function is for seeing if a user is currently logged in or not
 	//depending on the answer certain buttons are displayed on the header
@@ -31,4 +31,8 @@ musiksalenApp.controller('HeaderCtrl', function($scope, userService){
 	    userService.setUserName(authData.password.email);
 	  }
 	});
+    
+    $scope.getClass = function (path) {
+        return ($location.path().substr(0, path.length) === path) ? 'active' : '';
+    };
 });

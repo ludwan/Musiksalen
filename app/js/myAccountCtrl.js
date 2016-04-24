@@ -30,13 +30,22 @@ musiksalenApp.controller('MyAccountCtrl', function ($scope, $location, userServi
 					lastFmService.getArtist.get({artist : array['name']}, function(data) {
 						array['image'] = data['artist']['image'][2]['#text'];
 						$scope.artists.push(array);
+                        if($scope.artists.length === 0){
+                            $scope.likeArtists = false;
+                        } else{
+                            $scope.likeArtists = true;
+                        }; 
 					});
 				});
 			});
+            
+            
 		}, function (error){
 			$scope.error = true;
 			$scope.errorMessage = "There was an error loading user data";
 		});
+        
+        
 	}
 
 	//This function retrieves the favorite songs of a particular user by retrieving the users
@@ -61,12 +70,18 @@ musiksalenApp.controller('MyAccountCtrl', function ($scope, $location, userServi
 				}, function (error){
 					$scope.error = true;
 					$scope.errorMessage = "There was an error loading user data";
+                    if($scope.songIds === 0){
+                        $scope.likeSongs = false;
+                    }else{
+                        $scope.likeSongs = true;        
+                    };
 				});
 			};
 		}, function (error){
 			$scope.error = true;
 			$scope.errorMessage = "There was an error loading user data";
 		});
+        
 	}
 
 	//When the page is loaded the controller will check if an user is actually logged in

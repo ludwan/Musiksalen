@@ -185,6 +185,11 @@ header a:hover {
     background-color: rgba(250, 250, 250, 0.05);
 }
 
+header .active {
+    color: #5C4099; !important
+    text-decoration: none;
+}
+
 
 #menu ul {
     list-style-type: none;
@@ -653,3 +658,10 @@ section p {
 
 
 
+<<<<<<< Updated upstream
+=======
+footer p {
+    line-height: 50px;
+    color: rgba(242, 239, 234, 0.5);
+}
+>>>>>>> Stashed changes
