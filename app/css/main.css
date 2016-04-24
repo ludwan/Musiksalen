@@ -249,12 +249,6 @@ footer p {
     margin-bottom: 50px;
 }
 
-#search {
-    position: relative;
-    padding-top: 175px;
-    margin-bottom: 50px;
-}
-
 #myAccount {
     position: relative;
     padding-top: 175px;
@@ -274,6 +268,15 @@ footer p {
 }
 
 /*   Artists   */
+
+#filters select {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+#search {
+    float: right;
+}
 
 .row h2 {
     font-size: 22pt;

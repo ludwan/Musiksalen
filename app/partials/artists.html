@@ -10,21 +10,26 @@
             <br>
         </div>
         <div class="row" id="filters">
+            <div class="col-md-5">
+                <p style="display:inline-flex">Filter by:</p>
+                <select class="selectArtists" id="periodSelect" ng-model="genre" required ng-options='option.value as option.name for option in typeOptionsPeriod' ng-change="firstPage()">
+                </select>
+
+                <select id="countrySelect" ng-model="country" required ng-options='option.name as option.name for option in typeOptionsCountry' ng-change="firstPage()">
+                </select>
+            </div>
+
             <div class="col-md-4">
-            <p style="display:inline-flex">Filter by:</p>
-            <select class="selectArtists" id="periodSelect" ng-model="genre" required ng-options='option.value as option.name for option in typeOptionsPeriod' ng-change="firstPage()">
-            </select> </div>
-
-            <div class="col-md-2">
+                <p style="display:inline-flex">Order by:</p>
+                <select id="sortSelect" ng-model="sort" required ng-options='option.value as option.name for option in typeOptionsSorting' ng-change="firstPage()">
+                </select>
+            </div>
             
-            <select id="countrySelect" ng-model="country" required ng-options='option.name as option.name for option in typeOptionsCountry' ng-change="firstPage()">
-            </select></div>
-
-            <div class="col-md-3">
-            <p style="display:inline-flex">Order by:</p>
-            <select id="sortSelect" ng-model="sort" required ng-options='option.value as option.name for option in typeOptionsSorting' ng-change="firstPage()">
-            </select></div>
-            <div id="SearchBar" class="col-md-3"><input id="searchfield" ng-model="query" my-enter="searchArtists()" type="text"/>&nbsp;<a href="" ng-click="searchArtists()"><i class="fa fa-search"></i></a></div>
+            <div id="SearchBar" class="col-md-3">
+               <div id="search">
+                   <input id="searchfield" ng-model="query" my-enter="searchArtists()" type="text"/>&nbsp;<a href="" ng-click="searchArtists()"><i class="fa fa-search"></i></a>
+               </div>
+            </div>
         </div>
     </div>
 </div>
