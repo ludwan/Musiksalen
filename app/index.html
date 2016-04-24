@@ -108,7 +108,7 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
                     <li class="menu" ng-hide="loggedIn()"><a ng-class="getClass('/login')" href="#/login">Login</a></li>
                     <li class="menu" ng-show="loggedIn()"><a ng-class="getClass('/myAccount')" href="#/myAccount">My account</a></li>
                     <li class="foldIcon">
-                        <a href="javascript:void(0);" onclick="myFunction()">&#9776;</a>
+                        <a href="javascript:void(0);" ng-click="myFunction()">&#9776;</a>
                     </li>
 
                     </ul>
@@ -123,12 +123,6 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
         <p>Design by: Xu Han, Sofie Nyström, Ludwig Sidenmark and Tingye Zhong</p>  
     </footer>
     </div>
-     
-    <script>
-    function myFunction() {
-        document.getElementsByClassName("topnav")[0].classList.toggle("responsive");
-    }
-    </script>
     
 </body>
 </html>

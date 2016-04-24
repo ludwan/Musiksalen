@@ -35,4 +35,8 @@ musiksalenApp.controller('HeaderCtrl', function($scope, $location, userService){
     $scope.getClass = function (path) {
         return ($location.path().substr(0, path.length) === path) ? 'active' : '';
     };
+    
+    $scope.myFunction = function() {
+        document.getElementsByClassName("topnav")[0].classList.toggle("responsive");
+    }
 });
