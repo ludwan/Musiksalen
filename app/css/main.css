@@ -144,6 +144,7 @@ header.smaller h1{
     font-size: 36px;
 }
 
+
 #menu {
     display: inline-block;
     float: right;
@@ -167,6 +168,11 @@ header a {
 
 header a:visited, header a:active, header a:-webkit-any-link {
     color: rgba(242, 239, 234, 0.5);
+}
+
+header a .active {
+    color: #5C4099; 
+    text-decoration: none;
 }
 
 header.smaller a {
@@ -213,6 +219,12 @@ footer p {
 }
 
 /* Partials position except home */
+
+.whole {
+    min-height: 100%;
+    position: relative;
+}
+
 
 #works {
     position: relative;
@@ -640,7 +652,4 @@ section p {
 }
 
 
-.whole {
-    min-height: 100%;
-    position: relative;
-}
+

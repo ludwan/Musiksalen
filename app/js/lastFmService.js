@@ -2,6 +2,8 @@ musiksalenApp.service('lastFmService', function ($resource, $q, $http){
     
     var apiKey = '0951e663aa56faa1ff6d770f2ebb6d30'; 
     
+    //This is used to get information about an artist more specifically images and
+    //bio. These are not available in the ECHO NEST API
     this.getArtist = $resource('https://ws.audioscrobbler.com/2.0/?',{
         method : 'artist.getinfo',
         format : 'json', 
@@ -9,24 +11,10 @@ musiksalenApp.service('lastFmService', function ($resource, $q, $http){
         autocorrect : 1
     });
 
-    this.getWorks = $resource('https://ws.audioscrobbler.com/2.0/?',{
-        method : 'artist.gettoptracks',
-        format : 'json',
-        api_key : apiKey,
-        autocorrect : 1
-    });
-    this.getWorkInfo = $resource('https://ws.audioscrobbler.com/2.0/?',{
-        method : 'track.getinfo',
-        format : 'json',
-        api_key : apiKey
-    });
-
-    this.searchArtist = $resource('https://ws.audioscrobbler.com/2.0/?',{
-        method : 'artist.search',
-        format : 'json',
-        api_key : apiKey
-    });
-
+    //This function is used when multiple artists need images at the same time
+    //For example when listing artists of a particular genre. Since the LAST-FM
+    //API only allows to search for one artist at a time there is a need for 
+    // a loop to iterate and retrieve inforation about every artist
     this.updateArtists = function(list){
         var getArtistVar = this.getArtist;
         angular.forEach(list, function(value, key){
@@ -37,11 +25,9 @@ musiksalenApp.service('lastFmService', function ($resource, $q, $http){
 
                     if(imgSrc !== undefined){
                         value.image = imgSrc;
-                    }
-                    
-                    value.mbid = data.artist.mbid;
+                    }                   
                 }, function (error) {
-                    console.log("there was an error: " + error);
+                    console.log("Could not retrieve information: " + error);
                 });
             }
             

@@ -39,7 +39,6 @@ musiksalenApp.controller('LoginCtrl', function($scope, userService, $location){
 			} else {
 				$scope.loading = 0;
 				userService.setUserId(authData.uid);
-			    console.log("Authenticated successfully with payload:", authData);
 			    $location.path('/myAccount');
 			    $scope.$apply();
 			}

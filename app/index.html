@@ -35,8 +35,7 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-filter/dist/angular-filter.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
-    
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>   
     <script src="bower_components/angular-read-more/dist/readmore.min.js"></script>
       
       <!-- Firebase -->
@@ -54,10 +53,10 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
     <script src="js/worksCtrl.js"></script>
     <script src="js/artistsCtrl.js"></script>
     <script src="js/singleArtistCtrl.js"></script>
-    <script src="js/searchCtrl.js"></script>
     <script src="js/loginCtrl.js"></script>
     <script src="js/registerCtrl.js"></script>
     <script src="js/myAccountCtrl.js"></script>
+    <script src="js/indexController.js"></script>
 
     <script src="js/youtubeService.js"></script>
     <script src="js/echoNestService.js"></script>
@@ -80,7 +79,8 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
 <!--      For tour on front page-->
 	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
 	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
-	<script src="js/modernizr.js"></script> <!-- Modernizr -->
+	
+    <script src="js/modernizr.js"></script> <!-- Modernizr -->
      
     <link rel="stylesheet" href="css/main.css">
     
@@ -89,7 +89,7 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
     
 </head>
 
-<body ng-controller="SearchCtrl" >
+<body ng-controller='IndexController'>
 
     <!-- Here in index.html you should put only the layout that is shared among all the screens (e.g. header
     ,footer, etc.). The rest of the view specific layout will go into the html partials (check partials folder) -->
@@ -103,13 +103,13 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
         <div class="container">
             <div class="col-md-12">
 <!--                <img id="logo" src="images/note.png">-->
-                <a id="logo" href="#/home"><h1>Musiksalen</h1></a>
+                <a id="logo" href="#/home" ng-click="removeCookie()" ng-controller="ArtistsCtrl"><h1>Musiksalen</h1></a>
                 <div id="menu">
                     <ul>
-                    <li class="menu"><a href="#/home">Home</a></li>
-                    <li class="menu"><a href="#/artists">Artists</a></li>
-                    <li class="menu" ng-hide="loggedIn()"><a href="#/login">Login</a></li>
-                    <li class="menu" ng-show="loggedIn()"><a href="#/myAccount">My account</a></li>
+                    <li class="menu"><a ng-class="getClass('/home')" href="#/home" ng-click="removeCookie()" ng-controller="ArtistsCtrl">Home</a></li>
+                    <li class="menu"><a ng-class="getClass('/artists')" href="#/artists">Artists</a></li>
+                    <li class="menu" ng-hide="loggedIn()"><a ng-class="getClass('/login')" href="#/login">Login</a></li>
+                    <li class="menu" ng-show="loggedIn()"><a ng-class="getClass('/myAccount')" href="#/myAccount">My account</a></li>
 <!--                    <li id="SearchBar"><a href="#/search"><div><i class="fa fa-search"></i>&nbsp;<input id="searchfield" ng-model="query" ng-keypress="searchArtists(query,$event)" type="text"/></div></a></li>-->
                     <!--  Press 'enter' then go to the search page -->
 

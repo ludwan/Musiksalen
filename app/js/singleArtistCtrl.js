@@ -29,10 +29,7 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
         }
         $scope.loading--;
     }, function (error) {
-            console.log(error);
             $scope.error = true;
-            console.log($scope.error);
-            console.log($scope.loading);
             $scope.errorMessage = "There was an error loading artist info";
     });
    
@@ -62,9 +59,7 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
             $scope.artistName = data.artist.name;
             $scope.bio = $scope.singleArtist.bio.content;
             $scope.singleArtist.image = data['artist']['image'][4]['#text'];
-            console.log($scope.singleArtist);
-            $scope.loading--;
-  
+            $scope.loading--; 
         }, function (error) {
             $scope.error = true;
             $scope.errorMessage = "There was an error loading artist info";

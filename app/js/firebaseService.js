@@ -3,30 +3,24 @@ musiksalenApp.service('firebaseService', ['$http', '$q', function (userService, 
 	var artistRef = new Firebase("https://sweltering-inferno-7067.firebaseio.com/favoriteArtists");
     var songRef = new Firebase("https://sweltering-inferno-7067.firebaseio.com/favoriteSongs");
 
-    var onComplete = function(error) {
-        //TODO some proper error handling with windows etc instead
-        if (error) {
-            console.log('Synchronization failed');
-        } else {
-            console.log('Synchronization succeeded');
-        }
-    };
-
+    //Removes a favorite artist to the back-end
     this.addFavoriteArtist = function(userId, artistId) {
     	var array = {};
         var userRef = artistRef.child(userId);
 
         array[artistId] = true;
-        userRef.update(array, onComplete);
+        userRef.update(array);
     }
 
+    //Adds a favorite artist to the back-end
     this.removeFavoriteArtist = function(userId, artistId) {
     	var string = userId + "/" + artistId;
         var favoriteRef = artistRef.child(string);
 
-        favoriteRef.remove(onComplete);
+        favoriteRef.remove();
     }
 
+    //returns a specific artist from a specific user
     this.checkFavoriteArtist = function(userId, artistId){
         var deferred = $q.defer();
         var string = userId + "/" + artistId;
@@ -40,6 +34,7 @@ musiksalenApp.service('firebaseService', ['$http', '$q', function (userService, 
         return deferred.promise;
     }
 
+    //Returns all artists from a specific user
     this.getFavoriteArtists = function(userId){
         var deferred = $q.defer();
         var favArtistsRef = artistRef.child(userId);
@@ -52,6 +47,7 @@ musiksalenApp.service('firebaseService', ['$http', '$q', function (userService, 
         return deferred.promise;
     }
 
+    //Adds a favorite song to the back-end
     this.addFavoriteSong = function(userId, artistId, workId) {
     	var array = {};
         var string = userId + "/" + artistId;
@@ -61,6 +57,7 @@ musiksalenApp.service('firebaseService', ['$http', '$q', function (userService, 
         favoriteSongRef.update(array, onComplete);
     }
 
+    //Removes a favorite song to the back-end
     this.removeFavoriteSong = function(userId, artistId, workId) {
     	var string = userId + "/" + artistId + "/" + workId;
     	var favoriteSongRef = songRef.child(string);
@@ -69,6 +66,7 @@ musiksalenApp.service('firebaseService', ['$http', '$q', function (userService, 
     }
 
 
+    //Returns a specific work from a specific user
     this.checkFavoriteSong = function(userId, artistId, workId) {
         var deferred = $q.defer();
         if(workId == undefined){
@@ -86,6 +84,7 @@ musiksalenApp.service('firebaseService', ['$http', '$q', function (userService, 
         return deferred.promise;
     }
 
+    //Returns all songs related to a specific user
     this.getFavoriteSongs = function(userId) {
         var deferred = $q.defer();
         var favSongsRef = songRef.child(userId);

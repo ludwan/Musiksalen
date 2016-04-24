@@ -1,3 +1,4 @@
+//If enter is pressed and a function is binded to myEnter then that function will be called
 musiksalenApp.directive('myEnter', function () {
     return function (scope, element, attrs) {
         element.bind("keydown keypress", function (event) {

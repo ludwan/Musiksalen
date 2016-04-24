@@ -1,5 +1,5 @@
 musiksalenApp.controller('ArtistsCtrl', function($scope, $cookieStore, $filter, echoNestService, lastFmService){
-    var resultsPerPage = 20; //Ludwig: Should this be 20 (5x4) or 16 (4x4)?
+    var resultsPerPage = 20;
 
     $scope.typeOptionsPeriod = [
         { name: 'All periods', value: ['classical', 'early music', 'renaissance', 'baroque', 'classical period', 'romantic', 'modern classical', 'classical performance'] }, 
@@ -79,7 +79,6 @@ musiksalenApp.controller('ArtistsCtrl', function($scope, $cookieStore, $filter, 
     var NumOfCountry = $cookieStore.get('NumOfCountry');
     var NumOfPeriod = $cookieStore.get('NumOfPeriod');
     var NumOfSort = $cookieStore.get('NumOfSort');
-//    var Query = $cookieStore.get('Query');
 
     if($scope.pager === undefined){
       $scope.pager = 0;
@@ -98,16 +97,16 @@ musiksalenApp.controller('ArtistsCtrl', function($scope, $cookieStore, $filter, 
         $scope.onFirstPage = true;
     } else {
         $scope.onFirstPage = false;
-    }
-//    if(Query === undefined){
-//        Query = null;
-//    }
-//    
+    }   
     
     $scope.genre = $scope.typeOptionsPeriod[NumOfPeriod].value;
     $scope.country = $scope.typeOptionsCountry[NumOfCountry].name;
     $scope.sort = $scope.typeOptionsSorting[NumOfSort].value;
     
+    //This function handles the data recieved from the 'searchArtists' and 'filteredArtists' and calls
+    //the 'updateArtists' function from the lastFmService to add pictures to the artists. The function also
+    //checks if the query is on the last page by checking if the results are less than the given maxResults.
+    //This is needed since ECHO NEST does not state how many results there are in TOTAL that match a given query
     $scope.handleData = function(data){
         $scope.loading++;
         $scope.artists = data;
@@ -118,6 +117,8 @@ musiksalenApp.controller('ArtistsCtrl', function($scope, $cookieStore, $filter, 
         $scope.loading--;
     } 
     
+    //This function is used to find the index in the options array that matches the current selected filter.
+    //This index is what is being saved in the cookie.
     $scope.findIndex = function(array, key, value) {
         for (var i = 0; i < array.length; i++) {
             if (array[i][key] === value) {
@@ -127,6 +128,11 @@ musiksalenApp.controller('ArtistsCtrl', function($scope, $cookieStore, $filter, 
         return null;
     }
     
+    //This function is used to make a ner search for artists that match the search query as well as the current selected genre
+    //The resuts will then be filtered to match the current country selected to match the setting that the user had entered. This
+    //is done with the help of the echoNestService's 'ArtistSearch' resource. The search does not take into account artist location
+    //until after the query since ECHO NEST does not allow searching for names and locations in the same location. Since the risk of
+    //having more than 20 matches (maxResults per page) from ArtistSearch when searching for artist names is minimal this is deemed as sufficient 
     $scope.searchArtists = function(){
         $scope.loading++;
         var selectedCountry;
@@ -144,6 +150,15 @@ musiksalenApp.controller('ArtistsCtrl', function($scope, $cookieStore, $filter, 
         });     
     }
 
+    //This method is used to make a new search for artists that match the current filtering which is done
+    //via echoNestService's 'ArtistSearch' resource. The resource will take into account the selected
+    //genre, artist location and the start of the current page. The info retrieved will then be sent to the
+    //function handleData to retrieve additional information about artists. The filtering does NOT take into
+    //account the current search info. This is because the ECHO NEST API does allow artist location and artist
+    //names to be used in the same query. Therefore to illustrate this to the user in an intuitive manner, when a 
+    //filter is changed the search box will be emptied. This is different than to the "searchArtists" method due 
+    //to the fact that multiple countries has more results than 20. Leaving a massive amount of edge cases and 
+    //general complexity if the results would be filtered by the search query afterwards
     $scope.filteredArtists = function(){
         $scope.query = "";
         $scope.loading++;
@@ -163,12 +178,14 @@ musiksalenApp.controller('ArtistsCtrl', function($scope, $cookieStore, $filter, 
     }   
     
     //Pagination methods
+    //This method is used to move forward a page with the current filtering
     $scope.nextPage = function(){
         $scope.pager += resultsPerPage;
         $scope.onFirstPage = false;
         $scope.filteredArtists();
     }
 
+    //This method is used to move back a page with the current filtering
     $scope.previousPage = function(){
         $scope.pager -= resultsPerPage;
         if($scope.pager == 0){
@@ -178,6 +195,7 @@ musiksalenApp.controller('ArtistsCtrl', function($scope, $cookieStore, $filter, 
         $scope.filteredArtists();
     }
 
+    //This function is used to move to the first page with the current filtering
     $scope.firstPage = function(){
         $scope.pager = 0;
         $scope.onFirstPage = true;
@@ -185,11 +203,20 @@ musiksalenApp.controller('ArtistsCtrl', function($scope, $cookieStore, $filter, 
         $scope.filteredArtists();
     }
 
+    //This function is used to store the latest filtering in a cookie
     $scope.storeCookie = function(){
         $cookieStore.put('pager',$scope.pager);
         $cookieStore.put('NumOfCountry',  $scope.findIndex($scope.typeOptionsCountry, "name", $scope.country));
         $cookieStore.put('NumOfPeriod', $scope.findIndex($scope.typeOptionsPeriod, "value", $scope.genre));
         $cookieStore.put('NumOfSort', $scope.findIndex($scope.typeOptionsSorting, "value", $scope.sort));
+    }
+    
+    $scope.removeCookie = function(){
+        console.log('remove cookie');
+        $cookieStore.remove('pager');
+        $cookieStore.remove('NumOfCountry');
+        $cookieStore.remove('NumOfPeriod');
+        $cookieStore.remove('NumOfSort');
     }
 
     $scope.filteredArtists();   
