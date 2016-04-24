@@ -1,10 +1,3 @@
-'use strict';
-var tag = document.createElement('script');
-var firstScriptTag = document.getElementsByTagName('script')[0];
-
-tag.src = "https://www.youtube.com/iframe_api";
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
 musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, youtubeService, echoNestService, lastFmService, userService, firebaseService){
 
     $scope.loading = 0;
@@ -57,6 +50,8 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
         });
     };
 
+    //This function changes the currently playing video to a new one.
+    //It also hides the new video among 'Additional videos' and displays the old one
     $scope.changeVideo = function (videoId){
     	var currId = $scope.player.getVideoData()['video_id'];
 
@@ -66,6 +61,8 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
     	$scope.player.cueVideoById(videoId, 0, 'large');      
     }
 
+    //This function is used to check wether that specific video should be hidden
+    //or not among the 'Additional videos'.
     $scope.isTrue = function (videoId) {
     	if($scope[videoId] == undefined || $scope[videoId] == false) {
     		return false;
@@ -74,6 +71,8 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
     	}
     }
 
+    //This function is used to get the full description of the currently selected
+    //video. This is done with the help of youtubeService's 'getFullDescription' function
     $scope.getFullDescription = function (videoId) {
         $scope.loading++;
         youtubeService.getFullDescription(videoId).then(function (data) {
@@ -86,6 +85,9 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
         });
     }
 
+    //This function is used to check wether the current work is in the user's favorites. This is used
+    //with the help of the firebaseServices 'checkFavoriteSong' function. $scope.favorited is set 
+    //to true or false depending on the answer from "checkFavoriteSong"
     $scope.checkFavorite = function(){
         $scope.loading++;
         firebaseService.checkFavoriteSong(uid, $scope.artistId, workId).then(function (data) {
@@ -102,6 +104,9 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
         });
     }
 
+    //This function adds the current work to the user's favorites by using the 
+    //firebaseService's function "addFavoriteSong and sets the star to be filled
+    //in. If a user is not logged in an error message will be displayed instead
     $scope.addFavorite = function() {
         if(uid === null){
             $scope.error = true;
@@ -112,13 +117,16 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
         }
     }
 
+    //This function adds the current work to the user's favorites by using the
+    //firebaseService's function "removeFavoriteSong" and sets the star to be hollow
     $scope.removeFavorite = function() {
         firebaseService.removeFavoriteSong(uid, $scope.artistId, workId);
         $scope.favorited = false;
     }
 
+    //If gapi.client is not already loaded the function 'loadwork' will be called by function
+    //'initGapi' instead
     $scope.$on('$viewContentLoaded', function() {
-        console.log("In viewContentLoaded");
         if(gapi.client != undefined){
             $scope.loadWork();
         }
