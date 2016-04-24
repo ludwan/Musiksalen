@@ -17,10 +17,11 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
         var artist = data.response.artist;        
         var keyWord = artist.name + " documentary";
 
-        if(artist.artist_location != undefined){
+        if(artist.artist_location.country != undefined){
             $scope.artistlocation = artist.artist_location.country;
         }
         
+        $scope.artistlocation = artist.artist_location.country;
         $scope.genres = artist.genres;
 
         $scope.getArtistInfo(artist.name);      
@@ -108,9 +109,9 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
     $scope.addFavorite = function() {
         if(uid === null){
             $scope.error = true;
-            $location.hash('top');
-            $anchorScroll();
             $scope.errorMessage = "You have to login in order to favorite an artist";
+            $location.hash('singleArtist');
+            $anchorScroll();
         } else {
             firebaseService.addFavoriteArtist(uid, $scope.ArtistId);
             $scope.favorited = true;
@@ -130,7 +131,7 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
     $scope.addFavoriteSong = function(workId) {
         if(uid === null){
             $scope.error = true;
-            $location.hash('top');
+            $location.hash('singleArtist');
             $anchorScroll();
             $scope.errorMessage = "You have to login in order to favorite a work"
         } else {
