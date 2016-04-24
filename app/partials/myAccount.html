@@ -29,10 +29,18 @@
                 <div id="fav-song-list" class="col-md-12">
                     <table>  
                         <tr>
-                            <th class="song-col">Song</th>
-                            <th class="artist-col">Artist</th>
+                            <th class="song-col"><a ng-click="sortType = 'title'; sortReverse = !sortReverse">
+                                Song
+                                <span ng-show="sortType == 'title' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'title' && sortReverse" class="fa fa-caret-up"></span>
+                            </a></th>
+                            <th class="artist-col"><a ng-click="sortType = 'artist_name'; sortReverse = !sortReverse">
+                                Artist
+                                <span ng-show="sortType == 'artist_name' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'artist_name' && sortReverse" class="fa fa-caret-up"></span>
+                            </a></th>
                         </tr>
-                        <tr ng-repeat="song in songs">
+                        <tr ng-repeat="song in songs | orderBy:sortType:sortReverse">
                             <td class="song-col">
                                 <span class="star" ng-hide="{{song.id}}" ng-click="addFavoriteSong(song.id)">&#9734;&#32;</span>
                                 <span class="star" ng-show="{{song.id}}" ng-click="removeFavoriteSong(song.id)">&#9733;&#32;</span>

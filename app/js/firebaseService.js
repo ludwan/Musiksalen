@@ -54,7 +54,7 @@ musiksalenApp.service('firebaseService', ['$http', '$q', function (userService, 
         var favoriteSongRef = songRef.child(string);
 
         array[workId] = true;
-        favoriteSongRef.update(array, onComplete);
+        favoriteSongRef.update(array);
     }
 
     //Removes a favorite song to the back-end
@@ -62,7 +62,7 @@ musiksalenApp.service('firebaseService', ['$http', '$q', function (userService, 
     	var string = userId + "/" + artistId + "/" + workId;
     	var favoriteSongRef = songRef.child(string);
 
-    	favoriteSongRef.remove(onComplete);
+    	favoriteSongRef.remove();
     }
 
 

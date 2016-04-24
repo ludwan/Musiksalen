@@ -1,5 +1,8 @@
 musiksalenApp.controller('MyAccountCtrl', function ($scope, $location, userService, firebaseService, echoNestService, lastFmService){
 
+	$scope.sortType     = 'title'; // set the default sort type
+  	$scope.sortReverse  = false;
+
 	//This function logs the user out by unauthenticating him or her from the firebase backend
 	//and redirects the user to the home page
 	$scope.logout = function(){
