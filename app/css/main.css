@@ -520,6 +520,10 @@ i {
     height: 24px;
 }
 
+#fav-song-list th a {
+    color: #4D281D;
+}
+
 #fav-song-list th.song-col{
     padding-left: 26px;
 }
@@ -592,7 +596,7 @@ section p {
 
 .star {
     margin: 1px;
-    padding: 0px 2px;
+    padding: 2px;
     cursor: pointer;
     /*
     -webkit-transition: transform 0.3s ease-in-out;
@@ -603,11 +607,28 @@ section p {
 */
 }
 
-.image .star {
-    display: flex;
+.songs .star {
+    color: #a1693c;
+}
+
+.artist_card .star {
     float: right;
     z-index: 2;
-    color: aliceblue;
+    position: relative;
+    padding: 2px;
+    margin: 5px 3px;
+/*    color: #A1693C;*/
+    font-size: 36px;
+}
+
+.artist_card .fav {
+    color: rgba(242, 239, 234, 0.9);
+    -webkit-text-stroke: 1px rgba(161, 105, 60, 0.5);
+}
+
+.artist_card .unfav {
+    color: rgba(242, 239, 234, 0.1);
+    -webkit-text-stroke: 1px rgba(161, 105, 60, 0.5);
 }
 
 .star:click {
@@ -655,13 +676,3 @@ section p {
         padding: 2px 2px 2px 2px;
     }
 }
-
-
-
-<<<<<<< Updated upstream
-=======
-footer p {
-    line-height: 50px;
-    color: rgba(242, 239, 234, 0.5);
-}
->>>>>>> Stashed changes

@@ -14,20 +14,24 @@
             <p ng-hide="likeArtists">You don't have favorite artists now.</p>
             <div class="row">
                 <div ng-repeat="art in artists" class="artist_card col-md-3">
+
                     <div class="image">
                         <a ng-href="#/artists/{{art.id}}"><img fallback class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"></a>
-                        <span class="star" ng-hide="{{art.id}}" ng-click="addFavorite(art.id)">&#9734;&#32;</span>
-                        <span class="star" ng-show="{{art.id}}" ng-click="removeFavorite(art.id)">&#9733;&#32;</span>
+                        <span class="star fav" ng-hide="favorited" ng-click="removeFavorite()">&#9733;&#32;</span> 
+                        <span class="star unfav" ng-show="favorited" ng-click="addFavorite()">&#9733;&#32;</span> 
                     </div>
+                    
                     <div class="artist_name">
                         <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
                     </div>
+                    
+                    
                 </div>
             </div>
 
             <h3>Favorite Songs</h3>
             <div class="row">
-                <div id="fav-song-list" class="col-md-12">
+                <div id="fav-song-list" class="songs col-md-12">
                     <p ng-hide="likeSongs">You don't have favorite songs now.</p>
                     <table ng-show="likeSongs">  
                         <tr>

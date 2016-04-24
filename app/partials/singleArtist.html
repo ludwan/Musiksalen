@@ -60,7 +60,7 @@
                    <!--Songs-->
                    <div class="section">
                        <h4>Songs</h4>
-                       <div ng-repeat="song in works | unique: 'title'">
+                       <div class="songs" ng-repeat="song in works | unique: 'title'">
                            <p>
                                <span class="star" ng-hide="{{song.id}}" ng-click="addFavoriteSong(song.id)">&#9734;&#32;</span>
                                <span class="star" ng-show="{{song.id}}" ng-click="removeFavoriteSong(song.id)">&#9733;&#32;</span>
