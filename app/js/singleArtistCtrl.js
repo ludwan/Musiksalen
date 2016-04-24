@@ -1,4 +1,4 @@
-musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $filter, echoNestService, lastFmService, userService, youtubeService, firebaseService, $location, $anchorScroll){
+musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $filter, echoNestService, lastFmService, userService, youtubeService, firebaseService){
 
     
 
@@ -110,8 +110,6 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
         if(uid === null){
             $scope.error = true;
             $scope.errorMessage = "You have to login in order to favorite an artist";
-            $location.hash('singleArtist');
-            $anchorScroll();
         } else {
             firebaseService.addFavoriteArtist(uid, $scope.ArtistId);
             $scope.favorited = true;
@@ -132,10 +130,6 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
         if(uid === null){
             $scope.error = true;
             $scope.errorMessage = "You have to login in order to favorite a work";
-            var id = $location.hash();
-            $location.hash('top');
-            $anchorScroll();
-            $location.hash(id);
         } else {
             firebaseService.addFavoriteSong(uid, $scope.ArtistId, workId);
             $scope[workId] = true;
