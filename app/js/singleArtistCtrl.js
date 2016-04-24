@@ -21,6 +21,7 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
             $scope.artistlocation = artist.artist_location.country;
         }
         
+        $scope.artistlocation = artist.artist_location.country;
         $scope.genres = artist.genres;
 
         $scope.getArtistInfo(artist.name);      
