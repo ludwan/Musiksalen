@@ -128,9 +128,11 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
     $scope.addFavoriteSong = function(workId) {
         if(uid === null){
             $scope.error = true;
+            $scope.errorMessage = "You have to login in order to favorite a work";
+            var id = $location.hash();
             $location.hash('top');
             $anchorScroll();
-            $scope.errorMessage = "You have to login in order to favorite a work"
+            $location.hash(id);
         } else {
             firebaseService.addFavoriteSong(uid, $scope.ArtistId, workId);
             $scope[workId] = true;
