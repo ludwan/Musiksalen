@@ -32,9 +32,7 @@
 <div class="mainbody">
     <ng-include src="'partials/errorWindow.html'"></ng-include>
 
-    <div class="spinner" ng-hide="loading === 0">
-        <img src="../images/graphics-music-965598.gif"/> <!-- Ludwig: Image Subject to change-->
-    </div>
+    <ng-include src="'partials/spinner.html'"></ng-include>
     <div class="container" ng-show="loading === 0">
         <div class="row">
             <div ng-repeat="art in artists" class="artist_card col-md-3">

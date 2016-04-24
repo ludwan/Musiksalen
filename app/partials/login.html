@@ -15,9 +15,10 @@
             <button type="submit" ng-disabled="form.$invalid || loading">Login</button>
             <a href="#/register">Register</a>
         </div>
-        <div class="spinner" ng-if="loading">
+<!--         <div class="spinner" ng-if="loading">
             <img src="../images/graphics-music-965598.gif"/>
-        </div>
+        </div> -->
+        <ng-include src="'partials/spinner.html'"></ng-include>
     </form>
     <ng-include src="'partials/errorWindow.html'"></ng-include>
 

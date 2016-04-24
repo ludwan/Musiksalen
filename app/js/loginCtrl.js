@@ -1,7 +1,12 @@
 musiksalenApp.controller('LoginCtrl', function($scope, userService, $location){
+	$scope.loading = 0;
 
+	//This function logs a user in via email and password. If invalid credentials
+	//are given the proper error message will be shown. If the 
+	//credentials are valid then the user will be logged in and authenticated at the backend 
+	//and the user will be redirected to the myAccount page.
 	$scope.login = function() {
-		$scope.loading = true;
+		$scope.loading = 1;
 
     	$scope.error = false;
 
@@ -12,7 +17,7 @@ musiksalenApp.controller('LoginCtrl', function($scope, userService, $location){
 		  password : $scope.password
 		}, function(error, authData) {
 			if (error) {
-				$scope.loading = false;
+				$scope.loading = 0;
 			    switch (error.code) {
 				    case "INVALID_EMAIL":
 				    	$scope.error = true;
@@ -32,7 +37,7 @@ musiksalenApp.controller('LoginCtrl', function($scope, userService, $location){
 			    }
 			    $scope.$apply();
 			} else {
-				$scope.loading = false;
+				$scope.loading = 0;
 				userService.setUserId(authData.uid);
 			    console.log("Authenticated successfully with payload:", authData);
 			    $location.path('/myAccount');
@@ -41,6 +46,8 @@ musiksalenApp.controller('LoginCtrl', function($scope, userService, $location){
 		});
 	}
 
+	//If a user is already logged in then the user should not be able to login again
+	//and is therefore redirected to the myAccount page instead
 	$scope.$on('$viewContentLoaded', function() {
         if(userService.getUserId() != null){
             $location.path('/myAccount');

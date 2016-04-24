@@ -2,6 +2,10 @@ musiksalenApp.controller('RegisterCtrl', function($scope, $location, userService
 
 	var ref = new Firebase("https://sweltering-inferno-7067.firebaseio.com");
 
+	//This functions registers a new user via email and password. If invalid
+	//credentials are given the proper error message will be shown. If the 
+	//credentials are valid then the user will be registred at the backend 
+	//and the user will be redirected to the login page.
 	$scope.register = function(){
 		$scope.loading = true;
 		$scope.error = false;
@@ -35,6 +39,8 @@ musiksalenApp.controller('RegisterCtrl', function($scope, $location, userService
 		});
 	}
 
+	//If a user is already logged in the user should not be able to register a new user
+	//and is therefore redirected to the myAccount page instead
 	$scope.$on('$viewContentLoaded', function() {
         if(userService.getUserId() != null){
             $location.path('/myAccount');
