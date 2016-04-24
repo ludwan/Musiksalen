@@ -108,6 +108,8 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
     $scope.addFavorite = function() {
         if(uid === null){
             $scope.error = true;
+            $location.hash('top');
+            $anchorScroll();
             $scope.errorMessage = "You have to login in order to favorite an artist";
         } else {
             firebaseService.addFavoriteArtist(uid, $scope.ArtistId);
