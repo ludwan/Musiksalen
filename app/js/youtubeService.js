@@ -1,7 +1,7 @@
 musiksalenApp.service('youtubeService', ['$http', '$q', function ($http, $q) {
     var apiKey = 'AIzaSyAdAGKp13vOjtEcBUqTiK6Q4u8iLzWY_6Q';  
 
-    this.worksSearch = function (keyWord) {
+    this.worksSearch = function (keyWord, maxRes) {
         var deferred = $q.defer();
 
         console.log("In worksSearch");
@@ -10,12 +10,13 @@ musiksalenApp.service('youtubeService', ['$http', '$q', function ($http, $q) {
             var request = gapi.client.youtube.search.list({
                                 q: keyWord,
                                 part: 'snippet',
-                                maxResults: 13,
+                                maxResults: maxRes,
                                 order: 'relevance',
                                 fields: 'items(id,snippet(thumbnails, title))',
                                 type: 'video'
                             });
             request.execute(function(response) {
+                console.log(response.result);
                 deferred.resolve(response.result);
             });
         });
@@ -39,4 +40,12 @@ musiksalenApp.service('youtubeService', ['$http', '$q', function ($http, $q) {
         });
         return deferred.promise;
     };
+
+    this.createPlayer = function(player, videoId){
+        player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: videoId
+        });
+    }
 }]);

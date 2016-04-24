@@ -21,28 +21,30 @@ musiksalenApp.service('lastFmService', function ($resource, $q, $http){
         api_key : apiKey
     });
 
+    this.searchArtist = $resource('https://ws.audioscrobbler.com/2.0/?',{
+        method : 'artist.search',
+        format : 'json',
+        api_key : apiKey
+    });
+
     this.updateArtists = function(list){
         var getArtistVar = this.getArtist;
         angular.forEach(list, function(value, key){
-            
             if(value.name != undefined){
+                value.image = "../images/score-placeholder.png";
                 getArtistVar.get({artist : value.name},function(data){
-                    
                     var imgSrc = data['artist']['image'][2]['#text'];
 
-                    value.finalName = data.artist.name;
-                    if(imgSrc === undefined){
-                        value.image = "../images/score-placeholder.png";
-                    }else{
+                    if(imgSrc !== undefined){
                         value.image = imgSrc;
-                    };
+                    }
                     
                     value.mbid = data.artist.mbid;
-                    
+                }, function (error) {
+                    console.log("there was an error: " + error);
                 });
             }
             
-        });
-        
+        });       
     }
 });

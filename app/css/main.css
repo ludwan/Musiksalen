@@ -115,6 +115,7 @@ header h1 {
     display:inline-block;
     height: 150px;
     line-height: 150px;
+    margin-left: -15px;
     float: left;
     color: #730502;
     font-size: 72px;
@@ -145,6 +146,7 @@ header.smaller h1{
 #menu {
     display: inline-block;
     float: right;
+    margin-right: -15px;
 }
 
 header a {
@@ -355,14 +357,6 @@ article {
     color: #730502;
 }
 
-.section h3 {
-/*    color: #252121;*/
-    color: #730502;
-    font-weight: 700;
-    font-size: 28px;
-    line-height: 30px;
-    margin: 15px 0px;
-}
 
 #Artistnamecard p {
     color: inherit;
@@ -373,14 +367,6 @@ article {
     margin-left: 10px;
     margin-bottom: 5px;
     border-bottom: 1px dotted;
-}
-
-.section h4 {
-    color: #252121;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 26px;
-    margin-bottom: 15px;
 }
 
 .section p {
@@ -508,6 +494,13 @@ i {
     top: 200px;
 }
 
+/* MYACCOUNT PAGE */
+
+#myAccount {
+    position: relative;
+    top: 200px;
+}
+
 /* the FONTS */
 
 h1 {
@@ -524,12 +517,22 @@ h3 {
 /*    font-family: 'Goudy Bookletter 1911', serif;*/
     font-family: 'Gentium Book Basic', serif;
     font-weight: 400;
+    color: #730502;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 30px;
+    margin: 15px 0px;
 }
 
 h4 {
 /*    font-family: 'Goudy Bookletter 1911', serif;*/
     font-family: 'Gentium Book Basic', serif;
     font-weight: 400;
+    color: #252121;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 26px;
+    margin-bottom: 15px;
 }
 
 p, body {
@@ -553,6 +556,7 @@ section p {
 
 .star {
     padding: 2px;
+    cursor: pointer;
     /*
     -webkit-transition: transform 0.3s ease-in-out;
     -moz-transition: transform 0.3s ease-in-out;

@@ -1,57 +1,56 @@
-musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $filter, echoNestService, lastFmService, userService, youtubeService){
+musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $filter, echoNestService, lastFmService, userService, youtubeService, firebaseService){
+
     
 
     $scope.ArtistId = $routeParams.artistId;
     $scope.bio = "Not available";
     $scope.activeYears = "Not available";
-    $scope.loading = 1;
-    var ref = new Firebase("https://sweltering-inferno-7067.firebaseio.com/favoriteArtists");
-    var songRef = new Firebase("https://sweltering-inferno-7067.firebaseio.com/favoriteSongs");
+    $scope.loading = 0;
     var uid = userService.getUserId();
     
-    echoNestService.getArtist.get({id : $scope.ArtistId, bucket :"artist_location"}, function(data){
-        var artist = data.response.artist;
-        console.log(artist);
 
-        $scope.getArtistInfo(artist.name);
+    echoNestService.getArtist.get({id : $scope.ArtistId, bucket :"artist_location"}, function(data){
+        $scope.loading++;
+        var artist = data.response.artist;
+        
+
+        //$scope.getArtistInfo(artist.name);
         
         var keyWord = artist.name + "documentary";
         $scope.getVideos(keyWord);
         console.log(keyWord);
         
         $scope.artistlocation = artist.artist_location.country;
-
-        //$scope.getWorksViaArtistId(artist.id);
-        $scope.getWorksViaPlaylistId(artist.id);
-        //$scope.getWorksViaSearchId(artist.id);
-
+        
         $scope.genres = artist.genres;
-        if(artist.years_active.length != 0){
 
+        $scope.getArtistInfo(artist.name);      
+        $scope.getDocumentary(keyWord);
+
+
+
+        $scope.getWorksViaPlaylistId(artist.id);
+
+        if(artist.years_active.length != 0){
             $scope.activeYears = artist.years_active[0].start + " - " + artist.years_active[0].end;
         }
         $scope.loading--;
+    }, function (error) {
+            console.log(error);
+            $scope.favoriteError = true;
+            console.log($scope.favoriteError);
+            console.log($scope.loading);
+            $scope.errorMessage = "There was an error loading artist info";
     });
-
-    $scope.getWorksViaArtistId = function(artistId) {
-        echoNestService.getArtistWorks.get({id: artistId}, function(data){
-            $scope.works = data.response.songs;
-            //console.log(data);
-        })
-    }
    
     $scope.getWorksViaPlaylistId = function(artistId){
         $scope.loading++;
         echoNestService.workPlaylistSearch.get({artist_id : artistId}, function(data){
             $scope.works = data.response.songs;
             $scope.loading--;
-        });
-    }
-
-    $scope.getWorksViaSearchId = function(artistId){
-        echoNestService.workSearch.get({artist_id : artistId}, function(data){
-            $scope.works = data.response.songs;
-            //console.log(data);
+        }, function (error) {
+            $scope.favoriteError = true;
+            $scope.errorMessage = "There was an error loading artist info";
         });
     }
     
@@ -65,99 +64,67 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
             console.log($scope.singleArtist);
             $scope.loading--;
   
-        });
-        
+        }, function (error) {
+            $scope.favoriteError = true;
+            $scope.errorMessage = "There was an error loading artist info";
+        });       
     }
 
     $scope.checkFavorite = function(){
-        var string = uid + "/" + $scope.ArtistId;
-        var favoriteRef = ref.child(string);
-
-        favoriteRef.on("value", function(snapshot) {
-            if(snapshot.val() == null){
-                $scope.favorited = false;
-            } else {
+        firebaseService.checkFavoriteArtist(uid, $scope.ArtistId).then(function (data) {
+            if(data != null){
                 $scope.favorited = true;
+            } else {
+                $scope.favorited = false; 
             }
-            $scope.$evalAsync();
-        }, function (errorObject) {
-            //TODO some proper error handling with windows etc
-            console.log("The read failed: " + errorObject.code);
+        }, function (error){
+            $scope.favoriteError = true;
+            $scope.errorMessage = "There was an error loading user data";
         });
-    };
+    }
 
-    var onComplete = function(error) {
-        //TODO some proper error handling with windows etc instead
-        if (error) {
-            console.log('Synchronization failed');
-        } else {
-            console.log('Synchronization succeeded');
-        }
-    };
+    $scope.checkFavoriteSongs = function(){
+        firebaseService.checkFavoriteSong(uid, $scope.ArtistId).then(function (data) {
+            if(data != null){
+                angular.forEach(data, function(value, key){
+                    $scope[key] = value;
+                });
+            }
+        }, function (error){
+            $scope.favoriteError = true;
+            $scope.errorMessage = "There was an error loading user data";
+        });
+    }
 
     $scope.addFavorite = function() {
         if(uid === null){
             $scope.favoriteError = true;
+            $scope.errorMessage = "You have to login in order to favorite an artist";
         } else {
-            var array = {};
-            array[$scope.ArtistId] = true;
-
-            var userRef = ref.child(uid);
-            userRef.update(array, onComplete);
+            firebaseService.addFavoriteArtist(uid, $scope.ArtistId);
             $scope.favorited = true;
         }
     }
 
     $scope.removeFavorite = function() {
-        var string = uid + "/" + $scope.ArtistId;
-
-        var favoriteRef = ref.child(string);
-        favoriteRef.remove(onComplete);
+        firebaseService.removeFavoriteArtist(uid, $scope.ArtistId);
         $scope.favorited = false;
     }
 
-    $scope.checkFavoriteSongs = function() {
-        var string = uid + "/" + $scope.ArtistId;
-        var favoriteSongRef = songRef.child(string);
-
-        favoriteSongRef.on("value", function(snapshot) {
-            if(snapshot.val() == null){
-                console.log("Nothing here");
-            } else {
-                angular.forEach(snapshot.val(), function(value, key){
-                    $scope[key] = value;
-                });
-            }
-            //$scope.$apply();
-        }, function (errorObject) {
-            //TODO some proper error handling with windows etc
-            console.log("The read failed: " + errorObject.code);
-        });
-    }
-
     $scope.addFavoriteSong = function(workId) {
-        console.log(workId);
         if(uid === null){
             $scope.favoriteError = true;
+            $scope.errorMessage = "You have to login in order to favorite a work"
         } else {
-            var array = {};
-            array[workId] = true;
-            var string = uid + "/" + $scope.ArtistId;
-
-            var userRef = songRef.child(string);
-            userRef.update(array, onComplete);
+            firebaseService.addFavoriteSong(uid, $scope.ArtistId, workId);
             $scope[workId] = true;
         }
     }
 
     $scope.removeFavoriteSong = function(workId) {
-        var string = uid + "/" + $scope.ArtistId +"/"+ workId;
-        console.log(string);
-        var favoriteRef = songRef.child(string);
-        favoriteRef.remove(onComplete);
+        firebaseService.removeFavoriteSong(uid, $scope.ArtistId, workId);
         $scope[workId] = false;
     }
-
 
     $scope.$on('$viewContentLoaded', function() {
         $scope.checkFavoriteSongs();
@@ -167,40 +134,18 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
     //documentary
 //    $window.initGapi = function() {
 //        $scope.$apply($scope.loadWork);
-//    };
+//    };   
 
-   
-
-    $scope.getVideos = function (keyWord) {
+    $scope.getDocumentary = function (keyWord) {
         $scope.loading++;
-        youtubeService.worksSearch(keyWord).then(function (data) {
-            $scope.channel = data.items;
-            console.log($scope.channel);
-            $scope.createPlayer($scope.channel[0].id.videoId);
+        youtubeService.worksSearch(keyWord,1).then(function (data) {
+            var channel = data.items;
+            youtubeService.createPlayer($scope.player, channel[0].id.videoId);
+            $scope.loading--;
         }, function (error) {
-            console.log('Failed: ' + error)
+            $scope.favoriteError = true;
+            $scope.errorMessage = "There was an error loading Youtube data";
         });
     };
-
-    $scope.createPlayer = function (videoId) {
-        
-    	$scope[videoId] = true;
-    	$scope.player = new YT.Player('player', {
-          height: '390',
-          width: '640',
-          videoId: videoId
-        });
-        $scope.loading--;
-    }
-
-    $scope.changeVideo = function (videoId){
-    	var currId = $scope.player.getVideoData()['video_id'];
-
-        $scope.getFullDescription(videoId);
-  		$scope[currId] = false;
-  		$scope[videoId] = true;  	
-    	$scope.player.cueVideoById(videoId, 0, 'large');      
-    }
-
-    
+  
 });

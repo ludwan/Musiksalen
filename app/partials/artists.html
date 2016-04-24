@@ -4,10 +4,12 @@
 <div class="filter">
     <div class="container">
         <div class="row">
-            <h2>Browse artists</h2>
+
+            <div class="col-md-12"><h3>Browse artists</h3></div>
+
             <br>
         </div>
-        <div class="row">
+        <div class="row" id="filters">
             <!--    Can be replaced by genre+time, if don't have time, check genre        -->
             <div class="col-md-3">
             <select class="selectArtists" id="periodSelect" ng-model="genre" required ng-options='option.value as option.name for option in typeOptionsPeriod' ng-change="firstPage()">
@@ -20,7 +22,7 @@
             <div class="col-md-3"><select id="sortSelect" ng-model="sort" required ng-options='option.value as option.name for option in typeOptionsSorting' ng-change="firstPage()">
                 <!-- <option ng-selected="selected">All countries</option> -->
             </select></div>
-            <div id="SearchBar" class="col-md-3"><input id="searchfield" ng-model="query" ng-keypress="searchArtists(query,$event)" type="text"/>&nbsp;<a href="" ng-click="searchArtists(query,$event)"><i class="fa fa-search"></i></a></div>
+            <div id="SearchBar" class="col-md-3"><input id="searchfield" ng-model="query" my-enter="searchArtists()" type="text"/>&nbsp;<a href="" ng-click="searchArtists()"><i class="fa fa-search"></i></a></div>
         </div>
     </div>
 </div>
@@ -28,6 +30,10 @@
 <hr>
 
 <div class="mainbody">
+    <div class="alert" ng-show="error">
+        <span class="closebtn" ng-click="error=false">&times;</span>
+        {{errorMessage}}
+    </div>
     <div class="spinner" ng-hide="loading === 0">
         <img src="../images/graphics-music-965598.gif"/> <!-- Ludwig: Image Subject to change-->
     </div>
@@ -38,7 +44,7 @@
                    <a ng-href="#/artists/{{art.id}}"><img fallback class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
                </div>
                <div class="artist_name">
-                   <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.finalName}}</p></a>
+                   <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
                </div>
             </div>
         </div>
