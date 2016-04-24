@@ -11,24 +11,14 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
 
     echoNestService.getArtist.get({id : $scope.ArtistId, bucket :"artist_location"}, function(data){
         $scope.loading++;
-        var artist = data.response.artist;
-        
-
-        //$scope.getArtistInfo(artist.name);
-        
+        var artist = data.response.artist;        
         var keyWord = artist.name + "documentary";
-        $scope.getVideos(keyWord);
-        console.log(keyWord);
         
         $scope.artistlocation = artist.artist_location.country;
-        
         $scope.genres = artist.genres;
 
         $scope.getArtistInfo(artist.name);      
         $scope.getDocumentary(keyWord);
-
-
-
         $scope.getWorksViaPlaylistId(artist.id);
 
         if(artist.years_active.length != 0){
