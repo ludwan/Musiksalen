@@ -186,7 +186,7 @@ header a:hover {
 }
 
 header .active {
-    color: #5C4099; !important
+    color: #5C4099;
     text-decoration: none;
 }
 
