@@ -66,15 +66,15 @@ musiksalenApp.controller('MyAccountCtrl', function ($scope, $location, userServi
 			for (var i = 0; i < $scope.songIds.length; i = i + 10) {
 				var subArray = $scope.songIds.slice(i, i+10);
 				echoNestService.getWork.get({id : subArray}, function (data){
-				$scope.songs = $scope.songs.concat(data.response.songs);				
-				}, function (error){
-					$scope.error = true;
-					$scope.errorMessage = "There was an error loading user data";
-                    if($scope.songIds === 0){
+				$scope.songs = $scope.songs.concat(data.response.songs);
+                if($scope.songIds === 0){
                         $scope.likeSongs = false;
                     }else{
                         $scope.likeSongs = true;        
                     };
+				}, function (error){
+					$scope.error = true;
+					$scope.errorMessage = "There was an error loading user data";
 				});
 			};
 		}, function (error){
