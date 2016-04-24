@@ -35,6 +35,7 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
     }, function (error) {
             $scope.error = true;
             $scope.errorMessage = "There was an error loading artist info";
+            $scope.loading = 0;
     });
    
     //This function retrieves songs related to that artist from the ECHO NEST API. This can not
@@ -47,6 +48,7 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
             $scope.works = data.response.songs;
             $scope.loading--;
         }, function (error) {
+            $scope.loading = 0;
             $scope.error = true;
             $scope.errorMessage = "There was an error loading artist info";
         });
@@ -65,6 +67,7 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
             $scope.singleArtist.image = data['artist']['image'][4]['#text'];
             $scope.loading--; 
         }, function (error) {
+            $scope.loading = 0;
             $scope.error = true;
             $scope.errorMessage = "There was an error loading artist info";
         });       
@@ -81,6 +84,7 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
                 $scope.favorited = false; 
             }
         }, function (error){
+            $scope.loading = 0;
             $scope.error = true;
             $scope.errorMessage = "There was an error loading user data";
         });
@@ -98,6 +102,7 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
                 });
             }
         }, function (error){
+            $scope.loading = 0;
             $scope.error = true;
             $scope.errorMessage = "There was an error loading user data";
         });
@@ -108,7 +113,9 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
     //in. If a user is not logged in an error message will be displayed instead
     $scope.addFavorite = function() {
         if(uid === null){
+            console.log("error = true");
             $scope.error = true;
+            console.log($scope.error);
             $scope.errorMessage = "You have to login in order to favorite an artist";
 
         } else {
@@ -161,9 +168,14 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
             youtubeService.createPlayer($scope.player, channel[0].id.videoId);
             $scope.loading--;
         }, function (error) {
+            $scope.loading = 0;
             $scope.error = true;
             $scope.errorMessage = "There was an error loading Youtube data";
         });
     };
+
+    $scope.setError = function(){
+        $scope.error = false;
+    }
   
 });

@@ -20,5 +20,8 @@
         </div>
     </form>
 
-    <ng-include src="'partials/errorWindow.html'"></ng-include>
+    <div class="alert" ng-show="error">
+        <span class="closebtn" ng-click="error=false">&times;</span> 
+        {{errorMessage}}
+    </div>
 </div>

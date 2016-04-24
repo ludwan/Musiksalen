@@ -4,9 +4,7 @@
    <div class="mainbody" ng-show="loading === 0">
        <div class="container">
            <div class="row" id="top">
-                <ng-include ng-show ng-hide src="'partials/errorWindow.html'"></ng-include>
-
-               <div class="col-md-4">
+                <div class="col-md-4">
                    <div class="artistInfo">
                        <!--Images and Description-->
                        <img ng-src={{singleArtist.image}} style="width:100%">
@@ -30,7 +28,11 @@
                             <p class="back-to-list"><a href="#/artists">
                                &larr;Back to list</a></p>
                        </div>
-                       <ng-include ng-show ng-hide src="'partials/errorWindow.html'"></ng-include>
+
+                       <div class="alert" ng-show="error">
+                          <span class="closebtn" ng-click="error=false">&times;</span> 
+                          {{errorMessage}}
+                      </div>
                    </div>
                </div>
               

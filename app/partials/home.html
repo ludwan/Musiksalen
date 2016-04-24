@@ -25,7 +25,10 @@
     </div>
 
 	<div class="content-wrapper">
-        <ng-include src="'partials/errorWindow.html'"></ng-include>
+        <div class="alert" ng-show="error">
+            <span class="closebtn" ng-click="error=false">&times;</span> 
+            {{errorMessage}}
+        </div>
 
 		<h1>Medieval (476–1400)</h1>
         <p>Medieval music was both sacred and secular. During this time, music transformed from monophonic to polyphonic. Notational and theoretical practices were developed.</p>

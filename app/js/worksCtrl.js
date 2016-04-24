@@ -25,7 +25,7 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
             $scope.checkFavorite();
             $scope.loading--;
         }, function (error) {
-            $scope.loading--;
+            $scope.loading = 0;
             $scope.error = true;
             $scope.errorMessage = "There was an error loading work data";
         });
@@ -47,7 +47,7 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
             $scope[$scope.channel[0].id.videoId] = true;
             $scope.loading--;
         }, function (error) {
-            $scope.loading--;
+            $scope.loading = 0;
             $scope.error = true;
             $scope.errorMessage = "There was an error loading videos";
         });
@@ -99,7 +99,7 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
             }
             $scope.loading--;
         }, function (error){
-            $scope.loading--;
+            $scope.loading = 0;
             $scope.error = true;
             $scope.errorMessage = "There was an error loading user data";
         });

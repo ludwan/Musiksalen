@@ -2,7 +2,10 @@
 <ng-include src="'partials/spinner.html'"></ng-include>  
 <div class="mainbody" ng-show="loading === 0">
     <div class="container">
-        <ng-include src="'partials/errorWindow.html'"></ng-include>
+        <div class="alert" ng-show="error">
+            <span class="closebtn" ng-click="error=false">&times;</span> 
+            {{errorMessage}}
+        </div>
         <div class="section">
             <h3>{{workTitle}}
                 <span class="star" ng-hide="favorited" ng-click="addFavorite()">&#32;&#9734;</span>

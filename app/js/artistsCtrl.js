@@ -145,6 +145,7 @@ musiksalenApp.controller('ArtistsCtrl', function($scope, $cookieStore, $filter, 
             $scope.handleData(filteredData);
             $scope.loading--;
         }, function(error){
+            $scope.loading = 0;
             $scope.error = true;
             $scope.errorMessage = "There was an error while searching for artists";
         });     
@@ -172,6 +173,7 @@ musiksalenApp.controller('ArtistsCtrl', function($scope, $cookieStore, $filter, 
             $scope.handleData(data.response.artists);
             $scope.loading--;
         }, function(error){
+            $scope.loading = 0;
             $scope.error = true;
             $scope.errorMessage = "There was an error while filtering artists";
         });
