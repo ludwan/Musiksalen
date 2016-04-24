@@ -5,14 +5,14 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
     $scope.ArtistId = $routeParams.artistId;
     $scope.bio = "Not available";
     $scope.activeYears = "Not available";
-    $scope.loading = 0;
+    $scope.loading = 1;
     var uid = userService.getUserId();
     
 
     echoNestService.getArtist.get({id : $scope.ArtistId, bucket :"artist_location"}, function(data){
-        $scope.loading++;
         var artist = data.response.artist;        
-        var keyWord = artist.name + "documentary";
+        var keyWord = artist.name + " documentary";
+
         
         $scope.artistlocation = artist.artist_location.country;
         $scope.genres = artist.genres;
@@ -27,8 +27,8 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
         $scope.loading--;
     }, function (error) {
             console.log(error);
-            $scope.favoriteError = true;
-            console.log($scope.favoriteError);
+            $scope.error = true;
+            console.log($scope.error);
             console.log($scope.loading);
             $scope.errorMessage = "There was an error loading artist info";
     });
@@ -39,7 +39,7 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
             $scope.works = data.response.songs;
             $scope.loading--;
         }, function (error) {
-            $scope.favoriteError = true;
+            $scope.error = true;
             $scope.errorMessage = "There was an error loading artist info";
         });
     }
@@ -55,7 +55,7 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
             $scope.loading--;
   
         }, function (error) {
-            $scope.favoriteError = true;
+            $scope.error = true;
             $scope.errorMessage = "There was an error loading artist info";
         });       
     }
@@ -68,7 +68,7 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
                 $scope.favorited = false; 
             }
         }, function (error){
-            $scope.favoriteError = true;
+            $scope.error = true;
             $scope.errorMessage = "There was an error loading user data";
         });
     }
@@ -81,14 +81,14 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
                 });
             }
         }, function (error){
-            $scope.favoriteError = true;
+            $scope.error = true;
             $scope.errorMessage = "There was an error loading user data";
         });
     }
 
     $scope.addFavorite = function() {
         if(uid === null){
-            $scope.favoriteError = true;
+            $scope.error = true;
             $scope.errorMessage = "You have to login in order to favorite an artist";
         } else {
             firebaseService.addFavoriteArtist(uid, $scope.ArtistId);
@@ -103,7 +103,7 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
 
     $scope.addFavoriteSong = function(workId) {
         if(uid === null){
-            $scope.favoriteError = true;
+            $scope.error = true;
             $scope.errorMessage = "You have to login in order to favorite a work"
         } else {
             firebaseService.addFavoriteSong(uid, $scope.ArtistId, workId);
@@ -133,7 +133,7 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
             youtubeService.createPlayer($scope.player, channel[0].id.videoId);
             $scope.loading--;
         }, function (error) {
-            $scope.favoriteError = true;
+            $scope.error = true;
             $scope.errorMessage = "There was an error loading Youtube data";
         });
     };

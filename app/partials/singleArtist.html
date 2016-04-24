@@ -5,10 +5,7 @@
    <div class="mainbody" ng-show="loading === 0">
        <div class="container">
            <div class="row">
-                <div class="alert" ng-show="favoriteError">
-                  <span class="closebtn" ng-click="favoriteError=false">&times;</span>
-                  {{errorMessage}}
-                </div>
+                <ng-include src="'partials/errorWindow.html'"></ng-include>
                <div class="col-md-4">
                    <div class="artistInfo">
                        <!--Images and Description-->

@@ -73,10 +73,8 @@
 <!--Need to be change into 2 rows, one side for works and one side for artists-->
 
 <section id="section1" class="cd-section">
-    <div class="alert" ng-show="error">
-        <span class="closebtn" ng-click="error=false">&times;</span>
-        {{errorMessage}}
-    </div>
+    <ng-include src="'partials/errorWindow.html'"></ng-include>
+
     <div class="bgimg">
         <img class="backgroundimage" src="../images/medieval2.jpg">
     </div>

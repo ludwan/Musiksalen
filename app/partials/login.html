@@ -19,8 +19,6 @@
             <img src="../images/graphics-music-965598.gif"/>
         </div>
     </form>
-    <div class="alert" ng-show="loginError">
-      <span class="closebtn" ng-click="loginError=false">&times;</span> 
-      {{errorMessage}}
-    </div>
+    <ng-include src="'partials/errorWindow.html'"></ng-include>
+
 </div>

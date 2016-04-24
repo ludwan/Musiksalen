@@ -5,10 +5,7 @@
    
 <div class="mainbody" ng-show="loading === 0">
     <div class="container">
-        <div class="alert" ng-show="favoriteError">
-            <span class="closebtn" ng-click="favoriteError=false">&times;</span> 
-            {{errorMessage}}
-        </div>
+        <ng-include src="'partials/errorWindow.html'"></ng-include>
         <div class="section">
             <h3>{{workTitle}}
                 <span class="star" ng-hide="favorited" ng-click="addFavorite()">&#32;&#9734;</span>

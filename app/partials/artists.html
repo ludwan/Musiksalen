@@ -30,10 +30,8 @@
 <hr>
 
 <div class="mainbody">
-    <div class="alert" ng-show="error">
-        <span class="closebtn" ng-click="error=false">&times;</span>
-        {{errorMessage}}
-    </div>
+    <ng-include src="'partials/errorWindow.html'"></ng-include>
+
     <div class="spinner" ng-hide="loading === 0">
         <img src="../images/graphics-music-965598.gif"/> <!-- Ludwig: Image Subject to change-->
     </div>

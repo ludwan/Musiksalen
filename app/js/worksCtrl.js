@@ -28,7 +28,7 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
             $scope.loading--;
         }, function (error) {
             $scope.loading--;
-            $scope.favoriteError = true;
+            $scope.error = true;
             $scope.errorMessage = "There was an error loading work data";
         });
     }
@@ -44,7 +44,7 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
             $scope.loading--;
         }, function (error) {
             $scope.loading--;
-            $scope.favoriteError = true;
+            $scope.error = true;
             $scope.errorMessage = "There was an error loading videos";
         });
     };
@@ -73,7 +73,7 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
         $scope.loading--;
         }, function (error){
             $scope.loading--;
-            $scope.favoriteError = true;
+            $scope.error = true;
             $scope.errorMessage = "There was an error loading video description";
         });
     }
@@ -89,14 +89,14 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
             $scope.loading--;
         }, function (error){
             $scope.loading--;
-            $scope.favoriteError = true;
+            $scope.error = true;
             $scope.errorMessage = "There was an error loading user data";
         });
     }
 
     $scope.addFavorite = function() {
         if(uid === null){
-            $scope.favoriteError = true;
+            $scope.error = true;
             $scope.errorMessage = "You have to login in order to favorite a work";
         } else {
             firebaseService.addFavoriteSong(uid, $scope.artistId, workId);

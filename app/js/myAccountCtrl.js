@@ -30,18 +30,22 @@ musiksalenApp.controller('MyAccountCtrl', function ($scope, $location, userServi
 
 	$scope.getFavoriteSongs = function() {
 		$scope.songIds = [];
+		$scope.songs = [];
 		firebaseService.getFavoriteSongs(userService.getUserId()).then(function (data){
 			angular.forEach(data, function(value, key){
 				angular.forEach(value, function(value, key){
 					$scope.songIds.push(key);
 				})
 			});
-			echoNestService.getWork.get({id : $scope.songIds}, function (data){
-				$scope.songs = data.response.songs;
-			}, function (error){
-				$scope.error = true;
-				$scope.errorMessage = "There was an error loading user data";
-			});
+			for (var i = 0; i < $scope.songIds.length; i = i + 10) {
+				var subArray = $scope.songIds.slice(i, i+10);
+				echoNestService.getWork.get({id : subArray}, function (data){
+				$scope.songs = $scope.songs.concat(data.response.songs);				
+				}, function (error){
+					$scope.error = true;
+					$scope.errorMessage = "There was an error loading user data";
+				});
+			};
 		}, function (error){
 			$scope.error = true;
 			$scope.errorMessage = "There was an error loading user data";
