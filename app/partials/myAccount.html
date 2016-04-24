@@ -17,8 +17,8 @@
 
                     <div class="image">
                         <a ng-href="#/artists/{{art.id}}"><img fallback class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"></a>
-                        <span class="star fav" ng-hide="favorited" ng-click="removeFavorite()">&#9733;&#32;</span> 
-                        <span class="star unfav" ng-show="favorited" ng-click="addFavorite()">&#9733;&#32;</span> 
+                        <span class="star fav" ng-show="{{art.id}}" ng-click="removeFavoriteArtist(art.id)">&#9733;&#32;</span> 
+                        <span class="star unfav" ng-hide="{{art.id}}" ng-click="addFavoriteArtist(art.id)">&#9733;&#32;</span> 
                     </div>
                     
                     <div class="artist_name">
@@ -36,7 +36,7 @@
                     <table ng-show="likeSongs">  
                         <tr>
                             <th class="song-col"><a ng-click="sortType = 'title'; sortReverse = !sortReverse">
-                                Song
+                                Work
                                 <span ng-show="sortType == 'title' && !sortReverse" class="fa fa-caret-down"></span>
                                 <span ng-show="sortType == 'title' && sortReverse" class="fa fa-caret-up"></span>
                             </a></th>
@@ -48,8 +48,8 @@
                         </tr>
                         <tr ng-repeat="song in songs | orderBy:sortType:sortReverse">
                             <td class="song-col">
-                                <span class="star" ng-hide="{{song.id}}" ng-click="addFavoriteSong(song.id)">&#9734;&#32;</span>
-                                <span class="star" ng-show="{{song.id}}" ng-click="removeFavoriteSong(song.id)">&#9733;&#32;</span>
+                                <span class="star" ng-hide="{{song.id}}" ng-click="addFavoriteSong(song.id, song.artist_id)">&#9734;&#32;</span>
+                                <span class="star" ng-show="{{song.id}}" ng-click="removeFavoriteSong(song.id, song.artist_id)">&#9733;&#32;</span>
                                 <a ng-href="#/works/{{song.id}}">{{song.title}}</a>
                             </td>
                             <td class="artist-col"><a ng-href="#/artists/{{song.artist_id}}">{{song.artist_name}}</a></td>

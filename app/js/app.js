@@ -4,7 +4,6 @@ var musiksalenApp = angular.module('musiksalen', ['ngRoute','ngResource', 'ngAni
 //This function is called when the google api has finished loading. InitGapi will only be called if defined as a function
 var init = function() {
 
-
   if(typeof(window.initGapi) === typeof(Function)){
     window.initGapi();
   }
