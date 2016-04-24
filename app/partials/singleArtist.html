@@ -1,9 +1,11 @@
 <div id="singleArtist">
    <ng-include src="'partials/spinner.html'"></ng-include>
-   <div class="mainbody" ng-show="loading === 0" id="top">
-       <div class="container" >
-           <div class="row">
+
+   <div class="mainbody" ng-show="loading === 0">
+       <div class="container">
+           <div class="row" id="top">
                 <ng-include ng-show ng-hide src="'partials/errorWindow.html'"></ng-include>
+
                <div class="col-md-4">
                    <div class="artistInfo">
                        <!--Images and Description-->
@@ -28,6 +30,7 @@
                             <p class="back-to-list"><a href="#/artists">
                                &larr;Back to list</a></p>
                        </div>
+                       <ng-include ng-show ng-hide src="'partials/errorWindow.html'"></ng-include>
                    </div>
                </div>
               

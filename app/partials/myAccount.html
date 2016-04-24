@@ -17,10 +17,9 @@
 
                     <div class="image">
                         <a ng-href="#/artists/{{art.id}}"><img fallback class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"></a>
-                        <span class="star fav" ng-show="{{art.id}}" ng-click="removeFavoriteArtist(art.id)">&#9733;&#32;</span> 
-                        <span class="star unfav" ng-hide="{{art.id}}" ng-click="addFavoriteArtist(art.id)">&#9733;&#32;</span> 
                     </div>
-                    
+                    <span class="star fav" ng-show="{{art.id}}" ng-click="removeFavoriteArtist(art.id)">&#9733;&#32;</span> 
+                    <span class="star unfav" ng-hide="{{art.id}}" ng-click="addFavoriteArtist(art.id)">&#9733;&#32;</span> 
                     <div class="artist_name">
                         <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
                     </div>
