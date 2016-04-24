@@ -31,14 +31,14 @@ musiksalenApp.controller('MyAccountCtrl', function ($scope, $location, userServi
 					lastFmService.getArtist.get({artist : array['name']}, function(data) {
 						array['image'] = data['artist']['image'][2]['#text'];
 						$scope.artists.push(array);
+			            if($scope.artists.length === 0){
+				            $scope.likeArtists = false;
+				        } else{
+				            $scope.likeArtists = true;
+				        };
 					});
 				});
-			});
-            if($scope.artists.length === 0){
-                $scope.likeArtists = false;
-            } else{
-                $scope.likeArtists = true;
-            }; 
+			}); 
             
 		}, function (error){
 			$scope.error = true;
