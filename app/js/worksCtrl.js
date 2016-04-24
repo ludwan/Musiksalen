@@ -33,13 +33,16 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
 
     //This function retrieves the videos from youtube related to the work. This is done
     //via the youtubeService's function "worksSearch". The function will in turn create a player
-    //and retrieve the first video's full description via youtubeService's functions "createPlayer"
-    //and getFullDescription.
+    //and retrieve the first video's full description via youtubeService's function "getFullDescription"
     $scope.getVideos = function (keyWord) {
         $scope.loading++;
         youtubeService.worksSearch(keyWord, 13).then(function (data) {
             $scope.channel = data.items;
-            youtubeService.createPlayer($scope.player,$scope.channel[0].id.videoId);
+            $scope.player = new YT.Player('player', {
+              height: '390',
+              width: '640',
+              videoId: $scope.channel[0].id.videoId
+            });
             $scope.getFullDescription($scope.channel[0].id.videoId);
             $scope[$scope.channel[0].id.videoId] = true;
             $scope.loading--;
@@ -53,6 +56,7 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
     //This function changes the currently playing video to a new one.
     //It also hides the new video among 'Additional videos' and displays the old one
     $scope.changeVideo = function (videoId){
+        console.log($scope.player.getVideoData());
     	var currId = $scope.player.getVideoData()['video_id'];
 
         $scope.getFullDescription(videoId);
@@ -74,12 +78,9 @@ musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, y
     //This function is used to get the full description of the currently selected
     //video. This is done with the help of youtubeService's 'getFullDescription' function
     $scope.getFullDescription = function (videoId) {
-        $scope.loading++;
         youtubeService.getFullDescription(videoId).then(function (data) {
         $scope.videoDescription = data.items[0].snippet.description;
-        $scope.loading--;
         }, function (error){
-            $scope.loading--;
             $scope.error = true;
             $scope.errorMessage = "There was an error loading video description";
         });
