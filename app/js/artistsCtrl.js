@@ -210,6 +210,14 @@ musiksalenApp.controller('ArtistsCtrl', function($scope, $cookieStore, $filter, 
         $cookieStore.put('NumOfPeriod', $scope.findIndex($scope.typeOptionsPeriod, "value", $scope.genre));
         $cookieStore.put('NumOfSort', $scope.findIndex($scope.typeOptionsSorting, "value", $scope.sort));
     }
+    
+    $scope.removeCookie = function(){
+        console.log('remove cookie');
+        $cookieStore.remove('pager');
+        $cookieStore.remove('NumOfCountry');
+        $cookieStore.remove('NumOfPeriod');
+        $cookieStore.remove('NumOfSort');
+    }
 
     $scope.filteredArtists();   
     

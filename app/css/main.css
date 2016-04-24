@@ -681,3 +681,8 @@ footer p {
     line-height: 50px;
     color: rgba(242, 239, 234, 0.5);
 }
+
+header a .active {
+    color: #5C4099; 
+    text-decoration: none;
+}
