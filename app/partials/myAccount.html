@@ -1,28 +1,48 @@
 <div id="myAccount">
-	<h2>Signed in as: {{userName}}</h2>
-  <button ng-click="logout()">Logout</button>
-  <ng-include src="'partials/errorWindow.html'"></ng-include>
-	<h2>Favorite Artists</h2>
-	<div class="row">
-    <div ng-repeat="art in artists" class="artist_card col-md-3">
-       <div class="image">
-          <a ng-href="#/artists/{{art.id}}"><img fallback class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"></a>
-       </div>
-       <div class="artist_name">
-          <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
-       </div>
-    </div>
-  </div>
 
-	<h2>Favorite Songs</h2>
-  <table class="ingredient-list">  
-    <tr>
-      <th>Song</th>
-      <th>Artist</th>
-    </tr>
-    <tr ng-repeat="song in songs">
-      <td><a ng-href="#/works/{{song.id}}">{{song.title}}</a></td>
-      <td><a ng-href="#/artists/{{song.artist_id}}">{{song.artist_name}}</a></td>
-    </tr>  
-	</table>
+    <div class="mainbody">
+        <div class="container">
+           <div id="loginInfo">
+               <p>Signed in as: {{userName}}</p>
+               <button ng-click="logout()">Logout</button>
+           </div>
+            <div class="alert" ng-show="error">
+                <span class="closebtn" ng-click="error=false">&times;</span>
+                {{errorMessage}}
+            </div>
+            <h3>Favorite Artists</h3>
+            <div class="row">
+                <div ng-repeat="art in artists" class="artist_card col-md-3">
+                    <div class="image">
+                        <a ng-href="#/artists/{{art.id}}"><img fallback class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"></a>
+                        <span class="star" ng-hide="{{art.id}}" ng-click="addFavorite(art.id)">&#9734;&#32;</span>
+                        <span class="star" ng-show="{{art.id}}" ng-click="removeFavorite(art.id)">&#9733;&#32;</span>
+                    </div>
+                    <div class="artist_name">
+                        <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.name}}</p></a>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Favorite Songs</h3>
+            <div class="row">
+                <div id="fav-song-list" class="col-md-12">
+                    <table>  
+                        <tr>
+                            <th class="song-col">Song</th>
+                            <th class="artist-col">Artist</th>
+                        </tr>
+                        <tr ng-repeat="song in songs">
+                            <td class="song-col">
+                                <span class="star" ng-hide="{{song.id}}" ng-click="addFavoriteSong(song.id)">&#9734;&#32;</span>
+                                <span class="star" ng-show="{{song.id}}" ng-click="removeFavoriteSong(song.id)">&#9733;&#32;</span>
+                                <a ng-href="#/works/{{song.id}}">{{song.title}}</a>
+                            </td>
+                            <td class="artist-col"><a ng-href="#/artists/{{song.artist_id}}">{{song.artist_name}}</a></td>
+                        </tr>  
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

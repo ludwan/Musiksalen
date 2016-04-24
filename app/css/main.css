@@ -218,6 +218,7 @@ header a:hover {
 }
 */
 
+/* Partials postion */
 
 #works {
     position: relative;
@@ -242,6 +243,25 @@ header a:hover {
     padding-top: 175px;
     margin-bottom: 50px;
 }
+
+#myAccount {
+    position: relative;
+    padding-top: 175px;
+    margin-bottom: 50px;
+}
+
+#login {
+    position: relative;
+    padding-top: 175px;
+    margin-bottom: 50px;
+}
+
+#register {
+    position: relative;
+    padding-top: 175px;
+    margin-bottom: 50px;
+}
+
 
 #videoDescription {
     white-space: pre-line;
@@ -481,25 +501,41 @@ i {
 
 }
 
-/* LOGIN PAGE */
-
-#login {
-    position: relative;
-    top: 200px;
-}
-
-/*REGISTER PAGE */
-
-#register {
-    position: relative;
-    top: 200px;
-}
-
 /* MYACCOUNT PAGE */
 
-#myAccount {
-    position: relative;
-    top: 200px;
+#loginInfo p {
+    display: inline-block;
+}
+
+#loginInfo button {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+#fav-song-list table {
+    width: 100%;
+}
+
+#fav-song-list th {
+    line-height: 24px;
+    height: 24px;
+}
+
+#fav-song-list th.song-col{
+    padding-left: 26px;
+}
+
+#fav-song-list td {
+    line-height: 24px;
+    height: 24px;
+}
+
+.song-col {
+    width: 55%;
+}
+
+.artist-col {
+    width: 45%;
 }
 
 /* the FONTS */
@@ -556,7 +592,8 @@ section p {
 /* STAR */
 
 .star {
-    padding: 2px;
+    margin: 1px;
+    padding: 0px 2px;
     cursor: pointer;
     /*
     -webkit-transition: transform 0.3s ease-in-out;
@@ -565,6 +602,13 @@ section p {
     -o-transition: transform 0.3s ease-in-out;
     transition: transform 0.3s ease-in-out;
 */
+}
+
+.image .star {
+    display: flex;
+    float: right;
+    z-index: 2;
+    color: aliceblue;
 }
 
 .star:click {
