@@ -1,4 +1,4 @@
-musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, youtubeService, echoNestService, lastFmService, userService, firebaseService){
+musiksalenApp.controller('WorksCtrl', function ($scope, $window, $routeParams, youtubeService, echoNestService, userService, firebaseService){
 
     $scope.loading = 0;
     var uid = userService.getUserId();

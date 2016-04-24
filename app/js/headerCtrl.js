@@ -1,3 +1,17 @@
+//This makes the header shrink when scrolled past a certain distance (220);
+window.addEventListener('scroll', function(e){
+    var distanceY = window.pageYOffset || document.documentElement.scrollTop, shrinkOn = 220,
+        header = document.querySelector("header");
+    if(distanceY > shrinkOn) {
+        classie.add(header,"smaller");
+    }
+    else{
+        if (classie.has(header,"smaller")){
+            classie.remove(header,"smaller");
+        }
+    }
+});
+
 musiksalenApp.controller('HeaderCtrl', function($scope, userService){	
 
 	//This function is for seeing if a user is currently logged in or not

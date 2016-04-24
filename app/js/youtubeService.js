@@ -52,7 +52,11 @@ musiksalenApp.service('youtubeService', ['$http', '$q', function ($http, $q) {
     };
 
     //This function is used to create a youtube player with 
-    //videoId loaded in it
+    //videoId loaded in it. Whenever a youtube video is loaded and using chrome
+    //3 errors will be shown this is due to the fact that youtube tries to connect to
+    //chrome's cast app wether it is installed or not. The only fix for this when using 
+    //chrome is to install the app. These errors does not however affect the app in any way except
+    //of showing up in the console
     this.createPlayer = function(player, videoId){
         player = new YT.Player('player', {
           height: '390',
