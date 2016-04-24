@@ -18,10 +18,14 @@
   </div>
 
 	<h2>Favorite Songs</h2>
-  <div ng-repeat="song in songs">
-    <a ng-href="#/works/{{song.id}}">{{song.title}}</a>
-    <a ng-href="#/artists/{{song.artist_id}}">{{song.artist_name}}</a>
-  </div>
-
-	
+  <table class="ingredient-list">  
+    <tr>
+      <th>Song</th>
+      <th>Artist</th>
+    </tr>
+    <tr ng-repeat="song in songs">
+      <td><a ng-href="#/works/{{song.id}}">{{song.title}}</a></td>
+      <td><a ng-href="#/artists/{{song.artist_id}}">{{song.artist_name}}</a></td>
+    </tr>  
+	</table>
 </div>
