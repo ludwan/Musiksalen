@@ -17,7 +17,7 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
         var artist = data.response.artist;        
         var keyWord = artist.name + " documentary";
 
-        if(artist.artist_location.country != undefined){
+        if(artist.artist_location != undefined){
             $scope.artistlocation = artist.artist_location.country;
         }
         

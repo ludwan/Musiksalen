@@ -25,11 +25,6 @@
                                <li ng-repeat="genre in genres">{{genre.name}}</li>
                            </ul>
                            <p>Country: {{artistlocation}}</p>
-                           
-<!--
-                           <button ng-hide="favorited" ng-click="addFavorite()">Favorite</button>
-                           <button ng-show="favorited" ng-click="removeFavorite()">Unfavorite</button>
--->
                             <p class="back-to-list"><a href="#/artists">
                                &larr;Back to list</a></p>
                        </div>
@@ -40,7 +35,6 @@
                <div class="col-md-8">
                    <div class="section">
                       <h4>Biography</h4>
-<!--                       <br>-->
                        <div id="bio"
                           hm-read-more
                             hm-text="{{bio}}" 

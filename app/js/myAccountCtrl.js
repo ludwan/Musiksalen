@@ -23,12 +23,10 @@ musiksalenApp.controller('MyAccountCtrl', function ($scope, $location, userServi
 		firebaseService.getFavoriteArtists(userService.getUserId()).then(function (data){
 			angular.forEach(data, function(value, key){
 				$scope[key] = true;
-				console.log($scope[key]);
 				echoNestService.getBasicArtist.get({id : key}, function(data2){
 					var array = {};
 					array['id'] = data2.response.artist.id;
 					array['name'] = data2.response.artist.name;
-					console.log(data2.response.artist.id);
 
 					lastFmService.getArtist.get({artist : array['name']}, function(data) {
 						array['image'] = data['artist']['image'][2]['#text'];
