@@ -73,10 +73,6 @@ musiksalenApp.config(['$routeProvider',
         templateUrl: 'partials/singleArtist.html',
         controller: 'SingleArtistCtrl'
       }).
-      when('/search', {
-        templateUrl: 'partials/search.html',
-        controller: 'SearchCtrl'
-      }).
       when('/login', {
         templateUrl: 'partials/login.html',
         controller: 'LoginCtrl'

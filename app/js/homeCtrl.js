@@ -20,7 +20,7 @@ musiksalenApp.controller('HomeCtrl', function ($scope, echoNestService, lastFmSe
     }
     //Ludwig: Fixed some of the code repeat
     //    Medieval     
-    $scope.medievalArtists = [{"id":"ARUXZG81187FB5ACA0","name":"Hildegard von Bingen"}, {"id":"ARFHCDF1187FB5AB93","name":"Léonin"}, {"id":"ARZZ6AV1187FB412D9","name":"Pérotin"}, {"id":"AR2JVUX1187FB5CEF5","name":"Guillaume de Machaut"}];
+    $scope.medievalArtists = [{"id":"ARUXZG81187FB5ACA0","name":"Hildegard von Bingen"}, {"id":"ARFHCDF1187FB5AB93","name":"Léonin"}, {"id":"ARZZ6AV1187FB412D9","name":"Pérotin"}, {"id":"AR2JVUX1187FB5CEF5","name":"Guillaume de Machaut"},{"id":"AR9JUVH1187FB4019E", "name":"Guillaume Dufay"}];
     //$scope.getArtistInfo($scope.medievalArtists);
     lastFmService.updateArtists($scope.medievalArtists);
     //    RENAISSANCE

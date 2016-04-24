@@ -1,4 +1,4 @@
-musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $filter, echoNestService, lastFmService, userService){
+musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $filter, echoNestService, lastFmService, userService, youtubeService){
     
 
     $scope.ArtistId = $routeParams.artistId;
@@ -6,6 +6,7 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
     $scope.activeYears = "Not available";
     $scope.loading = 1;
     var ref = new Firebase("https://sweltering-inferno-7067.firebaseio.com/favoriteArtists");
+    var songRef = new Firebase("https://sweltering-inferno-7067.firebaseio.com/favoriteSongs");
     var uid = userService.getUserId();
     
     echoNestService.getArtist.get({id : $scope.ArtistId, bucket :"artist_location"}, function(data){
@@ -13,6 +14,11 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
         console.log(artist);
 
         $scope.getArtistInfo(artist.name);
+        
+        var keyWord = artist.name + "documentary";
+        $scope.getVideos(keyWord);
+        console.log(keyWord);
+        
         $scope.artistlocation = artist.artist_location.country;
 
         //$scope.getWorksViaArtistId(artist.id);
@@ -73,14 +79,12 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
             } else {
                 $scope.favorited = true;
             }
-            $scope.$apply();
+            $scope.$evalAsync();
         }, function (errorObject) {
             //TODO some proper error handling with windows etc
             console.log("The read failed: " + errorObject.code);
         });
     };
-
-    $scope.checkFavorite();
 
     var onComplete = function(error) {
         //TODO some proper error handling with windows etc instead
@@ -110,6 +114,92 @@ musiksalenApp.controller('SingleArtistCtrl', function ($scope, $routeParams, $fi
         var favoriteRef = ref.child(string);
         favoriteRef.remove(onComplete);
         $scope.favorited = false;
+    }
+
+    $scope.checkFavoriteSongs = function() {
+        var string = uid + "/" + $scope.ArtistId;
+        var favoriteSongRef = songRef.child(string);
+
+        favoriteSongRef.on("value", function(snapshot) {
+            if(snapshot.val() == null){
+                console.log("Nothing here");
+            } else {
+                angular.forEach(snapshot.val(), function(value, key){
+                    $scope[key] = value;
+                });
+            }
+            //$scope.$apply();
+        }, function (errorObject) {
+            //TODO some proper error handling with windows etc
+            console.log("The read failed: " + errorObject.code);
+        });
+    }
+
+    $scope.addFavoriteSong = function(workId) {
+        console.log(workId);
+        if(uid === null){
+            $scope.favoriteError = true;
+        } else {
+            var array = {};
+            array[workId] = true;
+            var string = uid + "/" + $scope.ArtistId;
+
+            var userRef = songRef.child(string);
+            userRef.update(array, onComplete);
+            $scope[workId] = true;
+        }
+    }
+
+    $scope.removeFavoriteSong = function(workId) {
+        var string = uid + "/" + $scope.ArtistId +"/"+ workId;
+        console.log(string);
+        var favoriteRef = songRef.child(string);
+        favoriteRef.remove(onComplete);
+        $scope[workId] = false;
+    }
+
+
+    $scope.$on('$viewContentLoaded', function() {
+        $scope.checkFavoriteSongs();
+        $scope.checkFavorite();
+    });
+    
+    //documentary
+//    $window.initGapi = function() {
+//        $scope.$apply($scope.loadWork);
+//    };
+
+   
+
+    $scope.getVideos = function (keyWord) {
+        $scope.loading++;
+        youtubeService.worksSearch(keyWord).then(function (data) {
+            $scope.channel = data.items;
+            console.log($scope.channel);
+            $scope.createPlayer($scope.channel[0].id.videoId);
+        }, function (error) {
+            console.log('Failed: ' + error)
+        });
+    };
+
+    $scope.createPlayer = function (videoId) {
+        
+    	$scope[videoId] = true;
+    	$scope.player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: videoId
+        });
+        $scope.loading--;
+    }
+
+    $scope.changeVideo = function (videoId){
+    	var currId = $scope.player.getVideoData()['video_id'];
+
+        $scope.getFullDescription(videoId);
+  		$scope[currId] = false;
+  		$scope[videoId] = true;  	
+    	$scope.player.cueVideoById(videoId, 0, 'large');      
     }
 
     

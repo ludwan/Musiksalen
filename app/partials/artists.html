@@ -9,18 +9,18 @@
         </div>
         <div class="row">
             <!--    Can be replaced by genre+time, if don't have time, check genre        -->
-            <div class="col-md-4">
+            <div class="col-md-3">
             <select class="selectArtists" id="periodSelect" ng-model="genre" required ng-options='option.value as option.name for option in typeOptionsPeriod' ng-change="firstPage()">
             </select> </div>
 
-            <div class="col-md-4"><select id="countrySelect" ng-model="country" required ng-options='option.name as option.name for option in typeOptionsCountry' ng-change="firstPage()">
+            <div class="col-md-3"><select id="countrySelect" ng-model="country" required ng-options='option.name as option.name for option in typeOptionsCountry' ng-change="firstPage()">
                 <!-- <option ng-selected="selected">All countries</option> -->
             </select></div>
 
-            <div class="col-md-4"><select id="sortSelect" ng-model="sort" required ng-options='option.value as option.name for option in typeOptionsSorting' ng-change="firstPage()">
+            <div class="col-md-3"><select id="sortSelect" ng-model="sort" required ng-options='option.value as option.name for option in typeOptionsSorting' ng-change="firstPage()">
                 <!-- <option ng-selected="selected">All countries</option> -->
             </select></div>
-
+            <div id="SearchBar" class="col-md-3"><input id="searchfield" ng-model="query" ng-keypress="searchArtists(query,$event)" type="text"/>&nbsp;<a href="" ng-click="searchArtists(query,$event)"><i class="fa fa-search"></i></a></div>
         </div>
     </div>
 </div>
@@ -41,6 +41,19 @@
                    <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{art.finalName}}</p></a>
                </div>
             </div>
+        </div>
+        <div class="row" ng-show="loading === 0">
+            <div class="row">
+                <div ng-repeat="artist in ResultArtists" class="artist_card col-md-3">
+                
+                    <div class="image">
+                        <a ng-href="#/artists/{{artist.id}}"><img fallback class="img img-reponsive" ng-src="{{artist.image}}" style="width:100%"/></a>
+                    </div>
+               <div class="artist_name">
+                   <a ng-href="#/artists/{{art.id}}"><p class="artist-name">{{artist.name}}</p></a>
+               </div>
+            </div>
+        </div>
         </div>
 <!--         
         <button class="pagerButton" ng-click="firstPage(genre,country)" ng-disabled="onFirstPage">First</button>
