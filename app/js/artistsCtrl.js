@@ -212,7 +212,6 @@ musiksalenApp.controller('ArtistsCtrl', function($scope, $cookieStore, $filter, 
     }
     
     $scope.removeCookie = function(){
-        console.log('remove cookie');
         $cookieStore.remove('pager');
         $cookieStore.remove('NumOfCountry');
         $cookieStore.remove('NumOfPeriod');
