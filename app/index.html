@@ -102,11 +102,14 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
             <div class="col-md-12">
                 <a id="logo" href="#/home" ng-click="removeCookie()" ng-controller="ArtistsCtrl"><h1>Musiksalen</h1></a>
                 <div id="menu">
-                    <ul>
+                    <ul class="topnav">
                     <li class="menu"><a ng-class="getClass('/home')" href="#/home" ng-click="removeCookie()" ng-controller="ArtistsCtrl">Home</a></li>
                     <li class="menu"><a ng-class="getClass('/artists')" href="#/artists">Artists</a></li>
                     <li class="menu" ng-hide="loggedIn()"><a ng-class="getClass('/login')" href="#/login">Login</a></li>
                     <li class="menu" ng-show="loggedIn()"><a ng-class="getClass('/myAccount')" href="#/myAccount">My account</a></li>
+                    <li class="foldIcon">
+                        <a href="javascript:void(0);" onclick="myFunction()">&#9776;</a>
+                    </li>
 
                     </ul>
                 </div>
@@ -120,5 +123,13 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
         <p>Design by: Xu Han, Sofie Nyström, Ludwig Sidenmark and Tingye Zhong</p>  
     </footer>
     </div>
+     
+    <script>
+    function myFunction() {
+        document.getElementsByClassName("topnav")[0].classList.toggle("responsive");
+    }
+    </script>
+    
 </body>
 </html>
+

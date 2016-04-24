@@ -12,9 +12,10 @@
         </div>
 
         <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-        <div id="player"></div>
-
-        <div id="videoDescription"
+        
+        <div id="player" class="col-md-8 col-md-offset-2"></div>
+        
+        <div class="col-md-12" id="videoDescription"
                             hm-read-more
                             hm-text="{{videoDescription}}" 
                             hm-limit="400" 
@@ -22,17 +23,18 @@
                             hm-less-text="Show less"
                             hm-dots-class="dots"
                             hm-link-class="links"></div>
-        <div class="section">
+        <div class="section col-md-12">
             <h4>Additional Videos</h4>
-        </div>
+        
         
         <div id="additional" class="row">
-            <div ng-repeat="video in channel" class="video_thumbnail col-md-2" ng-hide="isTrue('{{video.id.videoId}}')" >
+            <div ng-repeat="video in channel" class="video_thumbnail col-md-2 col-xs-4" ng-hide="isTrue('{{video.id.videoId}}')" >
                 <img ng-src="{{video.snippet.thumbnails.medium.url}}" ng-click="changeVideo(video.id.videoId)">
                 <div class="video_names">
                     <p>{{video.snippet.title}}</p>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </div>

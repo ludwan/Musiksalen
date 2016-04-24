@@ -10,15 +10,17 @@
             <br>
         </div>
         <div class="row" id="filters">
-            <div class="col-md-4">
+            <div class="col-md-6">
             <p style="display:inline-flex">Filter by:</p>
             <select class="selectArtists" id="periodSelect" ng-model="genre" required ng-options='option.value as option.name for option in typeOptionsPeriod' ng-change="firstPage()">
-            </select> </div>
+            </select> 
+<!--            </div>-->
 
-            <div class="col-md-2">
+<!--            <div class="col-md-2">-->
             
             <select id="countrySelect" ng-model="country" required ng-options='option.name as option.name for option in typeOptionsCountry' ng-change="firstPage()">
-            </select></div>
+            </select>
+        </div>
 
             <div class="col-md-3">
             <p style="display:inline-flex">Order by:</p>
@@ -37,7 +39,7 @@
     <ng-include src="'partials/spinner.html'"></ng-include>
     <div class="container" ng-show="loading === 0">
         <div class="row">
-            <div ng-repeat="art in artists" class="artist_card col-md-3">
+            <div ng-repeat="art in artists" class="artist_card col-xs-6 col-md-3">
                <div class="image">
                    <a ng-href="#/artists/{{art.id}}"><img fallback class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"/></a>
                </div>

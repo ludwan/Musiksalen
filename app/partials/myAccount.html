@@ -13,7 +13,7 @@
             <h3>Favorite Artists</h3>
             <p ng-hide="likeArtists">You don't have favorite artists now.</p>
             <div class="row">
-                <div ng-repeat="art in artists" class="artist_card col-md-3">
+                <div ng-repeat="art in artists" class="artist_card col-xs-6 col-md-3">
 
                     <div class="image">
                         <a ng-href="#/artists/{{art.id}}"><img fallback class="img img-reponsive" ng-src="{{art.image}}" style="width:100%"></a>
