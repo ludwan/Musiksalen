@@ -24,7 +24,11 @@
             <p style="display:inline-flex">Order by:</p>
             <select id="sortSelect" ng-model="sort" required ng-options='option.value as option.name for option in typeOptionsSorting' ng-change="firstPage()">
             </select></div>
-            <div id="SearchBar" class="col-md-3"><input id="searchfield" ng-model="query" my-enter="searchArtists()" type="text"/>&nbsp;<a href="" ng-click="searchArtists()"><i class="fa fa-search"></i></a></div>
+            <div id="SearchBar" class="col-md-3">
+               <div id="searchpart">
+                   <input id="searchfield" ng-model="query" my-enter="searchArtists()" type="text"/>&nbsp;<a href="" ng-click="searchArtists()"><i class="fa fa-search"></i></a>
+               </div>
+            </div>
 
         </div>
     </div>
